@@ -1,0 +1,18 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    while(n--){
+    string a;
+    cin>>a;
+    int b= a.length();
+    if(b>10){
+    cout<<a[0]<<b-2<<a[b-1];}
+    else{
+        cout<<a;
+    }
+    cout<<endl;
+    }
+    return 0;
+}

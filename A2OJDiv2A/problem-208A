@@ -1,0 +1,15 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+  string s,k="WUB";
+  cin>>s;
+  for(int i=0;i<s.length();){
+      if(s.substr(i,3)==k) {i=i+2; cout<<" ";}
+      else cout<<s[i];
+      i++;
+  }
+    return 0;
+}

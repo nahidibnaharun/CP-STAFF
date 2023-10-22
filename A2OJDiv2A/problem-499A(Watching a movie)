@@ -1,0 +1,17 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+   int n,x,c=1,cnt=0;
+   cin>>n>>x;
+   while(n--){
+       int a,b;
+       cin>>a>>b;
+       cnt+= (b-a+(a-c)%x+1);
+       c=b+1;
+   }
+   cout<<cnt;
+    return 0;
+}

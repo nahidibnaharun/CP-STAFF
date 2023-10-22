@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    int n,c=0,bi=0,ba=0;
+    cin>>n;
+    int i=1;
+    while(n--){
+        int a;
+        cin>>a;
+        if(i==1)c+=a;
+        else if(i==2) bi+=a;
+        else if(i==3) {
+            ba+=a;
+            i=0;
+        }
+        i++;
+    }
+    if(c>bi && c>ba) cout<<"chest";
+    else if(bi>c&& bi>ba) cout<<"biceps";
+    else cout<<"back";
+    return 0;
+}

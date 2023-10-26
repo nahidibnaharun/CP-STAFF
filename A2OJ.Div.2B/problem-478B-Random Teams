@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main ()
+{
+  ios::sync_with_stdio (false);
+  long long n,m;
+  cin>>n>>m;
+  long long divd=n/m,b=n%m;
+  long long ans=0,d= divd*(divd-1)/2;
+  if(n%m==0){
+      ans= d*m;
+  }
+  else{
+      d= divd*(divd-1)/2;
+      divd= (n-divd*(m-b))/b;
+      divd= divd*(divd-1)/2;
+      ans += d*(m-b) + b*divd;
+  }
+  cout<<ans<<" ";
+  divd = n-(m-1);
+  cout<<(divd*(divd-1))/2;
+  return 0;
+}

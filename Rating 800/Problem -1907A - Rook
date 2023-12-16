@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve(){
+string s;
+cin>>s;
+char ch = s[0];
+for(char a='a';a<'i';a++){
+	if(a!=ch)
+	cout<<a<<s[1]<<endl;
+}
+for(char a= '1';a<'9';a++){
+	if(a!=s[1])
+	cout<<s[0]<<a<<endl;
+}
+return ;
+}
+
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	int t;
+	cin>>t;
+	while(t--){
+		solve();
+	}
+
+}

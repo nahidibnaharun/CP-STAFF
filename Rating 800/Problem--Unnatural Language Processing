@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+bool str(char a){
+    if(a=='a'||a=='e')return true;
+    else return false;
+}
+void solve(){
+int n;cin>>n;string s;cin>>s;string ans ="";
+for(int i=n-1;i>-1;i--){
+    if(str(s[i]) && !str(s[i-1])){
+ans += s[i];
+ans += s[i-1];
+ans += '.';
+i--;
+    }
+    else ans+= s[i];
+}
+ans.pop_back();
+reverse(ans.begin(),ans.end());
+cout<<ans;
+cout<<endl;
+return;
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	int t;
+	cin>>t;
+	while(t--)
+	solve();
+return 0;
+}

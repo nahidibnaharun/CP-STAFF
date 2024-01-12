@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+/*
+
+ID: mdnahidibnaharun
+
+LANG: C++
+
+TASK: practice
+
+*/
+
+void solve() {int i,j,k,ans=0;
+int a,b,c,d,x=0;
+cin>>a>>b>>c>>d>>k;
+for(i=1;i<=k;i++){
+  x=0;
+  if(i%a==0)x++;
+  else if(i%b==0)x++;
+  else if(i%c==0)x++;
+  else if(i%d==0)x++;
+  ans+=x;
+}
+cout<<ans<<endl;
+return;
+}
+
+int main() {
+//  int n;
+//  cin>>n;
+//  while(n--)
+   solve();
+ 
+
+  return 0;
+}

@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+/*
+
+ID: mdnahidibnaharun
+
+LANG: C++
+
+TASK: practice
+
+*/
+
+void solve() {
+ int n,a=0;
+ cin>>n;
+ int mx,mn;
+ cin>>mx;
+ mn=mx;
+ for(int i=1;i<n;i++){
+   int t;cin>>t;
+   if(t>mx){
+     mx=t;
+     a++;
+   }
+   if(t<mn){
+     mn=t;
+     a++;
+
+   }
+ }
+ cout<<a;
+return;
+}
+
+int main() {
+//  int n;
+//  cin>>n;
+//  while(n--)
+   solve();
+ 
+
+  return 0;
+}

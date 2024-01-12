@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+/*
+
+ID: mdnahidibnaharun
+
+LANG: C++
+
+TASK: practice
+
+*/
+
+void solve() {
+ll a;int ans=0;
+cin>>a;
+while(a!=0){
+  if(a>=100){a-=100;
+  ans++;}
+  else if(a>=20){
+    a-=20;ans++;
+  }
+  else if(a>=10){
+    a-=10;
+    ans++;
+  }
+  else if(a>=5){a-=5;
+  ans++;}
+  else if(a>=1){a-=1;
+  ans++;}
+
+}cout<<ans;
+return;
+}
+
+int main() {
+//  int n;
+//  cin>>n;
+//  while(n--)
+   solve();
+ 
+
+  return 0;
+}

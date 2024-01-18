@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+/*
+
+ID: mdnahidibnaharun
+
+LANG: C++
+
+TASK: practice
+
+*/
+
+void solve() {
+unsigned long long a,b;
+int ans=0;
+cin>>a>>b;
+if(b%a==0){
+while(b/a>=a){
+b = b/a;
+ans++;
+}
+if(b==a)cout<<"YES"<<endl<<ans;
+else cout<<"NO";
+}else cout<<"NO";
+return;
+}
+
+int main() {
+//  int n;
+//  cin>>n;
+//  while(n--)
+   solve();
+ 
+
+  return 0;
+}

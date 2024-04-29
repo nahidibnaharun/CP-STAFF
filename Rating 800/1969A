@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+int solve(){
+int n;
+cin>>n;
+int ar[n];
+for(int i=0;i<n;i++){cin>>ar[i];}
+for(int i=0;i<n;i++){
+if(ar[ar[ar[i]-1]-1]==ar[i])return 2;
+}
+if(n==2)return n;
+return 3;
+}
+
+int main() {
+  ios_base::sync_with_stdio(0);
+	cin.tie(0); 
+  cout.tie(0);
+
+ int t;
+ cin>>t;
+ while(t--){
+   int n=solve();
+   cout<<n<<endl;
+   }
+
+  return 0;
+}

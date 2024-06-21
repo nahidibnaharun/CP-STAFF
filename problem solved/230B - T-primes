@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+const int N = 1e6 + 3;
+vector<bool> prim(N, true);
+set<ll> tprim;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
+    prim[0] = prim[1] = false;
+
+   for (int i = 2; i * i <= N; i++) {
+        if (prim[i]) {
+            for (int j = i * i; j < N; j += i) {
+                prim[j] = false;
+            }
+        }
+    }
+
+    for (int i = 2; i < N; i++) {
+        if (prim[i]) {
+            tprim.insert(i * 1LL * i);  }
+    }
+
+    int n;
+    cin >> n;
+    while (n--) {
+        ll x;
+        cin >> x;
+        if (tprim.find(x) != tprim.end()) {
+            cout << "YES" << endl;
+        } else {
+            cout << "NO" << endl;
+        }
+    }
+
+    return 0;
+}

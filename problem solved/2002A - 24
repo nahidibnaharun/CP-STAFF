@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+/*
+
+ID: mdnahidibnaharun
+
+LANG: C++
+
+TASK: practice
+
+*/
+
+void solve() {
+	int x,y,k;
+	cin>>x>>y>>k;
+	cout<<min(x,k)*min(y,k)<<endl;
+return ;
+}
+
+int main() {
+ int n;
+ cin>>n;
+ while(n--)
+   solve();
+ 
+
+  return 0;
+}

@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+/*
+
+ID: mdnahidibnaharun
+
+LANG: C++
+
+TASK: practice
+
+*/
+
+void solve() {
+int n;
+cin>>n;
+vector<pair<ll,ll>> ar(n);
+for(int i=0;i<n;i++){
+  cin>>ar[i].first>>ar[i].second;
+}
+ll x1,y1,x2,y2;cin>>x1>>y1>>x2>>y2;
+ll t = (x1-x2)*(x1-x2) + (y1-y2)*(y1-y2);
+for(int i=0;i<n;i++){
+  ll d = (ar[i].first-x2)*(ar[i].first-x2) + (ar[i].second-y2)*(ar[i].second-y2);
+  if(d<=t){
+    cout<<"NO"<<endl;
+    return ;
+  }
+}
+cout<<"YES";
+cout<<endl;
+return ;
+}
+
+int main() {
+ int n;
+ cin>>n;
+ while(n--)
+   solve();
+ 
+
+  return 0;
+}

@@ -1,0 +1,29 @@
+problem link: https://vjudge.net/contest/657622?fbclid=IwY2xjawFjvaNleHRuA2FlbQIxMAABHTpj9UhRilSH9lhFDBEumUkFcbanOBj5XAW9OFH2nsbZR5374WrdbirMBQ_aem_sotDlHdG1hkaOFCSkwmuPA#problem/A
+
+#include <bits/stdc++.h>
+#include <climits>
+
+using namespace std;
+
+using ll = long long;
+
+/*
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+
+*/
+
+
+
+int main() {
+ int n,t,a;
+   cin>>n>>t>>a;
+   int m= min (t,a),ma=max(t,a);
+   if(n-(t+a)+m>ma)cout<<"No";
+   else cout<<"Yes";
+ 
+
+  return 0;
+}

@@ -1,0 +1,53 @@
+#include <bits/stdc++.h>
+using namespace std;
+// typedef long long ll;
+// typedef vector<int> vi;
+// typedef pair<int, int> pi;
+// #define F first
+// #define S second
+// #define b push_back
+// #define MP make_pair
+
+/*
+PROBLEM LINK : https://codeforces.com/contest/2028/problem/A
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+	int n;
+	cin>>n;
+	while(n--){
+		 bool found = false;
+        int a, b, c;
+        cin >> a >> b >> c;
+        
+        string s;
+        cin >> s;
+        
+        int x = 0, y = 0;
+        for (int i = 0; i < 21 && !found; i++) {
+            for (int j = 0; j < a; j++) {
+                if (s[j] == 'N') y++;
+                else if (s[j] == 'S') y--;
+                else if (s[j] == 'E') x++;
+                else if (s[j] == 'W') x--;
+                
+                if (x == b && y == c) {
+                    cout << "YES" << endl;
+                    found = true;
+                    break;  
+                }
+            }
+        }
+        
+        if (!found)
+            cout << "NO" << endl;
+    }
+	
+    return 0;
+}

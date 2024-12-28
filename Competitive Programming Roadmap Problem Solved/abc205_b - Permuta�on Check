@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+/*
+ID: mdnahidibnaharun
+LANG: C++#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    int n;cin>>n;
+    int ans=0,ar[n];
+    for(int i=0;i<n;i++)cin>>ar[i];
+    sort(ar,ar+n);
+    bool t=true;
+    for(int i=0;i<n-1;i++)if(ar[i]!=ar[i+1]-1)t=false;
+
+    if(t)cout<<"Yes";else cout<<"No";
+   return 0;
+    
+}
+TASK: practice
+*/
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    int n;cin>>n;
+    int ans=0,sum=(n*(n+1)*1.0)/2;
+    while(n--){
+        int x;
+        cin>>x;ans+=x;
+    }
+    if(ans==sum)cout<<"Yes";else cout<<"No";
+   return 0;
+    
+}

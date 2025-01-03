@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    ll n;cin>>n;
+    vector<int> a(n);
+    for(auto &x:a)cin>>x;
+    ll res1=(n*(n-1))/2;
+    sort(a.begin(),a.end());
+    ll eq_pa=0,cnt=1;
+
+    for(int i=1;i<n;i++){
+        if(a[i]==a[i-1]){
+            cnt++;
+        }
+        else{
+            eq_pa+= cnt*(cnt-1)/2;
+            cnt=1;
+        }
+    }
+    eq_pa+=cnt*(cnt-1)/2;
+    cout<<res1-eq_pa;
+   return 0;
+    
+}

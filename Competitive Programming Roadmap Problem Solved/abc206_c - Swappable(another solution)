@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    ll n;cin>>n;
+    vector<int> a(n);
+    map<int,ll>freq;
+    for(auto &x:a){
+        cin>>x;
+        freq[x]++;
+        }
+    ll res1=(n*(n-1))/2;
+    ll eq_pa=0;
+    for(auto &[key,cnt]:freq){
+        eq_pa+=(cnt*(cnt-1))/2;
+    }
+    cout<<res1-eq_pa;
+   return 0;
+    
+}

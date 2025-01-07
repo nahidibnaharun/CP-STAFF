@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+#include <cmath>
+
+using namespace std;
+
+using ll = long long;
+
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    ll n;
+    cin>>n;
+    unordered_set<ll> s;
+    for(ll a = 2; a * a <= n; a++){
+        ll x = a * a;
+        while(x <= n){
+            s.insert(x);
+            x *= a;
+        }
+    }
+    cout << n - s.size() << endl;
+   return 0;
+    
+}

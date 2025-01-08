@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve(){
+	int n;
+	cin>>n;
+
+
+}
+
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	int t;
+	cin>>t;
+	while(t--){
+	int a,ma=0;cin>>a;
+	while(a--){
+	    int x;
+	    cin>>x;
+	    if(ma>x)cout<<"0 ";
+	    else cout<<"1 ";
+	    ma=max(ma,x);
+	    
+	}
+	cout<<endl;
+	}
+}

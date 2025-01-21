@@ -9,8 +9,8 @@ TASK: practice
 int main(){
     ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
-    freopen("cowsignal.in", "r", stdin); 
-    freopen("cowsignal.out", "w", stdout); 
+//    freopen("cowsignal.in", "r", stdin); 
+ //   freopen("cowsignal.out", "w", stdout); 
 	int a,b,c;
 	cin>>a>>b>>c;
 	char fa[a+1][b+1],sa[a*c+1][b*c+1];

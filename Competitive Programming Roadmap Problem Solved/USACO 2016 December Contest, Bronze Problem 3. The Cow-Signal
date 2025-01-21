@@ -1,0 +1,34 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    freopen("cowsignal.in", "r", stdin); 
+    freopen("cowsignal.out", "w", stdout); 
+	int a,b,c;
+	cin>>a>>b>>c;
+	char fa[a+1][b+1],sa[a*c+1][b*c+1];
+	for(int i=1;i<=a;i++){
+		for(int j=1;j<=b;j++){
+			cin>>fa[i][j];
+		}
+	}
+	for(int row=1;row<=a;row++){
+	for(int nc=1;nc<=c;nc++){
+	for(int i=1;i<=b;i++){
+		char temp=fa[row][i];
+		for(int co=1;co<=c;co++)cout<<temp;
+	}
+	cout<<endl;
+	}
+	}
+	
+	
+	return 0;
+}

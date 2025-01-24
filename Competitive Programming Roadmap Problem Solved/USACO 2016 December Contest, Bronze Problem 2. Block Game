@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    // freopen("blocks.in", "r", stdin); 
+    // freopen("blocks.out", "w", stdout); 
+
+    int n;
+    cin>>n;
+    int a[26]={0};
+    while(n--){
+        string b,c;
+        cin>>b>>c;
+        int f1[26]={0},f2[26]={0};
+        for(int i=0;i<b.size();i++)f1[b[i]-'a']++;
+        for(int i=0;i<c.size();i++)f2[c[i]-'a']++;
+        for(int i=0;i<26;i++)a[i]+=max(f1[i],f2[i]);
+    }
+    for(int i=0;i<26;i++)cout<<a[i]<<endl;
+
+    
+
+    return 0;
+}

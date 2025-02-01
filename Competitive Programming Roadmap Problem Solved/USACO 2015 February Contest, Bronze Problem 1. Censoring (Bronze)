@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    // freopen("censor.in", "r", stdin); 
+    // freopen("censor.out", "w", stdout); 
+    string gs,cs;
+    cin>>gs>>cs;
+    string ac;
+
+    for(char c : gs){
+        ac+=c;
+        if(ac.size()>=cs.size() && ac.substr(ac.size()-cs.size())==cs){
+            ac.resize(ac.size()-cs.size());
+        }
+    }
+    cout<<ac;
+    
+    
+    return 0;
+}
+
+
+

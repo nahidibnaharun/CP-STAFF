@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    // freopen("speeding.in", "r", stdin); 
+    // freopen("speeding.out", "w", stdout); 
+	int t;
+    cin>>t;
+    while(t--){
+        int n;
+        cin>>n;
+        vector<int> a(n),b(n);
+        for(int i=0;i<n;i++)cin>>a[i];
+        for(int i=0;i<n;i++)cin>>b[i];
+        set<int>sa(a.begin(),a.end()),sb(b.begin(),b.end());
+        if(sa.size()>=3 || sb.size()>=3){
+            cout<<"YES"<<endl;
+            continue;
+        }
+        if(sa.size()>=2 && sb.size()>=2){
+            cout<<"YES"<<endl;
+            continue;
+        }
+        cout<<"NO"<<endl;
+
+    }
+    
+	return 0;
+}

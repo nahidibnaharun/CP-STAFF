@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    // freopen("measurement.in", "r", stdin); 
+    // freopen("measurement.out", "w", stdout); 
+    int n;
+    cin>>n;
+    vector<tuple<int,string,int>> segm(n);
+    for(auto &[day,name,num] :segm){
+        cin>>day>>name>>num;
+    }
+    sort(segm.begin(),segm.end());
+    string name_of_cow[]={"Bessie","Elsie","Mildred"};
+    map<string,int> position;
+    string cur_first="";
+    int maxinum,totalchange=0;
+    position["Mildred"]=position["Bessie"]=position["Elsie"]=7;
+    set<string>curfirst={"Elsie","Bessie","Mildred"};
+    for(auto [day,name,num]:segm){
+        position[name]+=num;
+        maxinum=max({position[name_of_cow[0]],position[name_of_cow[1]],position[name_of_cow[2]]});
+        set<string>temp;
+        for(auto &[cow,amount]:position)
+        if(maxinum==amount)temp.insert(cow);
+
+        if(curfirst!=temp){
+            curfirst=temp;
+            totalchange++;
+        }
+    }
+    cout<<totalchange;
+	return 0;
+}

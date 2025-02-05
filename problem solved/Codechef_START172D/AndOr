@@ -1,0 +1,130 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+struct Node{
+    int len;
+    int trans[2][2];
+};
+int N;
+vector<int> arr;
+int segsize;
+vector<Node>seg;
+Node makeLeaf(int idx){
+    Node node;
+    node.len=1;
+    int v=arr[idx];
+    if(v==0){
+        node.trans[0][0]=0;
+        node.trans[0][1]=0;
+    }
+    else{
+        node.trans[0][0]=0;
+        node.trans[0][1]=1;
+    }
+    if(v==0){
+        node.trans[1][0]=0;
+        node.trans[1][1]=1;
+    }
+    else{
+        node.trans[1][0]=1;
+        node.trans[1][1]=1;
+    }
+    return node;
+}
+Node combine(const Node &L,const Node &R){
+    Node res;
+    res.len=L.len+R.len;
+    for(int p=0;p<2;p++){
+        for(int x=0;x<2;x++){
+            int inter=L.trans[p][x];
+            int newPhase=p^(L.len &1);
+            res.trans[p][x]=R.trans[newPhase][inter];
+        }
+    }
+    return res;
+}
+void buildTree(int pos,int l,int r){
+    if(l==r){
+        seg[pos]= makeLeaf(l);
+        return;
+    }
+    int mid=(l+r)/2;
+    buildTree(2*pos,l,mid);
+    buildTree(2*pos+1,mid+1,r);
+    seg[pos]=combine(seg[2*pos],seg[2*pos+1]);
+}
+
+void updateTree(int pos,int l,int r,int idx){
+    if(l==r){
+        seg[pos]=makeLeaf(idx);
+        return;
+    }
+    int mid=(l+r)/2;
+    if(idx<=mid)updateTree(2*pos,l,mid,idx);
+    else updateTree(2*pos+1,mid+1,r,idx);
+    seg[pos]=combine(seg[2*pos],seg[2*pos+1]);
+}
+Node queryTree(int pos,int l,int r,int ql,int qr){
+    if(ql >r || qr<l){
+        Node ide;
+        ide.len=0;
+        for(int p=0;p<2;p++){
+            ide.trans[p][0]=0;
+            ide.trans[p][1]=1;
+        }
+        return ide;
+    }
+    if(ql<=l && r<=qr)return seg[pos];
+    int mid=(l+r)/2;
+    Node leftNode = queryTree(2*pos,l,mid,ql,qr);
+    Node rightNode = queryTree(2*pos+1,mid+1,r,ql,qr);
+    if(leftNode.len==0)return rightNode;
+    if(rightNode.len==0)return leftNode;
+    return combine(leftNode,rightNode);
+}
+void solve(){
+	cin>>N;
+    arr.resize(N+1);
+    for(int i=1;i<=N;i++)cin>>arr[i];
+    int Q;
+    cin>>Q;
+    
+    if(N>=2){
+        int nLev=N-1;
+        segsize=1;
+        while(segsize<nLev)segsize*=2;
+        seg.assign(2*segsize,Node());
+        buildTree(1,2,N);
+    }
+    for(int qi=0;qi<Q;qi++){
+        int p,X;
+        cin>>p>>X;
+        arr[p]=X;
+        if(N>=2 && p>=2)updateTree(1,2,N,p);
+        
+        int ans;
+        if(N==1)ans=arr[1];
+        else{
+            Node Tnode=queryTree(1,2,N,2,N);
+            ans=Tnode.trans[0][arr[1]];
+        }
+        cout<<ans<<endl;
+    }
+
+}
+
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	int t;
+	cin>>t;
+	while(t--){
+		solve();
+	}
+
+}

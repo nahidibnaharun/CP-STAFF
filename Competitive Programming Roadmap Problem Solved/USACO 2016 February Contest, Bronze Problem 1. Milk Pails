@@ -14,12 +14,9 @@ int main(){
     int x,y,m;
     cin>>x>>y>>m;
     int maximum=0,total=0;
-    for(int i=1;i<=m/x;i++){
-        for(int j=1;j<=m/y;j++){
-            total=i*x+j*y;
-            if(total<=m)
-            maximum=max(maximum,total);
-        }
+    for(int i=0;i*x<=m;i++){
+        int j=(m-i*x)/y;
+        maximum=max(maximum,i*x+j*y);
     }
     cout<<maximum;
 	return 0;

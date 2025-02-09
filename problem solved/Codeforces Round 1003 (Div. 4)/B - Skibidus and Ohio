@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    // freopen("diamond.in", "r", stdin); 
+    // freopen("diamond.out", "w", stdout); 
+    int t;
+    cin>>t;
+    while(t--){
+        string s;
+        cin>>s;
+        int n=s.length();
+        bool tr=false;
+        for(int i=0;i<n-1;i++)
+        if(s[i]==s[i+1]){
+            tr=true;
+            break;
+        }
+        if(tr)cout<<1;
+        else cout<<n;
+        cout<<endl;
+    }	
+    return 0;
+}

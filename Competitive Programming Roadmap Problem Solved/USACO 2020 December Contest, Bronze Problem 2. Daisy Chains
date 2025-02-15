@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+
+
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+     // freopen("speeding.in", "r", stdin); 
+    // freopen("speeding.out", "w", stdout); 
+	int t,ans=0;
+	cin>>t;
+	vector<int> p(t+1,0);
+    for(int i=1;i<=t;i++){
+        cin>>p[i];
+    }
+
+
+    for(int i=1;i<=t;i++){
+        for(int j=i;j<=t;j++){
+            int chk=0;
+            for(int k=i;k<=j;k++){
+                chk+=p[k];
+            }
+            for(int k=i;k<=j;k++){
+                if(chk == p[k] * (j - i + 1)){
+                    ans++;
+                    break;
+                }
+            }
+        }
+    }
+
+    cout<<ans;
+
+}

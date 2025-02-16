@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+
+
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+     // freopen("speeding.in", "r", stdin); 
+    // freopen("speeding.out", "w", stdout); 
+	int n;
+    cin>>n;
+    vector<pair<char,int>> a(n);
+    for(int i=0;i<n;i++)cin>>a[i].first>>a[i].second;
+
+    int ans=n;
+    for(int i=0;i<n;i++){
+        int l=0;
+        for(int j=0;j<n;j++){
+            if((a[j].first=='L' && a[i].second>a[j].second) || (a[j].first=='G' && a[j].second>a[i].second))l++;
+        }
+        ans=min(ans,l);
+    }
+
+    cout<<ans;
+
+}

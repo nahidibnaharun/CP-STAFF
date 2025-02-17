@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    //  freopen("cownomics.in", "r", stdin); 
+    // freopen("cownomics.out", "w", stdout); 
+    int a,b;
+    cin>>a>>b;
+    vector<string> gen1(a),gen2(a);
+    for(int i=0;i<a;i++)cin>>gen1[i];
+    for(int i=0;i<a;i++)cin>>gen2[i];
+    int ans=0;
+    for(int j=0;j<b;j++){
+        int cnt=0;
+        for(int i=0;i<a;i++){
+            char te=gen1[i][j];
+            bool flag =true;
+            for(int k=0;k<a;k++){
+                if(te==gen2[k][j]){
+                    flag=false;
+                    break;
+                }
+            }
+            if(flag)cnt++;
+        }
+        if(cnt==a)ans++;
+    }
+    cout<<ans;
+    return 0;
+}

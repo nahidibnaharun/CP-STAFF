@@ -1,0 +1,67 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+ll MOD = 998244353;
+ll modexp(ll base, ll exp){
+    ll res=1;
+    base %=MOD;
+
+    while(exp){
+        if(exp & 1) res = (res * base) % MOD;
+        base = (base* base ) % MOD;
+        exp >>=1;
+    }
+    return res;
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    //  freopen("lifeguards.in", "r", stdin); 
+    // freopen("lifeguards.out", "w", stdout); 
+    int t;
+    cin>>t;
+    int mn=200005;
+    vector<ll> p2(mn+1),inv2(mn+1);
+    p2[0]=1;
+    for( int i=1; i<=mn; i++)
+    p2[i] = (p2[i-1] * 2) %MOD;
+    
+    ll invof2= modexp(2,MOD-2);
+    inv2[0]=1;
+    for(int i=1;i<=mn;i++)
+    inv2[i]= ( inv2[i-1] * invof2) % MOD;
+
+    while(t--){
+        int n;
+        cin>>n;
+        vector<int> a(n);
+        for(int i=0;i<n;i++)
+        cin>>a[i];
+
+    vector<int> pfx(n+1,0);
+    for(int i=1;i<=n ;i++){
+        pfx[i] = pfx[i-1] + (a[i-1 ]== 2);
+    }
+    
+    ll ans= 0, S=0, cntone=0;
+    for(int idx=1 ; idx <=n ;idx++){
+        int val = a[idx-1];
+        if(val == 1){
+            S = (S + inv2[pfx[idx]]) %MOD;
+            cntone++;
+        }
+        else if(val==3){
+            ll ctb = ((p2[pfx[idx-1]] * S ) %MOD - cntone ) %MOD;
+            if(ctb<0 ) ctb+=MOD;
+            ans = (ans+ctb)%MOD;
+        }
+    }
+    cout<<ans%MOD<<endl;
+    }
+    return 0;
+}

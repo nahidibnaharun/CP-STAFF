@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    //  freopen("circlecross.in", "r", stdin); 
+    // freopen("circlecross.out", "w", stdout); 
+    string s;
+    cin>>s;
+    int ans=0;
+    vector<pair<int,int>> p(26,{-1,-1});
+    for(int i=0;i<52;i++){
+    int ind=s[i]-'A';
+    if(p[ind].first==-1)p[ind].first=i;
+    else p[ind].second=i;
+    }
+
+    for(int i=0;i<26;i++){
+        for(int j=0;j<26;j++){
+            if(i!=j){
+                if(p[i].first<p[j].first && p[i].second <p[j].second && p[i].second >p[j].first)
+                {
+                    ans++;
+                }
+            }
+        
+        }
+    }
+    cout<<ans;
+    return 0;   
+}

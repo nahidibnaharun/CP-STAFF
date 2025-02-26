@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+
+
+
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	int t;
+	cin>>t;
+	while(t--){
+		int n;
+	cin>>n;
+    string s[3];
+    for(int i=0;i<3;i++)cin>>s[i];
+    
+    int z[3]={0},tz=0;
+    
+    for( int i=0 ; i<3 ; i++){
+        for( char c:s[i])
+        if(c=='0')z[i]++;
+        tz+= z[i];
+    }
+
+    if(tz == 3*n || tz ==0){
+        cout<<0<<endl;
+        continue;
+    }
+    int ans=-1;
+    
+    if(tz == 2*n){
+        int bt= 1e9;
+        for(int i=0;i<3;i++)bt = min(bt,z[i]);
+        ans=bt;
+    }
+    
+    else if(tz == n){
+        int bt = 1e9;
+        for(int i=0;i<3;i++)bt = min(bt, n-z[i]);
+        ans= bt;
+    }
+    cout<<ans<<endl;
+	}
+
+}

@@ -1,0 +1,56 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    //  freopen("badmilk.in", "r", stdin); 
+    // freopen("badmilk.out", "w", stdout); 
+  int team;
+  cin>>team;
+  int k=15;
+  unsigned long long tc=0;
+  for(int i=0;i<team;i++){
+    string s;
+    cin>>s;
+    int l = s.size();
+    string s2 = s+s;
+    int bindex =0;
+
+    for(int i = 1;i<l ;i++){
+        bool cdt = false;
+
+        for(int j=0;j<k;j++){
+            if(s2[i+j] < s2[bindex + j]){
+                cdt = true;
+                break;
+            }
+            else if(s2[i+j] > s2[bindex+j]){
+                break;
+            }
+        }
+
+        if(cdt)bindex = i;
+    }
+
+    int tcost =0;
+    for(int j=0;j<k;j++){
+        tcost += s2[bindex+j] - 'a'+1;
+    }
+    tc +=tcost;
+  }
+    cout<<tc;
+    return 0;   
+}

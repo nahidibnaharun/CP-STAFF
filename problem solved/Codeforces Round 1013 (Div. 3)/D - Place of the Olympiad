@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+ll cal(ll b, ll a){
+    return (b + min(b,a-b+1)-1)/min(b,a-b+1);
+}
+void solve(){
+    ll n,a,k;
+    cin>>n>>a>>k;
+    if(k<=n){
+    cout<<1<<endl;
+    return;
+    }
+    ll b=k/n,e=k%n,ans;
+    if(e==0)ans= cal(b,a);
+    else ans=max(cal(b,a),cal(b+1,a));
+    cout<<ans<<endl;
+    return ;
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+int t;
+cin>>t;
+while(t--)
+solve();
+    return 0;   
+}
+

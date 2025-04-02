@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+const ll M=998244353;
+ll func(ll bs, ll ex){
+    ll re=1;
+    bs%=M;
+    while(ex>0){
+        if(ex&1)re=(re*bs)%M;
+        bs = (bs*bs)%M;
+        ex>>=1;
+    }
+    return re;
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    int t;
+    cin>>t;
+    while(t--){
+        int n;cin>>n;
+        ll ans;
+        if(n%2==0)ans=(3*func(2,n-2))%M;
+        else ans= func(2,n-1);
+        cout<<ans<<endl;
+    }
+    
+
+    return 0;   
+}

@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL); 
+    int t;
+    cin>>t;
+    while(t--){
+        int n,m;cin>>n>>m;
+        vector<vector<int>> v(n+1,vector<int>(m+1));
+        for(int i=1;i<=n;i++)
+        for(int j=1;j<=m;j++)cin>>v[i][j];
+        int bc=n*m,p[4][2]={{1,1},{1,-1},{-1,1},{-1,-1}};
+        for(int i=0;i<4;i++){
+            int a=p[i][0],b=p[i][1];
+            unordered_map<ll,int>f;
+            int mf=0;
+            for(int k=1;k<=n;k++){
+                for(int l=1;l<=m;l++){
+                    ll d=v[k][l]-((ll)a*k+(ll)b*l);
+                    f[d]++;mf=max(mf,f[d]);
+                }
+            }
+            int c=n*m-mf;
+            bc=min(bc,c);
+        }
+        cout<<bc<<endl;
+    }
+    return 0;   
+}

@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve(){
+
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    //  freopen("tracing.in", "r", stdin); 
+    // freopen("tracing.out", "w", stdout); 
+    int hs[1001];
+    for(int i=1,j=1;j<=1001;i++){
+        if(i%3!=0 && i%10!=3){
+            hs[j]=i;
+            j++;
+        }
+
+    }
+    int t;cin>>t;
+    while(t--){
+        int x;
+        cin>>x;
+        cout<<hs[x]<<endl;
+    }
+   return 0;   
+}
+
+

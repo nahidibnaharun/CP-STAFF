@@ -14,22 +14,19 @@ LANG: C++
 TASK: practice 
 */
 void solve(){
-string s;cin>>s;
-int n=s.size();
-vector<string>ans;
-for(int i=n-1;i>-1;i--){
-    if(s[i]!='0'){
-        int l=n-i-1;
-        string tm;
-        tm+=s[i];
-        while(l--){
-            tm+='0';
-        }
-        ans.push_back(tm);
+int n;cin>>n;
+vector<int>ans;
+int p=1;
+while(n>0){
+    if(n%10>0){
+        ans.push_back(n%10*p);
     }
+    n/=10;
+    p*=10;
 }
 cout<<ans.size()<<endl;
-for(int i=ans.size()-1;i>-1;i--)cout<<ans[i]<<" ";
+for(int x:ans)cout<<x<<" ";
+
 cout<<endl;
 }
 int main(){

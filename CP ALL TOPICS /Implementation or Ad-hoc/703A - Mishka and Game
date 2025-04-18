@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve(){
+cout<<endl;
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    //  freopen("tracing.in", "r", stdin); 
+    // freopen("tracing.out", "w", stdout); 
+    int t;cin>>t;
+    int m=0,c=0;
+    while(t--){
+        int a,b;
+        cin>>a>>b;
+        if(a>b)m++;
+        else if(a<b)c++;
+    }
+    if(m==c)cout<<"Friendship is magic!^^";
+    else if(m>c)cout<<"Mishka";
+    else cout<<"Chris";
+   return 0;   
+}
+
+

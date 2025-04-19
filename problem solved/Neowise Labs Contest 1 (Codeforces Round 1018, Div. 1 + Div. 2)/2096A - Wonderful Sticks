@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve(){
+    int n;
+    string s;
+    cin>>n>>s;
+    int cl=0;
+    for(char x:s)if(x=='<')cl++;
+    vector<int>ans;
+    ans.push_back(cl+1);
+    vector<int>lf,ri;
+    for(int i=1;i<=cl;i++)lf.push_back(i);
+    for(int i=cl+2;i<=n;i++)ri.push_back(i);
+    int l=(int)lf.size()-1,r=0;
+    for(int i=0;i<n-1;i++){
+        if(s[i]=='<')ans.push_back(lf[l--]);
+        else ans.push_back(ri[r++]);
+    }
+    for(int x:ans)cout<<x<<" ";
+    cout<<endl;
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    int t;cin>>t;
+    while(t--)
+    solve(); 
+}
+
+

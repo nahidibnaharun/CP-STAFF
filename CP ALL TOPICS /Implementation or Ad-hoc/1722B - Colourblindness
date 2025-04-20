@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+ void solve(){
+    int n;cin>>n;
+    string a,b;cin>>a>>b;
+    bool ans=true;
+    for(int i=0;i<n;i++){
+        if(a[i]==b[i] || (a[i]=='B' && b[i]=='G') || (a[i]=='G' && b[i]=='B')){
+
+        }
+        else{
+    ans=false;
+    break;}
+    }
+    cout<<((ans)?"YES":"NO");
+    cout<<endl;
+ }
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    int t;cin>>t;
+    while(t--)
+    solve();
+}

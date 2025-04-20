@@ -15,20 +15,12 @@ TASK: practice
 */
  void solve(){
  int n;cin>>n;
- vector<pair<int,int>> ar(n);
- for(int i=0;i<n;i++){
-    cin>>ar[i].first>>ar[i].second;
- }
- int ans,q=0;
- for(int i=0;i<n;i++){
-    if(ar[i].first<11){
-        if(ar[i].second>q){
-            q=ar[i].second;
-            ans=i+1;
-        }
-    }
- }
- cout<<ans;
+int w=-1,bs=0;
+for(int i=1;i<=n;i++){
+    int a,b;cin>>a>>b;
+    if(b>bs && a<=10){w=i;bs=b;}
+}
+ cout<<w;
     cout<<endl;
  }
 int main(){

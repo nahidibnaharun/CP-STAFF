@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+ void solve(){
+    ll l,r;cin>>l>>r;
+    ll cnt=0;
+    if(l<=1 && 1<=r)cnt+=1;
+    if(r>=2){
+        ll start=max(l,2LL);
+        if(start<=r-1)cnt+=(r-start);
+    }
+    cout<<cnt;
+    cout<<endl;
+ }
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    int t;cin>>t;
+    while(t--)
+    solve();
+}

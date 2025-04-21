@@ -16,11 +16,8 @@ TASK: practice
  void solve(){
     ll l,r;cin>>l>>r;
     ll cnt=0;
-    if(l<=1 && 1<=r)cnt+=1;
-    if(r>=2){
-        ll start=max(l,2LL);
-        if(start<=r-1)cnt+=(r-start);
-    }
+    if(l==1)cnt++;
+    if(r>=2)cnt+=r-max(2LL,l);
     cout<<cnt;
     cout<<endl;
  }

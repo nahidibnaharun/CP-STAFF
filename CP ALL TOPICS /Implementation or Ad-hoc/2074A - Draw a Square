@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+// const int N= 1e5+10;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+// int ai[N],bi[N],ci[N],dp[N];
+// int n,k;
+// int func(int n){
+    
+//     if(n==0)return 0;
+//     int cost=INT_MAX;
+//     if(dp[n]!=-1)return dp[n];
+    
+//     if(n<-1){
+//         cost=max(cost,ai[n]);cost=max(cost,bi[n]);cost=max(cost,ci[n]);
+//     }
+//     return dp[n]=cost;
+
+// }
+ void solve(){
+    int l,r,d,u;cin>>l>>r>>d>>u;
+    if (l == r && r == d && d == u)cout<<"YES";
+    else cout<<"NO";
+    
+    cout<<endl;
+ }
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    int t;cin>>t;
+    while(t--)
+    solve();
+}
+

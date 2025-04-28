@@ -1,0 +1,59 @@
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+
+class Solution {
+
+  public:
+  const int N=1e5+1;
+    vector<int> findMissing(vector<int>& a, vector<int>& b) {
+        vector<int>hsh(N,0),ans;
+        for(auto x:b)hsh[x]=1;
+        for(auto &x:a){
+            if(hsh[x]==0)ans.push_back(x);
+        }
+        return ans;
+    }
+};
+
+
+
+//{ Driver Code Starts.
+
+int main() {
+
+    int t;
+    cin >> t;
+    cin.ignore();
+    while (t--) {
+        vector<int> arr, brr;
+        string input1;
+        getline(cin, input1);
+        stringstream ss1(input1);
+        int number1;
+        while (ss1 >> number1) {
+            arr.push_back(number1);
+        }
+        string input2;
+        getline(cin, input2);
+        stringstream ss2(input2);
+        int number2;
+        while (ss2 >> number2) {
+            brr.push_back(number2);
+        }
+        vector<int> ans;
+
+        Solution ob;
+        ans = ob.findMissing(arr, brr);
+        for (int i = 0; i < ans.size(); i++)
+            cout << ans[i] << " ";
+
+        cout << "\n";
+        cout << "~\n";
+    }
+    return 0;
+}
+// } Driver Code Ends

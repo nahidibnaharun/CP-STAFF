@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const int N= 1e5+10;
+const ll INF=1e18;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+ void solve(){
+int n,bmax=0,midmaxa=0;cin>>n;
+string s;cin>>s;
+for(int i=0;i<n;i++)if(s[i]=='B')bmax=max(bmax,i+1);
+for(int i=1;i<n-1;i++)if(s[i]=='A')midmaxa=max(midmaxa,i+1);
+bool ans= false;
+if(midmaxa >= bmax)ans=true;
+if(!ans && s[0]=='A'){
+    bool chk=false;
+    for(int i=1;i<n-1;i++){
+        if(s[i]=='B'){chk=true;break;}}
+    
+    if(!chk)ans=true;
+}
+if(!ans && s[n-1]=='A' && s[0]=='A')ans=true;
+cout<<(ans ? "Alice":"Bob");
+cout<<endl;
+ }
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    int t;cin>>t;
+    while(t--)
+    solve();
+       
+}
+

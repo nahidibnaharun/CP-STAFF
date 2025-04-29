@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const int N= 1e5+10;
+const ll INF=1e18;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+ void solve(){
+string s;cin>>s;
+int n=s.length();
+int r=0,u=0,b=0,y=0;
+for(int i=0;i<n;i++){
+    if(s[i]=='r')r++;
+    else if(s[i]=='u')u++;
+    else if(s[i]=='b')b++;
+    else if(s[i]=='y')y++;
+}
+if(r>0 && u>0 && b>0 && y>0)cout<<min({r,u,b,y});
+else cout<<0;
+cout<<endl;
+ }
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    int t;cin>>t;
+    while(t--)
+    solve();
+       
+}
+
+

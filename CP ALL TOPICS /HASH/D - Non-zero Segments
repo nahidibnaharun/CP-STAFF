@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+void solve() {
+    int n;cin>>n;
+    vector<ll>v(n);
+    for(int i=0;i<n;i++)cin>>v[i];
+    unordered_set<ll>chk;
+    chk.reserve(n*2);chk.insert(0);
+    ll ps=0;
+    int cnt=0;
+    for(int i=0;i<n;i++){
+        ps+=v[i];
+        if(chk.count(ps)){
+            cnt++;
+            chk.clear();
+            chk.insert(0);
+            ps=v[i];
+        }chk.insert(ps);
+    }cout<<cnt;
+    return;
+
+}
+
+
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL); 
+    // int t;cin>>t;
+    // while(t--){
+        solve();
+        cout<<endl;
+    // }
+    return 0;   
+}

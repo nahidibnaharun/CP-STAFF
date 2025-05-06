@@ -17,18 +17,20 @@ void solve() {
     int n;cin>>n;
     vector<ll>v(n);
     for(int i=0;i<n;i++)cin>>v[i];
-    unordered_set<ll>chk;
-    chk.reserve(n*2);chk.insert(0);
+    unordered_map<ll,int>chk;
+    chk.reserve(n*2);
     ll ps=0;
-    int cnt=0;
+    int seg=1,cnt=0;
+    chk[0]=seg;
     for(int i=0;i<n;i++){
         ps+=v[i];
-        if(chk.count(ps)){
-            cnt++;
-            chk.clear();
-            chk.insert(0);
+        if(chk[ps]==seg){
+            cnt++;seg++;
             ps=v[i];
-        }chk.insert(ps);
+            chk[0]=seg;
+            chk[ps]=seg;
+        }
+        else chk[ps]=seg;
     }cout<<cnt;
     return;
 

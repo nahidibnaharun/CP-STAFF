@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const int N= 1e5+10;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+ void solve(){
+int a,b;cin>>a>>b;
+int c=max(a,b),d=min(a,b);
+c=max(c,d*2);
+cout<<c*c;
+    cout<<endl;
+ }
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    int t;cin>>t;
+    while(t--)
+    solve();
+
+       
+}

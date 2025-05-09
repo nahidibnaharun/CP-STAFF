@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const int N= 1e5+10;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+ void solve(){
+int n,cnt[2]={0};
+cin>>n;
+for(int i=1,x;i<=n*2;i++)cin>>x,cnt[x%2]++;
+   if(cnt[0]==n)cout<<"Yes";
+else cout<<"No";
+cout<<endl;
+ }
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    ll t;cin>>t;
+    while(t--)
+    solve();
+
+
+       
+}

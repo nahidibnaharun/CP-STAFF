@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const int N= 1e5+10;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+int fun(ll x){
+   if(x<10)return x;
+   ll sum=0;
+   while(x){
+      sum+=x%10;
+      x/=10;
+   }
+   return fun(sum);
+}
+//  void solve(){
+
+// cout<<endl;
+//  }
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    // ll t;cin>>t;
+    // while(t--)
+    // solve();
+   string s;
+   ll k;
+   cin>>s>>k;
+   ll sm=0;
+   for(char c:s)sm+=c-'0';
+      sm*=k;
+   cout<<fun(sm);
+
+
+
+       
+}

@@ -1,0 +1,56 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const int M=200004;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/ 
+
+void solve(){
+    int n,m,k;cin>>n>>m>>k;
+    vector<ll>a(n+2,0),delta(n+2,0);
+    for(int i=1;i<=n;i++)cin>>a[i];
+    vector<int>L(m+2),R(m+2),D(m+2);
+for(int i=1;i<=m;i++)
+    cin>>L[i]>>R[i]>>D[i];
+
+vector<ll>opcount(m+3,0);
+for(int qi=0;qi<k;qi++){
+    int x,y;cin>>x>>y;
+    opcount[x]+=1;
+    opcount[y+1]-=1;
+}
+for(int i=1;i<=m;i++)opcount[i]+=opcount[i-1];
+
+for(int i=1;i<=m;i++){
+    if(opcount[i]==0)continue;
+    ll times=opcount[i];
+    delta[L[i]]+=D[i]*times;
+    delta[R[i]+1]-=D[i]*times;
+}   
+for(int i=1;i<=n;i++){
+    delta[i]+=delta[i-1];
+    a[i]+=delta[i];
+}
+for(int i=1;i<=n;i++)
+    cout<<a[i]<<" ";
+cout<<endl;
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+   // int t;cin>>t;
+   //  while(t--)
+        solve();
+}
+
+       

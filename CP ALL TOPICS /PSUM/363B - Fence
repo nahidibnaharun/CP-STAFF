@@ -1,0 +1,46 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const int M=200004;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/ 
+
+void solve(){
+int n,k;cin>>n>>k;
+int ar[n+1];ar[0]=0;
+for(int i=1;i<n+1;i++){
+    cin>>ar[i];
+    ar[i]+=ar[i-1];
+    // cout<<ar[i]<<" ";
+}
+int ans=INT_MAX,ind=-1;
+for(int i=1;i<=n-k+1;i++){
+int a=i,b=i+k-1;
+// cout<<ar[b]-ar[a-1]<<" ";
+if(ans>(ar[b]-ar[a-1])){
+    ans=ar[b]-ar[a-1];
+    ind=a;
+}
+}
+
+cout<<ind;
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+   // int t;cin>>t;
+   //  while(t--)
+        solve();
+}
+
+       

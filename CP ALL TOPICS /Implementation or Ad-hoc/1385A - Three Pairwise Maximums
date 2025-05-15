@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const int M=200004;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/ 
+
+void solve(){
+
+int ar[3];
+for(auto &x:ar)cin>>x;
+
+int x=max({ar[0],ar[1],ar[2]});
+int cnt=0;
+for(auto a:ar)if(a==x)cnt++;
+    if(cnt>1)cout<<"YES"<<endl;
+else {cout<<"NO"<<endl;return;}
+int y=min({ar[0],ar[1],ar[2]});
+cout<<x<<" "<<y<<" 1";
+cout<<endl;
+
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+   int t;cin>>t;
+    while(t--)
+        solve();
+}
+

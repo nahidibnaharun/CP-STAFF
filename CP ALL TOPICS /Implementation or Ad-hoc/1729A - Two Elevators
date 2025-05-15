@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const int M=200004;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/ 
+
+void solve(){
+    ll a,b,c;cin>>a>>b>>c;
+    if(a==1)cout<<1;
+    else {
+        ll x,y;x=a-1;
+        if(b<c)y=(abs(b-c)*2)+(b-1);
+        else y=abs(b-c)+(c-1);
+        if(x<y)cout<<1;
+        else if(y<x)cout<<2;
+        else cout<<3;
+    }
+    cout<<endl;
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+   int t;cin>>t;
+    while(t--)
+        solve();
+}
+
+       

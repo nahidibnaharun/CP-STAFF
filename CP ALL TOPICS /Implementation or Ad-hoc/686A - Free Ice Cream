@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const int M=200004;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/ 
+
+
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+   int n,cnt=0;ll x;cin>>n>>x;
+   while(n--){
+    char a;
+    ll d;
+    cin>>a>>d;
+    if(a=='+')x+=d;
+    else if(a=='-'){
+        if(x>=d){
+            x-=d;
+        }
+        else cnt++;
+    }
+   }
+   cout<<x<<" "<<cnt;
+} 

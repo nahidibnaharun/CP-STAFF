@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const int M=200004;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/ 
+void solve(){
+    int k,l,m,n,d;
+    cin>>k>>l>>m>>n>>d;
+    int x=0;
+    for(int i=1;i<=d;i++){
+        if(i%k==0)x++;
+        else if(i%l==0)x++;
+        else if(i%m==0)x++;
+        else if(i%n==0)x++;
+    }cout<<x;
+cout<<endl;
+}
+
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+   // int t;cin>>t;
+   // while(t--)
+    solve();
+} 

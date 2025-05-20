@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const int M=200004;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/ 
+
+void solve(){
+int n;cin>>n;
+int ar[n];for(auto &x:ar)cin>>x;
+for(int i=0;i<n-1;i++){
+    for(int j=i+1;j<n;j++){
+        if(ar[i]>ar[j]){
+            int d=ar[i]-ar[j];
+            ar[i]-=d;
+            ar[j]+=d;
+        }
+    }
+}
+for(auto x:ar)cout<<x<<" ";
+
+}
+
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    //  freopen("tracing.in", "r", stdin); 
+    // freopen("tracing.out", "w", stdout); 
+   // int t;cin>>t;
+   // while(t--)
+    solve();
+} 

@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const int M=200004;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/ 
+
+void solve(){
+   int x,y;cin>>x>>y;
+   int t;cin>>t;
+   double ans=INT_MAX;
+   while(t--){
+    int a,b,c;cin>>a>>b>>c;
+    double ds=sqrt((x-a)*(x-a)+(y-b)*(y-b)+0.0);
+    double  sol=(ds*1.0)/c;
+    ans=min(ans,sol);
+   }cout<<fixed<<setprecision(10)<<ans;
+
+}
+
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    //  freopen("tracing.in", "r", stdin); 
+    // freopen("tracing.out", "w", stdout); 
+   // int t;cin>>t;
+   // while(t--)
+    solve();
+} 

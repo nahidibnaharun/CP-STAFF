@@ -1,0 +1,80 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const int M=200004;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/ 
+struct var{
+    int t,a,b;
+};
+void solve(){
+    int n,t;cin>>n>>t;
+    string s;cin>>s;
+    vector<var>time(t);
+    unordered_set<int>pz,vk;
+    for(auto &x:time)cin>>x.t>>x.a>>x.b;
+        sort(time.begin(),time.end(),[](const auto &a,const auto &b){return a.t<b.t;});
+    for(int i=1;i<=n;i++){
+        for(int k=0;k<=t;k++){
+        string test(n,'0');
+        test[i-1]='1';
+        vector<int>kv(n,0);
+        kv[i-1]=k;
+        for(int j=0;j<t;j++){
+           
+           int inda=time[j].a-1,indb=time[j].b-1;
+           bool ainf=(test[inda]=='1'),binf(test[indb]=='1');
+           bool aspread=false,bspread=false;
+
+           if(ainf && kv[inda]>0){
+            aspread=true;kv[inda]--;
+           }
+           if(binf && kv[indb]>0){
+            bspread=true;kv[indb]--;
+           }
+           if(aspread && !binf){
+            test[indb]='1';
+            kv[indb]=k;
+           }
+           if(bspread && !ainf){
+            test[inda]='1';
+            kv[inda]=k;
+           }
+
+        }
+        if(s==test){
+            pz.insert(i);vk.insert(k);
+        }
+        }
+    }
+    if(pz.empty())cout<<"0 0 0";
+    else{
+        cout<<pz.size()<<" ";
+        int mk=*max_element(vk.begin(),vk.end());
+        int mv=*min_element(vk.begin(),vk.end());
+        cout<<mv<<" ";
+        if(mk==t)cout<<"Infinity";
+        else cout<<mk;
+    }
+}
+
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    //  freopen("tracing.in", "r", stdin); 
+    // freopen("tracing.out", "w", stdout); 
+   // int t;cin>>t;
+   // while(t--)
+    solve();
+} 

@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve(){
+int n;cin>>n;
+vector<int>ar(n);
+for(auto &x:ar)cin>>x;
+sort(ar.begin(),ar.end());
+if(n==1)cout<<0;
+else
+cout<<min(ar[n-1]-ar[1],ar[n-2]-ar[0]);
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL); 
+    // int t;
+    // cin>>t;
+    // while(t--)
+    solve();
+    return 0;   
+}

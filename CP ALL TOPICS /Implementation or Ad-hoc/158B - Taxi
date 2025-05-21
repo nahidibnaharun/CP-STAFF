@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve(){
+int n,o,t,th,f;
+cin>>n;
+vector<ll>a(n);
+for(auto &x:a)cin>>x;
+sort(a.begin(),a.end());
+o=count(a.begin(),a.end(),1);
+t=count(a.begin(),a.end(),2);
+th=count(a.begin(),a.end(),3);
+f=count(a.begin(),a.end(),4);
+cout<<(2*t+max(0,o-th)+3)/4+th+f;
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL); 
+    // int t;
+    // cin>>t;
+    // while(t--)
+    solve();
+    return 0;   
+}

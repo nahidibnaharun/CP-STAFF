@@ -1,0 +1,46 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const int M=200004;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/ 
+struct var{
+    ll l,r;
+};
+void solve(){
+ll n,s,m;
+cin>>n>>s>>m;
+ll count=0;
+vector<var>v(n);
+for(auto &x:v)cin>>x.l>>x.r;
+count=max(count,v[0].l-0);
+for(int i=1;i<n;i++){
+    count=max(count,v[i].l-v[i-1].r);
+}
+count=max(count,m-v[n-1].r);
+if(count<s)cout<<"NO";
+else cout<<"YES";
+
+cout<<endl;
+}
+
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    //  freopen("tracing.in", "r", stdin); 
+    // freopen("tracing.out", "w", stdout); 
+   int t;cin>>t;
+   while(t--)
+    solve();
+} 

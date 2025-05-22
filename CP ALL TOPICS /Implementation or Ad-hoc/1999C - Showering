@@ -18,19 +18,22 @@ struct var{
     ll l,r;
 };
 void solve(){
-ll n,s,m;
-cin>>n>>s>>m;
-ll count=0;
+
+ll n,s,m;cin>>n>>s>>m;
 vector<var>v(n);
 for(auto &x:v)cin>>x.l>>x.r;
-count=max(count,v[0].l-0);
-for(int i=1;i<n;i++){
-    count=max(count,v[i].l-v[i-1].r);
+if(v[0].l-0>=s){
+    cout<<"YES"<<endl;return;
 }
-count=max(count,m-v[n-1].r);
-if(count<s)cout<<"NO";
-else cout<<"YES";
-
+for(int i=1;i<n;i++){
+    if(v[i].l-v[i-1].r>=s){
+        cout<<"YES"<<endl;return;
+    }
+}
+if(m-v[n-1].r>=s){
+    cout<<"YES"<<endl;return;
+}
+cout<<"NO";
 cout<<endl;
 }
 

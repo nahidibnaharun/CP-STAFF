@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const ll M=1e9+1;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve(){
+  int n;
+    cin >> n;
+    vector<int> a(2*n);
+for(auto &it : a) cin >> it;
+    vector<int> used(n);
+    vector<int> p;
+    for (int i = 0; i < 2 * n; ++i) {
+      if(!used[a[i] - 1]) {
+        used[a[i]-1] = true;
+        p.push_back(a[i]);
+      }
+    }
+    for (auto it : p)cout<<it<< " ";
+    cout << endl;
+cout<<endl;
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    //  freopen("tracing.in", "r", stdin); 
+    // freopen("tracing.out", "w", stdout); 
+  int t;cin>>t;
+  while(t--)
+    solve();
+} 
+  

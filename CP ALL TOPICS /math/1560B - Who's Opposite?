@@ -1,0 +1,36 @@
+#include <algorithm>
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const ll M=1e9+1;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+void solve(){
+ll a,b,c;cin>>a>>b>>c;
+if(max(a,b)>2*abs(a-b))cout<<-1;
+else if(c>2*abs(a-b))cout<<-1;
+else  cout<<((c+abs(a-b)>2*abs(a-b))?c-abs(a-b):c+abs(a-b));
+    cout<<endl;
+}
+
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    //  freopen("tracing.in", "r", stdin); 
+    // freopen("tracing.out", "w", stdout); 
+  int t;cin>>t;
+  while(t--)
+    solve();
+} 

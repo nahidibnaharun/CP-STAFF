@@ -1,5 +1,4 @@
 #include<bits/stdc++.h>
-#include <sys/types.h>
 using namespace std;
 using ll = long long;
 using ull = unsigned long long;
@@ -15,12 +14,16 @@ ID: mdnahidibnaharun
 LANG: C++
 TASK: practice 
 */
+vector<ll>a={1,10,100,1000,10000,100000,1000000,10000000,100000000,1000000000};
 void solve(){
-    ll n;cin>>n;
-    string k=to_string(n),s="1";
-for(int i=1;i<k.size();i++)s+='0';
-ll ns=stoll(s);
-cout<<n-ns;
+   ll n;cin>>n;
+for(int i=0;i<9;i++){
+    if(a[i]<=n && a[i+1]>=n){
+        if(a[i+1]==n || a[i]==n)cout<<0;
+        else cout<<n-a[i];
+        cout<<endl;return;
+    }
+}
     cout<<endl;
 }
 

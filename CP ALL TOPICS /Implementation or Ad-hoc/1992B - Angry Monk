@@ -1,0 +1,51 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const ll M=1e9+1;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+void solve(){
+    ll n,k;cin>>n>>k;
+    ll mx=-1,mh=0,ans=0,c1=0;
+    ll ar[k];
+    for(auto &x:ar){
+        cin>>x;mx=max(x,mx);
+    }
+    for(auto x:ar)if(x==mx)mh++;
+    for(auto x:ar){
+        if(x!=mx){
+           if(x!=1){
+                ans+=(x-1);
+                c1+=x;
+            }
+            else c1++;
+        }
+    }
+    
+    if(mh>1){ans+=(mh-1)*(mx-1);c1+=(mh-1)*mx;}
+    cout<<ans+c1;
+
+    cout<<endl;
+}
+
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    //  freopen("tracing.in", "r", stdin); 
+    // freopen("tracing.out", "w", stdout); 
+  int t;cin>>t;
+  while(t--)
+    solve();
+} 

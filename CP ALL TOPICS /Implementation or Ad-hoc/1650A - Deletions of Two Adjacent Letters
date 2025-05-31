@@ -19,8 +19,9 @@ void solve(){
     string s;cin>>s;
     size_t n=s.length();
     char x;cin>>x;
-    if(s[n/2]==x)cout<<"YES";
-    else cout<<"NO";
+    bool ans=false;
+    for(int i=0;i<n;i++)if(s[i]==x && i%2==0)ans=true;
+    cout<<((ans?"YES":"NO"));
 
     cout<<endl;
 }

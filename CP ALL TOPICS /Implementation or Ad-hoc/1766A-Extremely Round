@@ -15,16 +15,10 @@ LANG: C++
 TASK: practice 
 */
 void solve(){
-    int n,r=0,i=1;cin>>n;
-    while(i<=n){
-        if(i<10)i++;
-        else if(i<100)i+=10;
-        else if(i<1000)i+=100;
-        else if(i<10000)i+=1000;
-        else if(i<100000)i+=10000;
-        else if(i<1000000)i+=1000000;
-        r++;
-    }cout<<r;
+ int n;cin>>n;
+ int ans=0;
+ for(int i=1;i<=n;i*=10)ans+=min(9,n/i);
+ cout<<ans;
 cout<<endl;
 }
 int main(){

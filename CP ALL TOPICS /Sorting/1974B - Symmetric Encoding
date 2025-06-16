@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+#include <unordered_map>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const int MAX=200007,MOD=1000000007;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve(){
+int n;cin>>n;string s;cin>>s;
+set<char>x(s.begin(),s.end());
+vector<char>y(x.begin(),x.end()),r(y.rbegin(),y.rend());
+unordered_map<char, char>cnt;
+for(int i=0;i<y.size();i++)cnt[y[i]]=r[i];
+string ans;
+for(char c:s)ans+=cnt[c];
+cout<<ans;
+cout<<endl;
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;cin>>t;
+    while(t--)
+    solve();
+}

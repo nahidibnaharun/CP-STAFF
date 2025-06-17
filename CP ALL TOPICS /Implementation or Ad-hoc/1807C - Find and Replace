@@ -1,0 +1,38 @@
+#include <algorithm>
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const ll M=1e9+1;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve(){
+    int n;cin>>n;string s;cin>>s;
+    int mp[26];
+    for(int i=0;i<26;i++)mp[i]=-1;
+    for(int i=0;i<n;i++){
+        int cr=(s[i]-'a');
+        if(mp[cr]==-1)mp[cr]=(i%2);
+        else if(mp[cr]!=(i%2)){cout<<"NO"<<endl;return;}
+    }
+    cout<<"YES";
+cout<<endl;
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    //  freopen("tracing.in", "r", stdin); 
+    // freopen("tracing.out", "w", stdout); 
+  int t;cin>>t;
+  while(t--)
+    solve();
+} 

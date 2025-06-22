@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const ll M=1e9+1;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve(){
+ll l1,b1,l2,b2,l3,b3;cin>>l1>>b1>>l2>>b2>>l3>>b3;
+ll ar=(l1*b1)+(l2*b2)+(l3*b3),s=sqrt(ar);
+if(s*s!=ar){cout<<"NO"<<endl;return;}
+bool ok=false;
+if(l1==s && l2==s && l3==s && b1+b2+b3==s)ok=true;
+else if(b1==s && b2==s && b3==s && l1+l2+l3==s)ok=true;
+else{
+    if(b1==s && l2==s-l1 && l3==s-l1 && b2+b3==s)ok=true;
+    else if(l1==s && b2==s-b1 && b3==s-b1 && l2+l3==s)ok=true;
+}
+if(ok)cout<<"YES";
+else cout<<"NO";
+cout<<endl;
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+  int t;cin>>t;
+  while(t--)
+    solve();
+} 

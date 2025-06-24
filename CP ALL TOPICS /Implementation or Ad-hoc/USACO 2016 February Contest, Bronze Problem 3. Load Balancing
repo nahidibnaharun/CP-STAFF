@@ -1,0 +1,53 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    //  freopen("balancing.in", "r", stdin); 
+    // freopen("balancing.out", "w", stdout); 
+    int a,b;
+    cin>>a>>b;
+
+    vector<int> x(a),y(a);
+    set<int> vfen,hfen;
+    for(int i=0;i<a;i++){
+        cin>>x[i]>>y[i];
+        vfen.insert(x[i]+1);
+        hfen.insert(y[i]+1);
+    }
+
+    int minm=a;
+    for(auto xv : vfen){
+        for(auto yv : hfen){
+            int np=0,sp=0,wp=0,ep=0;
+
+            for(int c=0;c<a;c++){
+                if(x[c] > xv && y[c] > yv)
+                np++;
+                else if(x[c] <xv && y[c]> yv)
+                sp++;
+                else if(x[c] <xv && y[c]<yv)
+                wp++;
+                else if(x[c] >xv && y[c]<yv)ep++;
+            }
+            minm=min(minm,max({np,sp,wp,ep}));
+
+        }
+    }
+    cout<<minm;
+    
+    return 0;   
+}

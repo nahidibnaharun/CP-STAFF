@@ -1,0 +1,23 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    // freopen("pails.in", "r", stdin); 
+    // freopen("pails.out", "w", stdout); 
+    int x,y,m;
+    cin>>x>>y>>m;
+    int maximum=0,total=0;
+    for(int i=0;i*x<=m;i++){
+        int j=(m-i*x)/y;
+        maximum=max(maximum,i*x+j*y);
+    }
+    cout<<maximum;
+	return 0;
+}

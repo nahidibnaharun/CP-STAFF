@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    freopen("cbarn.in", "r", stdin); 
+    freopen("cbarn.out", "w", stdout); 
+
+    int n;
+    cin>>n;
+    int ar[n];
+    for(int i=0;i<n;i++){
+        cin>>ar[i];
+    }
+    int mini=INT_MAX;
+    for(int i=0;i<n;i++){
+        int cost=0,p=0;
+        for(int j=i;p<n;j=(j+1)%n){
+            cost+=ar[j]*p;
+            p++; 
+        }
+        mini=min(mini,cost);
+    }
+    cout<<mini;
+
+    
+
+    return 0;
+}

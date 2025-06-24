@@ -1,0 +1,34 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+vector<int> fre(string s){
+    vector<int> l(26);
+    for(int i=0;i<s.length();i++)l[s[i]-'a']++;
+    return l;
+}
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    // freopen("blocks.in", "r", stdin); 
+    // freopen("blocks.out", "w", stdout); 
+    int alph[26]={0},n;
+    cin>>n;
+    vector<pair<string,string>>board(n);
+    for(auto &x:board)cin>>x.first>>x.second;
+
+    for(auto &[x1,x2]:board){
+        vector<int>f1=fre(x1),f2=fre(x2);
+        for(int i=0;i<26;i++)alph[i]+=max(f1[i],f2[i]);
+    }
+    for(int i=0;i<26;i++)cout<<alph[i]<<endl;
+
+
+    
+    
+    return 0;
+}

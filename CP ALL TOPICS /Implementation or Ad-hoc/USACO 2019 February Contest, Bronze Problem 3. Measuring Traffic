@@ -1,0 +1,63 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    // freopen("traffic.in", "r", stdin); 
+    // freopen("traffic.out", "w", stdout); 
+
+    int n;
+    cin >> n;
+
+    vector<string> seg_type(n);
+    vector<int> start(n), end(n);
+
+    for (int i = 0; i < n; i++) {
+        cin >> seg_type[i] >> start[i] >> end[i];
+    }
+
+    int low = 0, high = 1e9;
+    for (int i = n - 1; i >= 0; i--) {
+        if (seg_type[i] == "none") {
+            low = max(low, start[i]);
+            high = min(high, end[i]);
+        } else if (seg_type[i] == "off") {
+            low += start[i];
+            high += end[i];
+        } else if (seg_type[i] == "on") {
+            low -= end[i];
+            high -= start[i];
+            low = max(0, low);
+        }
+    }
+
+    cout << low << " " << high << endl;  
+
+    low = 0;
+    high = 1e9;
+
+    for (int i = 0; i < n; i++) {
+        if (seg_type[i] == "none") {
+            low = max(low, start[i]);
+            high = min(high, end[i]);
+        } else if (seg_type[i] == "on") {
+            low += start[i];
+            high += end[i];
+        } else if (seg_type[i] == "off") {
+            low -= end[i];
+            high -= start[i];
+            low = max(0, low);
+        }
+    }
+
+    cout << low << " " << high << endl; 
+
+    return 0;
+}

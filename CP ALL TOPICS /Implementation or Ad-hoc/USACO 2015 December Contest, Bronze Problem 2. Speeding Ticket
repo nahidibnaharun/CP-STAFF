@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    // freopen("speeding.in", "r", stdin); 
+    // freopen("speeding.out", "w", stdout); 
+	int n,m;
+	cin>>n>>m;
+	vector<pair<int,int>>road(n),bassi(m);
+	for(auto &x:road)cin>>x.first>>x.second;
+	for(auto &x:bassi)cin>>x.first>>x.second;
+	vector<int> limit(101,0),speed(101,0);
+	int pos=1;
+	for(auto &x:road){
+		for(int i=1;i<=x.first;i++)limit[pos++]=x.second;
+	}
+	pos=1;
+	for(auto &x:bassi){
+		for(int i=1;i<=x.first;i++)speed[pos++]=x.second;
+	}
+
+	int maxi=0;
+	for(int i=1;i<=100;i++)maxi=max(maxi,speed[i]-limit[i]);
+	cout<<maxi;
+	return 0;
+}

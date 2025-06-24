@@ -1,0 +1,62 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/     
+static const int MAXN=300000;
+vector<int>g[MAXN+1];
+int a[MAXN+1];
+bool vst[MAXN+1];
+ll ans;
+int dfs(int u){
+    vst[u]=true;
+    for(int v:g[u]){
+        if(!vst[v]){
+            int cdv=dfs(v);
+            if(cdv==1){
+                ans++;
+                a[u]^=1;
+            }
+        }
+    }return a[u];
+}    
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+   int t;cin>>t;
+    while(t--){
+        int n;cin>>n;
+        ll so=0;
+        for(int i=1;i<=n;i++){
+            cin>>a[i];
+            so+=a[i];
+            g[i].clear();
+            vst[i]=false;
+        }
+        for(int i=0,u,v;i<n-1;i++){
+            cin>>u>>v;
+            g[u].push_back(v);
+            g[v].push_back(u);
+        }
+        if(so%2){
+            cout<<"-1"<<endl;
+            continue;
+        }
+        ans=0;
+        int rv=dfs(1);
+        if(rv!=0)cout<<-1<<endl;
+        else cout<<ans<<endl;
+    }  
+}
+
+       

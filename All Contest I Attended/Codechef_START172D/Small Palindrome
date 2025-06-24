@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve(){
+	int o,t;
+	cin>>o>>t;
+	string result;
+	result.append(o/2,'1');
+	result.append(t,'2');
+	result.append(o/2,'1');
+	
+    cout<<result<<endl;
+
+}
+
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	int t;
+	cin>>t;
+	while(t--){
+		solve();
+	}
+
+}

@@ -17,14 +17,26 @@ TASK: practice
 */
 
  void solve(){
-   int a,b,c;cin>>a>>b>>c;
-   int s=a+b+c;
-   if(s%3==0){
-    int n=s/3;
-    if(a<=n && b<=n)cout<<"YES";
-    else cout<<"NO";
-   }
-   else cout<<"NO";
+int n;cin>>n;
+vector<ll>ar(n);
+for(int i=0;i<n;i++)cin>>ar[i];
+vector<ll>ps(n);
+ps[0]=ar[0];
+for(int i=1;i<n;i++)ps[i]=max(ps[i-1],ar[i]);
+vector<ll>ss(n+1,0);
+for(int k=1;k<=n;k++)ss[k]=ss[k-1]+ar[n-k];
+
+vector<ll>ans(n);
+for(int k=1;k<=n;k++){
+    ll tm=ss[k];
+    if(k<n){
+        int id=n-k;
+        ll pm=ps[id-1],cd=tm-ar[id]+pm;
+        ans[k-1]=max(tm,cd);
+    }
+    else ans[k-1]=tm;
+}
+for(int i=0;i<n;i++)cout<<ans[i]<<" ";
 
     cout<<endl;
  }

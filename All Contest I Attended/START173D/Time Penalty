@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve(){
+	int x,y;
+	cin>>x>>y;
+	cout<<x+y*10<<endl;
+
+
+}
+
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	
+		solve();
+	
+
+}

@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    vector<int> a(n);
+
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+
+    vector<int> b;
+
+    for (int j = 1; j < n - 1; j++) {
+        int el = 0;
+        for (int i = 0; i < n - 1; i++) {
+            if (i == j) continue;
+            int k = i + 1;
+            if (k == j) k++;
+            int dif = a[k] - a[i];
+            el = max(el, dif);
+        }
+        b.push_back(el);
+    }
+
+    cout << *min_element(b.begin(), b.end()) << endl;
+    return 0;
+}

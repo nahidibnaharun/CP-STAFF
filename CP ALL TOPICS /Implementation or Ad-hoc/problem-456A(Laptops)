@@ -1,0 +1,17 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{int n;
+cin>>n;
+pair<int,int> ar[n];
+for(int i=0;i<n;i++){
+    cin>>ar[i].first>>ar[i].second;
+}
+sort(ar,ar+n);
+for(int i=0;i<n-1;i++){
+    if(ar[i].first<ar[i+1].first && ar[i].second>ar[i+1].second){
+        cout<<"Happy Alex";
+    return 0;}
+}cout<<"Poor Alex";
+    return 0;
+}

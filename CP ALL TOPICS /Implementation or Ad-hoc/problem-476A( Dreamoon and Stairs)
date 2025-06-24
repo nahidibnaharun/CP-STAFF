@@ -1,0 +1,18 @@
+#include <bits/stdc++.h>
+ 
+using namespace std;
+ 
+int main()
+{int n,m,result;
+cin>>n>>m;
+   if (m > n)cout << -1;
+else {
+    result =  (n / 2);
+    if ((n/2) % m == 0 && n % 2 == 0);
+    else if ((n/2) % m == 0 && n % 2 != 0) result += m;
+    else result += m - ((n/2) % m);
+
+    cout << result;
+}
+    return 0;
+}

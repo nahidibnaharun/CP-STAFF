@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+  int n;
+  cin>>n;
+  set<char> m,o;
+  for(int i=0;i<n;i++){
+      for(int j=0;j<n;j++){
+          char a;
+          cin>>a;
+          if(i==j||i+j==n-1) m.insert(a);
+          else o.insert(a);
+      }
+  }
+  if(m.size()==1 && o.size()==1 && *m.begin()!=*o.begin())cout<<"YES";
+  else cout<<"NO";
+
+    return 0;
+}

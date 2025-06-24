@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+/*
+
+ID: mdnahidibnaharun
+
+LANG: C++
+
+TASK: practice
+
+*/
+
+void solve() {
+int n,m;
+cin>>n>>m;
+for(int t;cin>>t;)m = __gcd(m,t);
+cout<<m*n;
+
+return;
+}
+
+int main() {
+//  int n;
+//  cin>>n;
+//  while(n--)
+   solve();
+ 
+
+  return 0;
+}

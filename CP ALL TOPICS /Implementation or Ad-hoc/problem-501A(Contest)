@@ -1,0 +1,18 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int a, b, c,d;
+    cin>>a>>b>>c>>d;
+    int a1 = 3*a/10,a2= a-(a*c)/250,b1= 3*b/10,b2=b-(b*d)/250;
+int p1= max(a1, a2),p2= max(b1 , b2);
+
+   if(p1>p2){
+       cout<<"Misha";
+   }
+   else if(p1<p2) cout<<"Vasya";
+   else{
+       cout<<"Tie";
+   }
+    return 0;
+}

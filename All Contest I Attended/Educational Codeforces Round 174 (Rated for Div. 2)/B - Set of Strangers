@@ -1,0 +1,51 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    //  freopen("lifeguards.in", "r", stdin); 
+    // freopen("lifeguards.out", "w", stdout); 
+    int t;
+    cin>>t;
+    while(t--){
+        int n,m;
+        cin>>n>>m;
+        vector<vector<int>> grid(n,vector<int>(m));
+        for( int i=0; i<n ;i++){
+            for(int j=0 ;j<m;j++)cin>>grid[i][j];
+        }
+        unordered_map<int,bool>ha;
+        for(int i=0; i<n ;i++ ){
+            for(int j=0 ; j<m ;j++){
+                int c=grid[i][j];
+                if(ha.count(c) && ha[c])continue;
+                bool fnd=false;
+                if(i>0 && grid[i-1][j] == c) fnd= true;
+                else if( i<n-1 && grid[i+1][j] == c) fnd= true;
+                else if(j>0 && grid[i][j-1]== c)fnd= true;
+                else if( j<m-1 && grid[i][j+1]==c) fnd= true;
+                if(fnd)ha[c]=true;
+
+                else {
+                    if(!ha.count(c))
+                    ha[c]=false;
+                }
+            }
+        }
+        int ss=0,ms=0;
+        for(auto &p : ha){
+            int st=p.second ? 2:1;
+            ss += st;
+            ms= max(ms, st);
+        }
+        cout<< ss-ms<<endl;
+    }
+    return 0;
+}

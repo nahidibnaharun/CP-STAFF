@@ -1,0 +1,44 @@
+
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    //  freopen("cownomics.in", "r", stdin); 
+    // freopen("cownomics.out", "w", stdout); 
+    int t;
+    cin>>t;
+    while(t--){
+        int n;
+        cin>>n;
+        string s;
+        cin>>s;
+        
+        ll da=0,us=0;
+        for(char c:s){
+            if(c=='-')da++;
+            else us++;
+        }
+        
+        if(da<2 || us <1){
+            cout<<0<<endl;
+            continue;
+        }
+        ll L=da/2,R=(da+1)/2,ans=us *L*R;
+        cout<<ans<<endl;
+    }
+    return 0;   
+}

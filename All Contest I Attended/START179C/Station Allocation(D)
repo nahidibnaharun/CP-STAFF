@@ -1,0 +1,49 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve(){
+	int n;
+	cin>>n;
+    vector<ll> c(n);
+    ll tl=0;
+    for(int i=0;i<n;i++){
+        cin>>c[i];
+        tl+=c[i];
+    }
+    int q;cin>>q;
+    sort(c.begin(),c.end());
+    while(q--){
+        ll x,y;
+        cin>>x>>y;
+        ll ans=1e18;
+        int id=lower_bound(c.begin(),c.end(),x)-c.begin();
+        if(id<n){
+            ll cc= max(0LL,x-c[id]),cs=max(0LL,y-(tl-c[id]));
+            ans=min(ans,cc+cs);
+            
+        }
+        if(id>0){
+            int j=id-1;
+            ll cc=max(0LL,x-c[j]),cs=max(0LL,y-(tl-c[j]));
+            ans=min(ans,cc+cs);
+        }
+        cout<<ans<<endl;
+    }
+
+}
+
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	int t;
+	cin>>t;
+	while(t--){
+		solve();
+	}
+
+}

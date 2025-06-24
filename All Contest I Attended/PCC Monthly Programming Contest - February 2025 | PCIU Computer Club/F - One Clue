@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    //  freopen("badmilk.in", "r", stdin); 
+    // freopen("badmilk.out", "w", stdout); 
+  int a,b;
+  cin>>a>>b;
+  int temp = b-a+1;
+  b = b + a-1;
+  a=temp;
+  for(int  i =a;i<= b ; i++)cout<<i<<(i<b ? " ":"\n");
+    
+    return 0;   
+}

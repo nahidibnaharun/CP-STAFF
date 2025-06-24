@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	int t;
+	cin>>t;
+	while(t--){
+		string s,a="ADVITIYA";
+		cin>>s;
+		int ans=0;
+		for(int i=0;i<8;i++){
+		    int d=abs(a[i]-s[i]+26)%26;
+		    ans+=d;
+		}
+		
+		cout<<ans<<endl;
+	}
+
+}

@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef vector<int> vi;
+typedef pair<int, int> pi;
+#define F first
+#define S second
+#define PB push_back
+#define MP make_pair
+
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int n;
+    cin>>n;
+    vi A(n);
+    for(int i=0;i<n;i++)cin>>A[i];
+
+    unordered_map<int,pair<int, int>> xorMap;
+
+    for (int i = 0; i < n; ++i) {
+        for (int j=i+1; j<n;++j){
+           int xorValue=A[i]^A[j]; 
+            
+            if (xorMap.count(xorValue)) {
+                auto [x, y] = xorMap[xorValue];
+                if (x != i && x != j && y != i && y != j) {
+                    cout << "Yes" << endl; 
+                    return 0;
+                }
+            } else
+                xorMap[xorValue] = {i, j};
+        }
+    }
+
+    cout<<"No";
+    return 0;
+}

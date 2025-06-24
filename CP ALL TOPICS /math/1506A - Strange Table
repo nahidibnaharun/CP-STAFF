@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+#include <cstdint>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const ll M=1e9+1;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve(){
+    int64_t n,m,x;cin>>n>>m>>x;
+    int64_t r=0,c=0;
+    c=(x+(n-1))/n;r=(x%n==0)?n:x%n;
+    int64_t ans=(r-1)*m;
+    ans+=c;cout<<ans;
+
+    cout<<endl;
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+  int t;cin>>t;
+  while(t--)
+    solve();
+} 

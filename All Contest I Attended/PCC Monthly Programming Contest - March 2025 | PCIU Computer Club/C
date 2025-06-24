@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    //  freopen("tracing.in", "r", stdin); 
+    // freopen("tracing.out", "w", stdout); 
+
+    int t;
+    cin>>t;
+    while(t--){
+        string s;
+        cin>>s;
+        int n=s.size(),ans=n+1,d=0,l=0,cnt[3]={0,0,0};
+
+        for(int r=0;r<n;r++){
+            int ds= s[r]-'0';
+            cnt[ds-1]++;
+            if(cnt[ds-1]==1)d++;
+            while(d==3){
+                ans = min(ans, r-l+1);
+                int ind =  s[l]-'0';
+                cnt[ind-1]--;
+                if(cnt[ind-1]==0)d--;
+                l++;
+            }
+        }
+        cout<<(ans==n+1?0:ans);
+        cout<<endl;
+    }
+    return 0;   
+}

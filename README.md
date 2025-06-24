@@ -11,8 +11,11 @@ All codes are written in C++ with STL and fast I/O.
 ## 📁 Folder Structure
 
 cp-staff/
+
 ├── All_Contests/ → Online contests (Codeforces, AtCoder, etc.)
+
 ├── Onsite_Contests/ → University-level/onsite contests
+
 ├── CP_ALL_TOPICS/ → Topic-wise practice and templates
 
 

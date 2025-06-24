@@ -15,11 +15,6 @@ cp-staff/
 ├── Onsite_Contests/ → University-level/onsite contests
 ├── CP_ALL_TOPICS/ → Topic-wise practice and templates
 
-yaml
-Copy
-Edit
-
----
 
 ## 🧩 Folder Details
 

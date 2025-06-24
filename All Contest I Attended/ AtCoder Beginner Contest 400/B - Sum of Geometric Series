@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    ll n;int m;
+    cin>>n>>m;
+    const ll L=1000000000;
+    __int128 sum=0,term=1;
+
+    for(int i=0;i<=m;i++){
+        sum+=term;
+        if(sum>L){
+            cout<<"inf";return 0;
+        }
+        if(i==m)break;
+        term*=n;
+    }
+    cout<<(ll)sum;
+    return 0;   
+}
+
+

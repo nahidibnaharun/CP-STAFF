@@ -4,7 +4,8 @@ using namespace std;
 using lli = long long int;
 using ll = long long;
 using ull = unsigned long long;
-const ll M=1e9+1;
+const ll MOD = 998244353;
+
 /*
 //      _   __  ___  __   __ _______ _______
 //     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
@@ -17,31 +18,41 @@ LANG: C++
 TASK: practice 
 */
 void solve(){
- ll n;cin>>n;
-    vector<pair<ll,ll>>x(n);
-    for(int i=0;i<n;i++)cin>>x[i].first;
-    for(int i=0;i<n;i++)cin>>x[i].second;
+    ll n;cin>>n;
+    vector<ll> keys_x(n), values_x(n);
+    for(int i=0;i<n;i++)cin>>keys_x[i];
+    for(int i=0;i<n;i++)cin>>values_x[i];
+
     ll m;cin>>m;
-    vector<pair<ll,ll>>y(m);
-    for(int i=0;i<m;i++)cin>>y[i].first;
-    for(int i=0;i<m;i++)cin>>y[i].second;
-    set<ll>st;
-    for(auto i:y)st.insert(i.first);
-    for(auto i:x){
-        if(!st.count(i.first))y.push_back({i.first,0});
+    vector<ll> keys_y(m), values_y(m);
+    for(int i=0;i<m;i++)cin>>keys_y[i];
+    for(int i=0;i<m;i++)cin>>values_y[i];
+
+    map<ll, ll> map_x, map_y;
+    set<ll> all_keys;
+
+    for(int i=0; i<n; ++i){
+        map_x[keys_x[i]] = values_x[i];
+        all_keys.insert(keys_x[i]);
     }
-    ll res=1;
-    if(x.size()!=y.size()){
-        cout<<"0"<<endl;
-        return;
+    for(int i=0; i<m; ++i){
+        map_y[keys_y[i]] = values_y[i];
+        all_keys.insert(keys_y[i]);
     }
-    sort(x.begin(),x.end());
-    sort(y.begin(),y.end());
-    for(int i=0;i<x.size();i++){
-        if(x[i].first!=y[i].first||y[i].second>x[i].second)res=0;
-        else res=res*(1+(x[i].second!=y[i].second))%M;
+
+    ll ans = 1;
+
+    for(ll key : all_keys){ ll val_x = map_x[key];
+        ll val_y = map_y[key];
+
+        if(val_x < val_y){
+            ans = 0;
+            break;
+        } else if (val_x != val_y) {
+            ans = (ans * 2) % MOD;
+        }
     }
-    cout<<res<<endl;
+    cout<<ans<<endl;
 } 
    
    
@@ -51,4 +62,4 @@ int main(){
 //   int t;cin>>t;
 //   while(t--)
     solve();
-} 
+}

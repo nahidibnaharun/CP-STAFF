@@ -1,0 +1,54 @@
+#include<bits/stdc++.h>
+#include <cstdint>
+using namespace std;
+using lli = long long int;
+using ll = long long;
+using ull = unsigned long long;
+const ll M=1e9+1;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve(){
+ ll n;cin>>n;
+    vector<pair<ll,ll>>x(n);
+    for(int i=0;i<n;i++)cin>>x[i].first;
+    for(int i=0;i<n;i++)cin>>x[i].second;
+    ll m;cin>>m;
+    vector<pair<ll,ll>>y(m);
+    for(int i=0;i<m;i++)cin>>y[i].first;
+    for(int i=0;i<m;i++)cin>>y[i].second;
+    set<ll>st;
+    for(auto i:y)st.insert(i.first);
+    for(auto i:x){
+        if(!st.count(i.first))y.push_back({i.first,0});
+    }
+    ll res=1;
+    if(x.size()!=y.size()){
+        cout<<"0"<<endl;
+        return;
+    }
+    sort(x.begin(),x.end());
+    sort(y.begin(),y.end());
+    for(int i=0;i<x.size();i++){
+        if(x[i].first!=y[i].first||y[i].second>x[i].second)res=0;
+        else res=res*(1+(x[i].second!=y[i].second))%M;
+    }
+    cout<<res<<endl;
+} 
+   
+   
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+//   int t;cin>>t;
+//   while(t--)
+    solve();
+} 

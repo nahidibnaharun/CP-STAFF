@@ -5,6 +5,7 @@ I actively participate in **Codeforces**, **AtCoder**, and university-level cont
 All codes are written in C++ with STL and fast I/O.
 
 [![Codeforces](https://img.shields.io/badge/Codeforces-mdnahidibnaharun-blue?style=flat-square&logo=codeforces)](https://codeforces.com/profile/mdnahidibnaharun)
+[![CodeChef](https://img.shields.io/badge/CodeChef-nahidibnaharun-orange?style=flat-square&logo=codechef)](https://www.codechef.com/users/nahidibnaharun)
 
 ---
 

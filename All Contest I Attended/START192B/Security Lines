@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+#include <cstdint>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const ll M=1e9+1;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve(){
+    int n;cin>>n;
+    vector<int>a(n);
+    for(auto &x:a)cin>>x;
+    int sol=a[0];
+    for(int i=1;i<n;i++){
+        int d=i,t;
+        if(d>a[i])t=d;
+        else t=a[i]+1;
+        sol=min(sol,t);
+    }cout<<sol;
+    cout<<endl;
+} 
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+  int t;cin>>t;
+  while(t--)
+    solve();
+} 

@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+#include <cstdint>
+using namespace std;
+using lli = long long int;
+using ll = long long;
+using ull = unsigned long long;
+const ll MOD = 998244353;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve(){
+string s,t;cin>>s>>t;
+bool k[256]={0};
+for(auto a:t)k[a]=1;
+for(int i=1;i<(int)s.size();i++){
+    if(isupper(static_cast<unsigned char>(s[i]))&& !k[static_cast<unsigned char>(s[i-1])]){
+        cout<<"No"<<endl;
+        return;
+    }
+}
+cout<<"Yes";
+cout<<endl;
+} 
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+//   int t;cin>>t;
+//   while(t--)
+    solve();
+}

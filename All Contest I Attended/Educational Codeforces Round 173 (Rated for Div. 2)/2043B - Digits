@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+#include <cstdint>
+using namespace std;
+using lli = long long int;
+using ll = long long;
+using ull = unsigned long long;
+const ll MOD = 998244353;
+const int INF = 1e9;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve(){
+int n,d;cin>>n>>d;cout<<1;
+if(n>=3 || d%3==0)cout<<" 3";
+if(d==5)cout<<" 5";
+if(d==7 || n>=3)cout<<" 7";
+if(d==9 || n>=6 || (n>=3 && d%3==0))cout<<" 9";
+    cout<<endl;
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+  int t;cin>>t;
+  while(t--)
+    solve();
+}

@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+using lli = long long int;
+using ll = long long;
+using ull = unsigned long long;
+const ll MOD = 998244353;
+const int INF = 1e9;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve(){
+int n;string s;cin>>n>>s;int i=n-1;string rs;
+while (i >= 0) {
+        if (s[i] != '0') {rs += 'a' + s[i] - '0' - 1;i--;}
+        else { rs += 'a' + stoi(s.substr(i - 2, 2)) - 1;i -= 3;}
+    }
+reverse(rs.begin(),rs.end());
+cout<<rs;
+    cout<<endl;
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+  int t;cin>>t;
+  while(t--)
+    solve();
+}

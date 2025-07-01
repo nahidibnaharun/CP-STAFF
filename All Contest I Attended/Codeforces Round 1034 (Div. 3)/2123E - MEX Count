@@ -1,0 +1,48 @@
+#include<bits/stdc++.h>
+using namespace std;
+using lli = long long int;
+using ll = long long;
+using ull = unsigned long long;
+const ll MOD = 998244353;
+const int INF = 1e9;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve(){
+int n;cin>>n;vector<int>ar(n);for(auto &x:ar)cin>>x;
+vector<int>fq(n+1,0);
+for(int x:ar)if(x<=n)fq[x]++;
+vector<char>arr(n+1,0);
+for(int i=0;i<=n;i++)arr[i]=(fq[i]>0);
+vector<char>chk(n+1,0);chk[0]=1;
+for(int i=1;i<=n;i++)chk[i]=chk[i-1]&arr[i-1];
+vector<int>df(n+2,0);
+for(int i=0;i<=n;i++){
+if(!chk[i])continue;
+int tm=fq[i],tm1=n-i;
+if(tm>tm1)continue;
+df[tm]++;df[tm1+1]--;
+}
+vector<int>sl(n+1,0);
+int cur=0;
+for(int i=0;i<=n;i++){cur+=df[i];sl[i]=cur;}
+for(int i=0;i<=n;i++)cout<<sl[i]<<" ";
+    cout<<endl;
+}
+   
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+  int t;cin>>t;
+  while(t--)
+    solve();
+}

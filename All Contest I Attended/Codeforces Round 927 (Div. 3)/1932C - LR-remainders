@@ -1,0 +1,58 @@
+#include<bits/stdc++.h>
+using namespace std;
+using lli = long long int;
+using ll = long long;
+using ull = unsigned long long;
+const ll MOD = 998244353;
+const int INF = 100000;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve(){
+ll n;
+    int k;
+    cin>>n>>k;
+    vector<int>a(n);
+    for(auto &x:a)cin>>x;
+    string s;
+    cin>>s;
+
+    int left=0,right=n-1;
+    for(int i=0;i<n-1;i++){
+        if(s[i]=='L')left++;
+        else right--;
+    }
+
+    vector<ll>b(n);
+    b[n-1]=a[left]%k;
+
+    for(int i=n-2;i>=0;i--){
+        if(s[i]=='L'){
+            left--;
+            b[i]=(b[i+1]*a[left])%k;
+        }
+        else{
+            right++;
+            b[i]=(b[i+1]*a[right])%k;
+        }
+    }
+    
+    for(int i=0;i<n;i++)cout<<b[i]<<" ";
+    cout<<endl;
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+  int t;cin>>t;
+  while(t--)
+  solve();
+}

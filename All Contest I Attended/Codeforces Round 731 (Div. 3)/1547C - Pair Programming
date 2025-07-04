@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
+using lli = long long int;
+using ll = long long;
+using ull = unsigned long long;
+const ll MOD = 998244353;
+const int INF = 400005;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve(){
+   int k,n,m;cin>>k>>n>>m; int a[n],b[m];
+   for(auto &x:a)cin>>x; for(auto &x:b)cin>>x;
+   int i=0,j=0; vector<int>ans;
+   while(i<n || j<m){
+    if(a[i]<=k && a[i]!=0 && i<n){ans.push_back(a[i]);i++;}
+    else if(b[j]<=k && b[j]!=0 && j<m){ans.push_back(b[j]);j++;}
+    else if(a[i]==0 && i<n){ans.push_back(a[i]);i++;k++;}
+    else if(b[j]==0 && j<m){ans.push_back(b[j]);j++;k++;}
+    else{cout<<-1<<endl;return;}
+   }
+   for(auto x:ans)cout<<x<<" ";
+    cout<<endl;
+}
+   
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+  int t;cin>>t;
+  while(t--)
+  solve();
+}

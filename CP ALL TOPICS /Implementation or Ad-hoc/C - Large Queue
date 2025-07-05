@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+using namespace std;
+using lli = long long int;
+using ll = long long;
+using ull = unsigned long long;
+const ll MOD = 998244353;
+const int INF = 400005;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve(){
+int q;cin>>q;
+deque<pair<ll,ll>>dq;
+while(q--){
+    int t;cin>>t;
+    if(t==1){
+        ll c,x;cin>>c>>x;
+        if(!dq.empty() && dq.back().first==x)dq.back().second+=c;
+        else dq.emplace_back(x,c);
+    }
+    else{
+        ll k;cin>>k;ll sl=0;
+        while(k>0){
+            auto &p=dq.front();
+            ll cnt=min(k,p.second);
+            sl+=cnt*p.first;
+            p.second-=cnt;
+            k-=cnt;
+            if(p.second==0)dq.pop_front();
+        }cout<<sl<<endl;
+    }
+}
+    cout<<endl;
+}
+
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+//   int t;cin>>t;
+//   while(t--)
+  solve();
+}

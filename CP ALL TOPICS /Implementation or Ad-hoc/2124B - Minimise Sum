@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+using lli = long long int;
+using ll = long long;
+using ull = unsigned long long;
+const ll MOD = 998244353;
+const ll INF = 2000000007LL;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+
+void solve(){
+int n;cin>>n;vector<ll>a(n+1);
+for(int i=1;i<=n;i++)cin>>a[i];
+ll sl=a[1]+a[2];
+if(a[1]<a[2]){
+    sl=min(sl,a[1]+a[1]);
+    ll t1=a[1]*2,t2=a[1];
+    for(int j=3;j<=n;j++){
+        sl=min(sl,t1);
+        t2=min(t2,a[j]);
+        t1+=t2;
+    }
+}cout<<sl;
+
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+  int t;cin>>t;
+  while(t--){
+  solve();
+  cout<<endl;
+  }
+}

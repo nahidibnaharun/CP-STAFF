@@ -1,0 +1,51 @@
+#include<bits/stdc++.h>
+using namespace std;
+using lli = long long int;
+using ll = long long;
+using ull = unsigned long long;
+const ll MOD = 998244353;
+const ll INF = 2000000007LL;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+struct cn{
+    ll l,r,rl;
+};
+
+void solve(){
+ int n;ll k;cin>>n>>k;
+ vector<cn>v(n);
+ for(auto &x:v)cin>>x.l>>x.r>>x.rl;
+ sort(v.begin(),v.end(),[](const cn &a,const cn &b){
+    return a.l<b.l;
+ });
+priority_queue<pair<ll,int>>pq;
+ll x=k;int i=0;
+while(1){
+    while(i<n && v[i].l<=x){pq.emplace(v[i].rl,i);i++;}
+    while(!pq.empty() && v[pq.top().second].r<x){pq.pop();}
+    if(pq.empty())break;
+    if(pq.top().first<=x)break;
+    x=pq.top().first;
+    pq.top();
+}
+cout<<x;
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+  int t;cin>>t;
+  while(t--){
+  solve();
+  cout<<endl;
+  }
+}

@@ -1,0 +1,46 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const int N = 1e3 + 10;
+const ll M = 1e9 + 10;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+ll solve(ll x){
+    if(x<=0)return 0;
+    int vt[4]={2,3,5,7};
+    ll tt=0;
+    for(int i=1;i<(1<<4);i++){
+        ll d=1;int bt=__builtin_popcount(i);
+        for(int j=0;j<4;j++){
+            if(i&(1<<j)){d*=vt[j];if(d>x)break;}
+        }
+        if(d>x)continue;
+        ll cnt=x/d;
+        if(bt&1) tt+=cnt;
+        else tt-=cnt;
+    }
+    return x-tt;
+    
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+  int t;cin>>t;
+  while(t--){
+    ll l,r;cin>>l>>r;
+    ll sl=solve(r)-solve(l-1);
+    cout<<sl<<endl;
+  }
+} 

@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const int MOD = 998244353;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+ll solve(ll a,ll e=MOD-2){
+    ll r=1;
+    while(e){
+        if(e&1)r=r*a%MOD;a=a*a%MOD;e>>=1;
+    }return r;
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int n,m;cin>>n>>m;
+    vector<vector<pair<int,ll>>>br(m+1);ll rs=1;
+    for(int i=0;i<n;i++){
+        int l,r;ll p,q;cin>>l>>r>>p>>q;
+        ll b=(q-p)%MOD;
+        if(b<0)b+=MOD;
+        b=b*solve(q)%MOD;rs=rs*b%MOD;
+        ll d=(q-p)%MOD;
+        if(d<0)d+=MOD;
+        ll w=p%MOD*solve(d)%MOD;
+        br[r].emplace_back(l,w);
+    }
+    vector<ll>dp(m+1);dp[0]=1;
+    for(int i=1;i<=m;i++){
+        ll s=0;
+        for(auto &pr:br[i])s=(s+dp[pr.first-1]*pr.second)%MOD;
+        dp[i]=s;
+    }
+    cout<<rs*dp[m]%MOD;
+} 

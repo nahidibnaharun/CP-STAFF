@@ -1,0 +1,101 @@
+#include<bits/stdc++.h>
+#define REP(i,n) for(int i = 1; i <= n; i++)
+#define lli long long int
+#define ii pair<int,int>
+#define vi vector<int>
+#define vii vector<ii>
+#define pb push_back
+#define ff first
+#define ss second
+#define INF 1000000000
+#define endl '\n'
+using namespace std;
+
+lli ar[501][501];
+lli d1, d2;
+
+lli getSum(int x, int n) {
+    lli sum = 0;
+    if (x == 1) x++;
+    else x = 1;
+
+    REP(j, n) sum += ar[x][j];
+    return sum;
+}
+
+lli checkValid(int x, int y, int n) {
+    lli sum = getSum(x, n);
+
+    REP(i, n) {
+        if (i == x) continue;
+        lli rowSum = 0;
+        REP(j, n) rowSum += ar[i][j];
+        if (rowSum != sum) return -1;
+    }
+
+    REP(j, n) {
+        if (j == y) continue;
+        lli colSum = 0;
+        REP(i, n) colSum += ar[i][j];
+        if (colSum != sum) return -1;
+    }
+
+    lli diag1 = 0;
+    REP(i, n) diag1 += ar[i][i];
+    d1 = diag1;
+    if (x != y && diag1 != sum) return -1;
+
+    lli diag2 = 0;
+    REP(i, n) diag2 += ar[i][n - i + 1];
+    d2 = diag2;
+    if ((x + y != n + 1) && diag2 != sum) return -1;
+
+    return sum;
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+
+    int n, x = 0, y = 0;
+    cin >> n;
+
+    REP(i, n) REP(j, n) {
+        cin >> ar[i][j];
+        if (ar[i][j] == 0) x = i, y = j;
+    }
+
+    if (n == 1) {
+        cout << 1 << endl;
+        return 0;
+    }
+
+    lli total = checkValid(x, y, n);
+
+    if (total == -1) {
+        cout << -1 << endl;
+        return 0;
+    }
+
+    lli colSum = 0;
+    REP(i, n) colSum += ar[i][y];
+
+    lli missing = total - colSum;
+
+    if (missing <= 0) {
+        cout << -1 << endl;
+        return 0;
+    }
+
+    if (x == y && d1 + missing != total) {
+        cout << -1 << endl;
+        return 0;
+    }
+
+    if ((x + y == n + 1) && d2 + missing != total) {
+        cout << -1 << endl;
+        return 0;
+    }
+
+    cout << missing << endl;
+}

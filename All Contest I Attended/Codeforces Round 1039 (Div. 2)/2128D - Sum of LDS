@@ -17,13 +17,15 @@ TASK: practice
 */
 
 void solve(){
-int n;cin>>n;vector<int>v(n);
-for(auto &x:v)cin>>x;
-int sm=(n*(n+1)*(n+2))/6;
-for(int i=0;i+1<n;++i){
-    if(v[i]<v[i+1])sm-=(i+1)*(n-i-1);
-}cout<<sm;
-} 
+int n;cin>>n;vector<int>p(n);for(auto &x:p)cin>>x;
+ll ans=(ll)n*(n+1)*(n+2)/6;
+for(int i=0;i+1<n;i++){
+    if(p[i]<p[i+1]){
+        ll ls=i+1,rs=n-1-i;
+        ans-=ls*rs;
+    }
+}cout<<ans;
+}
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);

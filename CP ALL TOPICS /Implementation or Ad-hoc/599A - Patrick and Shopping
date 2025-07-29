@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+void solve(){
+ll a,b,c;cin>>a>>b>>c;
+ll sm=min(a+b+c,2*(a+b));
+sm=min(sm,2*(a+c));
+sm=min(sm,2*(b+c));
+cout<<sm;
+}
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    // int t;cin>>t;
+    // while(t--){
+        solve();
+    //     cout<<endl;
+    // }
+    return 0;
+}

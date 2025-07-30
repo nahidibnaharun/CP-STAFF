@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve(){
+ll n;
+cin>>n;
+ll sum = n/5;
+while(n!=0){
+  n= n/5;
+ sum+=n/5;
+}
+cout<<sum<<endl;
+return;
+}
+ 
+int main(){
+  
+    solve();
+  
+  return 0;
+}

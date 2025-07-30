@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+void solve(){
+ll n;cin>>n;vector<int>v(n);
+for(auto &x:v)cin>>x;
+sort(v.begin(),v.end());
+ll sm=0,i=0,j=n-1;n/=2;
+while(i<n)sm+=abs(v[i++]-v[j--]);
+cout<<sm;
+}
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;cin>>t;
+    while(t--){
+        solve();
+        cout<<endl;
+    }
+    return 0;
+}

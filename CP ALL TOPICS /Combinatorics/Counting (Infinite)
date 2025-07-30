@@ -1,0 +1,63 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const int INF=1000000000;
+static const int MOD = 998244353;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+ll mdp(ll a, ll e=MOD-2){
+    ll r=1%MOD;a%=MOD;
+    while(e){
+        if(e&1)r=(r*a)%MOD;
+        a=(a*a)%MOD;e>>=1;
+    }return r;
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;cin>>t;
+    vector<pair<int,ll>>tt(t);
+    int nmx=0;
+    for(int i=0;i<t;i++){
+        int n;ll k;cin>>n>>k;tt[i]={n,k};nmx=max(nmx,n);
+    }
+    vector<ll>fct(nmx+1,1),ift(nmx+1,1);
+    for(int i=1;i<=nmx;i++)fct[i]=fct[i-1]*i%MOD;
+    ift[nmx]=mdp(fct[nmx]);
+    for(int i=nmx;i>0;i--)ift[i-1]=ift[i]*i%MOD;
+    for(auto &x:tt){
+        int n=x.first; ll k=x.second,kn=mdp(k%MOD,n);
+        if(k>n){cout<<kn<<endl;continue;}
+        ll ca=0; vector<ll>cks(n+1,1);
+        ll nm=1;
+        for(int s=1;s<=n;s++){nm=nm*((k-(s-1))%MOD)%MOD;cks[s]=nm*ift[s]%MOD;}
+        vector<ll>pnj(n+1,1);
+        for(int j=1;j<=n;j++)pnj[j]=pnj[j-1]*(n-(j-1))%MOD;
+        for(int s=0;s<=(int)k && s<=n;s++){
+            ll bs=((k-s)%MOD+MOD)%MOD;
+            vector<ll>pw(n+1,1);
+            for(int e=1;e<=n;e++)pw[e]=pw[e-1]*bs%MOD;
+        ll inr=0;
+        for(int j=0;j<=s;j++){
+            ll csj=fct[s]*ift[j]%MOD*ift[s-j]%MOD,wys=csj;
+            wys=wys*pnj[j]%MOD;wys=wys*pw[n-j]%MOD;
+            inr=(inr+wys)%MOD;
+        }
+        ll trm=cks[s]*inr%MOD;
+        if(s%2==1)ca=(ca-trm+MOD)%MOD;
+        else ca=(ca+trm)%MOD;
+    }
+    ll ans=(kn-ca+MOD)%MOD;
+    cout<<ans<<endl;
+    }
+}

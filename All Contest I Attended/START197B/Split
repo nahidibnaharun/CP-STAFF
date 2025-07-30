@@ -1,0 +1,61 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const int INF=1000000000;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+void solve(){
+int n,k; string s;cin>>n>>k>>s;
+vector<int>p0(n+1,0),p1(n+1,0);
+for(int i=1;i<=n;i++){
+    p0[i]=p0[i-1]+(s[i-1]=='0');p1[i]=p1[i-1]+(s[i-1]=='1');
+}
+vector<int>d(n+1);
+for(int i=0;i<=n;i++)d[i]=p0[i]-p1[i];
+auto cn=[&](int x){
+    int l=1;
+    for(int sg=1;sg<k;sg++){
+        int nd=x+p0[l-1];
+        int mcr=d[l-1],r=l;bool ok=false;
+        while(r<=n){
+            mcr=max(mcr,d[r]);
+            int v=p1[r]+mcr;
+            if(v>=nd){ok=true;break;}r++;
+        }
+        if(!ok)return false;
+        l=r+1;
+        if(l>n+1)return false;
+    }
+if(l>n)return false;
+int mcr=d[l-1],bt=false;
+for(int r=l;r<=n;r++){mcr=max(mcr,d[r]);bt=max(bt,p1[r]+mcr-p0[l-1]);}
+return bt>=x;
+};
+int lo=1,hi=n,ans=1;
+while(lo<=hi){
+    int mid=(lo+hi)>>1;
+    if(cn(mid)){ans=mid;lo=mid+1;}
+    else hi=mid-1;
+}cout<<ans;
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+  int t;cin>>t;
+  while(t--){
+    solve();
+    cout<<endl;
+  }
+}

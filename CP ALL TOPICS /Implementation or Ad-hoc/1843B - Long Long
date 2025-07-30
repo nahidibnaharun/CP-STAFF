@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+void solve(){
+ll n,x,ans=0,cnt=0,sm=0,ts=0;
+cin>>n;
+while(n--){
+    cin>>x;sm+=abs(x);
+    if(x>0){
+        if(cnt>0 && ts>0)ans++;
+        cnt=0,ts=0;
+    }
+    else{cnt++;ts+=abs(x);}
+}
+if(cnt> 0 && ts>0)ans++;
+cout<<sm<<" "<<ans;
+}
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;cin>>t;
+    while(t--){
+        solve();
+        cout<<endl;
+    }
+    return 0;
+}

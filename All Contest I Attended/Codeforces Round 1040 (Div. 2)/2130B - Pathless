@@ -1,0 +1,70 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const int INF=1000000000;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve(){
+int n;ll s;cin>>n>>s;vector<int>a(n);
+ll bs=0;
+int cnt[3]={0,0,0};
+for(int i=0;i<n;i++){cin>>a[i];bs+=a[i];cnt[a[i]]++;}
+if(s<bs){
+    for(int i=0;i<cnt[0];i++)cout<<0<<" ";
+    for(int i=0;i<cnt[1];i++)cout<<1<<" ";
+    for(int i=0;i<cnt[2];i++)cout<<2<<(i+1<cnt[2]? ' ':'\n');
+    return;
+}
+ll df=s-bs;
+if(df==0){cout<<-1<<endl;return;}
+vector<array<int,3>>od={
+    {0,1,2},{0,2,1},{1,0,2},{1,2,0},{2,0,1},{2,1,0}
+};
+bool fnd=false;
+for(auto &x:od){
+    vector<int>p;p.reserve(n);
+    for(int y:x){
+        for(int i=0;i<cnt[y];i++)p.push_back(y);
+    }
+vector<int>cns;cns.reserve(n-1);
+for(int i=0;i+1<n;i++){
+    int x=p[i]+p[i+1];
+    if(x>0 && x<=df)cns.push_back(x);
+}
+if(cns.empty()){
+    for(int i=0;i<n;i++)cout<<p[i]<<(i+1<n ? ' ' : '\n');
+    fnd=true;break;
+}
+vector<char>dp(df+1,0);dp[0]=1;
+for(int x:cns){
+    for(int y=x;y<=df;y++){
+        if(dp[y-x])dp[y]=1;
+    }
+}
+if(!dp[df]){
+    for(int i=0;i<n;i++)cout<<p[i]<<(i+1<n ? ' ' : '\n');
+    fnd=true;break;
+}
+}
+if(!fnd)cout<<-1<<endl;
+}
+       
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;cin>>t;
+    while(t--){
+        solve();
+        // cout<<endl;
+    }
+}

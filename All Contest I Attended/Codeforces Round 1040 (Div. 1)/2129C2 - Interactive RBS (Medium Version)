@@ -14,7 +14,6 @@ ID: mdnahidibnaharun
 LANG: C++
 TASK: practice 
 */
-
 int q(const vector<int>& v) {
     int r;
     cout << "? " << v.size();
@@ -23,7 +22,6 @@ int q(const vector<int>& v) {
     cin >> r;
     return r;
 }
-
 void solve() {
     int n;
     cin >> n;
@@ -52,7 +50,6 @@ void solve() {
         }
         l = id + 1;
     }
-
     string s(n, ' ');
     for (int i = 1; i <= n; i += 8) {
         int k = min(8, n - i + 1);
@@ -66,7 +63,6 @@ void solve() {
         for (int j = 0; j < k; ++j)
             s[i + j - 1] = (x >> j & 1) ? ')' : '(';
     }
-
     cout << "! " << s << endl;
 }
 int main(){
@@ -75,6 +71,5 @@ int main(){
     int t;cin>>t;
     while(t--){
     solve();
-    // cout<<endl;
     }
 }

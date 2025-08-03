@@ -1,0 +1,103 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const int INF=500;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+int fquery(const vector<int> &id) {
+    int ret;
+    cout << "? " << id.size();
+    for (int i : id) cout << " " << i;
+    cout << endl;
+    cin >> ret;
+    return ret;
+}
+
+void solve() {
+    int n;
+    cin >> n;
+
+    vector<int> allidx(n);
+    iota(allidx.begin(), allidx.end(), 1);
+
+    int lbracket = -1, rbracket = -1;
+    if (fquery(allidx) > 0) {
+        int lo = 1, hi = n, idx = -1;
+        while (lo <= hi) {
+            int mid = (lo + hi) >> 1;
+            vector<int> qry(mid);
+            iota(qry.begin(), qry.end(), 1);
+            if (fquery(qry) > 0) {
+                idx = mid;
+                hi = mid - 1;
+            } else {
+                lo = mid + 1;
+            }
+        }
+        lbracket = idx - 1;
+        rbracket = idx;
+    } else {
+        int lo = 1, hi = n, idx = -1;
+        while (lo <= hi) {
+            int mid = (lo + hi) >> 1;
+            vector<int> qry;
+            for (int j = n; j >= mid; --j) qry.push_back(j);
+            if (fquery(qry) > 0) {
+                idx = mid;
+                lo = mid + 1;
+            } else {
+                hi = mid - 1;
+            }
+        }
+        lbracket = idx + 1;
+        rbracket = idx;
+    }
+
+    string sl(n+1, ' ');
+    for (int i = 1; i <= n; i += 2) {
+        if (i == n) {
+            vector<int> qry = { lbracket, i };
+            sl[i] = (fquery(qry) == 0 ? '(' : ')');
+        } else {
+            vector<int> qry = {
+                lbracket, i,
+                lbracket, lbracket,
+                i+1, i+1
+            };
+            int x = fquery(qry);
+            if (x == 0) {
+                sl[i] = sl[i+1] = '(';
+            } else if (x == 2) {
+                sl[i] = '('; sl[i+1] = ')';
+            } else if (x == 1) {
+                sl[i] = ')'; sl[i+1] = '(';
+            } else {
+                sl[i] = sl[i+1] = ')';
+            }
+        }
+    }
+
+    cout << "! ";
+    for (int i = 1; i <= n; ++i) cout << sl[i];
+    cout << endl;
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;cin>>t;
+    while(t--){
+    solve();
+    // cout<<endl;
+    }
+}

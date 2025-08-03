@@ -71,8 +71,6 @@ void solve(){
     for(int j=1;j<=n;++j)cout<<(ans[j]==1?"(":")");
     cout<<endl<<flush;
 }
-
-
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
@@ -87,6 +85,5 @@ int main(){
     cin>>t;
     while(t--){
     solve();
-    // cout<<endl;
     }
 }

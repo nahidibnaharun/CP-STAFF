@@ -30,7 +30,6 @@ struct btv{
         return qfun(b)-qfun(a-1);
     }
 };
-
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);

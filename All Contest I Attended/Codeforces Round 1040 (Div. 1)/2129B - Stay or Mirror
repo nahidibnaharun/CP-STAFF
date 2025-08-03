@@ -1,0 +1,58 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const int INF=1000000000;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+struct btv{
+    int n;vector<ll>t;
+    btv(int nn):n(nn),t(n+1,0){}
+    void funup(int i,ll v){
+        for(;i<=n;i+=i&-i)t[i]+=v;
+    }
+    ll qfun(int i){
+        ll s=0;
+        for(;i>0;i-=i&-i)s+=t[i];
+        return s;
+    }
+    ll qfun(int a,int b){
+        if(a>b)return 0;
+        return qfun(b)-qfun(a-1);
+    }
+};
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;cin>>t;
+    while(t--){
+       int n;cin>>n;vector<int>p(n+1);for(int i=1;i<=n;i++)cin>>p[i];
+       btv b1(n);
+       ll ine=0;
+       for(int i=1;i<=n;i++){ine+=b1.qfun(p[i]+1,n);b1.funup(p[i],1);}
+       vector<int>r(n+1,0),l(n+1,0);
+       btv br(n);
+       for(int i=n;i>=1;i--){
+        r[i]=br.qfun(1,p[i]-1);br.funup(p[i],1);
+       }
+       btv bl(n);
+       for(int i=1;i<=n;i++){l[i]=bl.qfun(p[i]+1,n);bl.funup(p[i],1);}
+       ll sx=0;
+       for(int i=1;i<=n;i++){
+        ll aa=(ll)(n-i)-r[i]-l[i];
+        if(aa<0)sx+=aa;
+       }
+       ll ans=ine+sx;
+       cout<<ans<<endl;
+    }
+}

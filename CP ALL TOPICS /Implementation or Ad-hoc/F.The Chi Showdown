@@ -1,0 +1,49 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+// const int INF=500;
+const ll INF = 1000000007;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve(int ind){
+int n;ull s;cin>>n>>s;
+vector<ull>f(n+1);
+for(int i=1;i<=n;++i)cin>>f[i];
+int wn=-1;
+for(int i=1;i<=n;++i){
+    if(f[i]==s && f[i]!=0){wn=i;break;}
+}
+if(wn==-1){
+    ull bd=ULLONG_MAX;
+    int bi=-1;
+    for(int i=1;i<=n;++i){
+        if(f[i]==0)continue;
+        ull df=(f[i]>s)?(f[i]-s):(s-f[i]);
+        if(df<bd){bd=df;bi=i;}
+    }wn=bi;
+}
+cout<<"Case "<<ind<<": "<<wn<<endl;
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;if(!(cin>>t))return 0;
+    int i=1;
+    while(t--){
+        solve(i);
+        i++;
+    }    
+
+
+return 0;
+}

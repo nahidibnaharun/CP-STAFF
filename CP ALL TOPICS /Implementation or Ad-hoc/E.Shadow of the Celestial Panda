@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+// const int INF=500;
+const ll INF = 1000000007;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+bool fun(ll x){
+    if(x<0)return false;
+    ll r=(ll)floor(sqrt((long double)x));
+    while(r*r>x)--r;
+    while((r+1)*(r+1)<=x)++r;
+    return r*r==x;
+}
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    string nm;
+if(!getline(cin,nm)) return 0;
+int n;if(!(cin>>n))return 0;
+vector<ll>a(n);for(int i=0;i<n;++i)cin>>a[i];
+for(char c:nm){
+    if(c=='x' || c=='X'){cout << "Disqualified"<<endl;return 0;}
+}
+ll vc=0,sm=0;
+for(int i=0;i<n;++i){
+    if(a[i]>7)continue;
+    if(i>=2 && a[i-1]>7 && a[i-2]>7)continue;
+    ++vc;sm+=a[i];
+}
+cout<<"Valid moves: "<<vc<<endl;
+cout<<"Inner Power: "<<sm<<endl;
+if(fun(sm))cout<<"Celestial Harmony Achieved."<<endl;
+
+return 0;
+}

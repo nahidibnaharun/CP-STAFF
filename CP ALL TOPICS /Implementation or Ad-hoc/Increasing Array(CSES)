@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+// const int INF=500;
+const ll INF = 2e5+5;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve(){
+    int n;ll x=0;cin>>n;vector<ll>a(n);for(auto &x:a)cin>>x;
+    for(int i=0;i<n-1;i++){
+        if(a[i]>a[i+1]){
+            ll d=a[i]-a[i+1];
+            a[i+1]+=d;
+            a[i]-=d;
+            x+=d;
+        }
+    }cout<<x;
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    // int t;cin>>t;
+    // while(t--){
+        solve();
+    //     cout<<endl;
+    // }    
+return 0;
+}

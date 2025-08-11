@@ -2,6 +2,7 @@
 using namespace std;
 using ll = long long;
 using ull = unsigned long long;
+using ui = unsigned int;
 // const int INF=500;
 const ll INF = 2e5+5;
 /*
@@ -16,30 +17,19 @@ LANG: C++
 TASK: practice 
 */
 void solve(){
-int n;ll k;cin>>n>>k;
-vector<ll>s(n),t(n);
-for(auto &x:s)cin>>x;for(auto &x:t)cin>>x;
-if(k==0){
-    sort(s.begin(),s.end());sort(t.begin(),t.end());
-    cout<<(s==t?"YES":"NO");
-    return;
+int n,k;cin>>n>>k;vector<int>a,b;
+for(int i=1;i<=n;i++){
+    int x;cin>>x;x%=k;
+    int m=min(x,k-x);a.push_back(m);
 }
-unordered_map<ll,int>cs,ct;
-cs.reserve(n*2);ct.reserve(n*2);
-for(ll x:s){
-    ll r=x%k,ky=(r==0?0:min(r,k-r));
-    cs[ky]++;
+for(int i=1;i<=n;i++){
+    int x;cin>>x;x%=k;
+    int m=min(x,k-x);
+    b.push_back(m);
 }
-for(ll x:t){
-    ll r=x%k,ky=(r==0?0:min(r,k-r));
-    ct[ky]++;
-}
-bool ans=(cs.size()==ct.size());
-if(ans){
-    for(auto &x:cs)
-    if(ct[x.first]!=x.second){ans=false;break;}
-}
-cout<<(ans?"YES":"NO");
+sort(a.begin(),a.end());sort(b.begin(),b.end());
+if(a==b)cout<<"YES";
+else cout<<"NO";
 }
 int main(){
     ios_base::sync_with_stdio(false);

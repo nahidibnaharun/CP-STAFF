@@ -18,24 +18,15 @@ TASK: practice
 */
 
 void solve(){
-    int n,ans=0;cin>>n;
-    vector<string>s(n);for(auto &x:s)cin>>x;
-    int chk[n]={0};
-    for(int i=0;i<n-1;i++){
-        if(chk[i]==0){
-            for(int j=i+1;j<n;j++){
-                if(chk[j]==0){
-                    string nw=s[i]+s[j],anw=s[j]+s[i];
-                    if(stoll(nw)%3==0 || stoll(anw)%3==0){
-                        chk[i]=chk[j]=-1;
-                        ans++;
-                        break;
-                    }
-                }
-            }
-        }
+    int n;cin>>n;vector<ll>a(n);for(auto &x:a)cin>>x;
+    int t=0,d1=0,d2=0;
+    for(auto x:a){
+        ll tm=x%3;
+        if(tm==0)t++;
+        else if(tm==1)d1++;
+        else if(tm==2)d2++;
     }
-    cout<<ans;
+    cout<<t/2 + min(d1,d2);
 }
 int main(){
     ios_base::sync_with_stdio(false);

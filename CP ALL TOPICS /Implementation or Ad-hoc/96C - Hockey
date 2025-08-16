@@ -1,0 +1,61 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ui = unsigned int;
+const ll INF = 2e5+5;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+void solve(){
+int n;cin>>n;
+vector<string>dt(n);
+for(int i=0;i<n;++i){
+    cin>>dt[i];
+    for(char &c:dt[i])if('A'<=c&&c<='Z')c=char(c-'A'+'a');
+}
+string a;char mnc;cin>>a>>mnc;
+char mxc=char(mnc-'a'+'A');
+vector<int>mk(a.size(),0);
+for(int l=0;l<(int)a.size();++l)
+    for(int r=l;r<(int)a.size();++r){
+        string q;
+        for(int i=l;i<=r;++i)
+        q+=('A'<=a[i]&&a[i]<='Z'?char(a[i]-'A'+'a'):a[i]);
+    
+bool hit=0;
+for(int i=0;i<n;++i)if(q==dt[i]){hit=1;break;}
+
+if(hit)
+for(int i=l;i<=r;++i)mk[i]=1;}
+for(int i=0;i<(int)a.size();++i)
+if(mk[i]){
+    if('A'<=a[i]&&a[i]<='Z')
+    {a[i]=(a[i]==mxc?(a[i]=='A'?'B':'A'):mxc);
+    }else
+    {a[i]=(a[i]==mnc?(a[i]=='a'?'b':'a'):mnc);
+    }
+}
+cout<<a<<'\n';
+
+}
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    // int t;cin>>t;
+    // while(t--){
+        solve();
+    //     cout<<endl;
+    // }    
+return 0;
+}

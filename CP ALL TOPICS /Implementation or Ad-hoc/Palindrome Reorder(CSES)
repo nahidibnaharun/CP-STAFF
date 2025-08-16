@@ -1,0 +1,79 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ui = unsigned int;
+const ll INF = 2e5+5;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+ 
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve(){
+    string s;cin>>s;
+    int hs[26]={0},n=s.size();
+    for(auto x:s)hs[x-'A']++;
+    if(n%2==0){
+        string fh="";
+        char x='A';
+        for(int i=0;i<26;++i){
+            if(hs[i]>0){
+                if(hs[i]%2==0){
+                    hs[i]/=2;
+                    while(hs[i]--){
+                        fh+=x;
+                    }
+                }
+                else{
+                    cout<<"NO SOLUTION";return;
+                }
+            }
+            x++;
+        }
+        cout<<fh;
+        reverse(fh.begin(),fh.end());cout<<fh;
+    }
+    else{
+       string fh="";
+        char x='A',ch='1';
+        for(int i=0;i<26;++i){
+            if(hs[i]>0){
+                if(hs[i]%2==0){
+                    hs[i]/=2;
+                    while(hs[i]--){
+                        fh+=x;
+                    }
+                }
+                else if(ch=='1'){
+                    ch=x;
+                    hs[i]/=2;
+                    while(hs[i]--){
+                        fh+=x;
+                    }
+                }
+                else{
+                    cout<<"NO SOLUTION";return;
+                }
+            }
+            x++;
+        }
+        cout<<fh<<ch;
+        reverse(fh.begin(),fh.end());cout<<fh; 
+    }
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    // int t;cin>>t;
+    // while(t--){
+        solve();
+    //     cout<<endl;
+    // }
+return 0;
+}

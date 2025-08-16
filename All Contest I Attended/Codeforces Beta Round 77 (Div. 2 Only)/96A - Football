@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ui = unsigned int;
+const ll INF = 2e5+5;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+int main() {
+    string s;
+    cin >> s;
+
+    int current_team_count = 1;
+    int max_team_count = 1;
+    char last_player = s[0];
+
+    for (int i = 1; i < s.length(); i++) {
+        if (s[i] == last_player) {
+            current_team_count++;
+        } else {
+            current_team_count = 1;
+            last_player = s[i];
+        }
+
+        if (current_team_count >= 7) {
+            cout << "YES" << endl;
+            return 0;
+        }
+    }
+
+    cout << "NO" << endl;
+
+    return 0;
+}

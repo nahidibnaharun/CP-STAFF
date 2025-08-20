@@ -18,6 +18,12 @@ A repository to keep track of problem solving practice, containing solutions fro
 
 | # | Title | Solution | Tags | Submitted |
 |:-:|-------|----------|------|-----------|
+| 721 | [E - Office Keys](https://codeforces.com/contest/302977/problem/E) | [C++17 (GCC 7-32)](https://codeforces.com/contest/302977/submission/334695370) | `*1800` | Aug 20 2025, 22:32 |
+| 720 | [B - Anton and Digits](https://codeforces.com/contest/734/problem/B) | [C++17 (GCC 7-32)](https://codeforces.com/contest/734/submission/334693671) | `brute force` `greedy` `implementation` `math` `*800` | Aug 20 2025, 22:18 |
+| 719 | [D - Lecture Sleep](https://codeforces.com/contest/302977/problem/D) | [C++17 (GCC 7-32)](https://codeforces.com/contest/302977/submission/334675975) | `*1200` | Aug 20 2025, 20:08 |
+| 718 | [C - Vitamins](https://codeforces.com/contest/302977/problem/C) | [C++17 (GCC 7-32)](https://codeforces.com/contest/302977/submission/334661154) | `*1200` | Aug 20 2025, 18:18 |
+| 717 | [B - Yet Another Broken Keyboard](https://codeforces.com/contest/302977/problem/B) | [C++17 (GCC 7-32)](https://codeforces.com/contest/302977/submission/334570320) | `*1200` | Aug 19 2025, 23:04 |
+| 716 | [A - Filling Shapes](https://codeforces.com/contest/302977/problem/A) | [C++17 (GCC 7-32)](https://codeforces.com/contest/302977/submission/334560910) | `*1000` | Aug 19 2025, 21:59 |
 | 715 | [A - Little Pony and Expected Maximum](https://codeforces.com/contest/453/problem/A) | [C++17 (GCC 7-32)](https://codeforces.com/contest/453/submission/334553640) | `probabilities` `*1600` | Aug 19 2025, 21:01 |
 | 714 | [C - Geometric Progression](https://codeforces.com/contest/567/problem/C) | [C++17 (GCC 7-32)](https://codeforces.com/contest/567/submission/334400039) | `binary search` `data structures` `dp` `*1700` | Aug 18 2025, 20:00 |
 | 713 | [B - Berland National Library](https://codeforces.com/contest/567/problem/B) | [C++17 (GCC 7-32)](https://codeforces.com/contest/567/submission/334399079) | `implementation` `*1300` | Aug 18 2025, 19:52 |

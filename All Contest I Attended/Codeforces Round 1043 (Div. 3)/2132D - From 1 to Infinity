@@ -1,0 +1,70 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ui = unsigned int;
+const ll INF = 1e17;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+ll sumdg(ll n){
+    if(n<=0)return 0;
+    ll rs=0;
+    ll p=1;
+    while(p<=n){
+        ll hg=n/(p*10),cr=(n/p)%10,lw=n%p;
+        ll tm=(ll)hg*45*(ll)p;
+        tm+=(ll)(cr*(cr-1)/2)*(ll)p;
+        tm+=(ll)cr*(ll)(lw+1);
+        rs+=tm;
+        if(p>n/10)break;
+        p*=10;
+    }
+    return (ll)rs;
+}
+void solve(){
+    ll k,ans=0;cin>>k;
+    for(int i=1;i<=18;++i){
+        ll st=1;
+        for(int j=1;j<i;++j)st*=10;
+        ll cnt=9*st;
+        ll tm=(ll)cnt*i;
+        ll bdg=(ll)tm;
+        if(k>=bdg){
+            ll ed=st+cnt-1;
+            ans+=(sumdg(ed)-sumdg(st-1));
+            k-=bdg;
+        }
+        else{
+            ll fn=k/i,rm=k%i;
+            if(fn>0){
+                ll lt=st+fn-1;
+                ans+=(sumdg(lt)-sumdg(st-1));
+            }
+            if(rm>0){
+                ll nn=st+fn;
+                string s= to_string(nn);
+                for(int j=0;j<(int)rm;++j)ans+=(s[j]-'0');
+            }
+            k=0;break;
+        }if(k==0)break;
+    }cout<<ans;
+ }
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;cin>>t;
+    while(t--){
+        solve();
+        cout<<endl;
+    }
+return 0;
+}

@@ -1,0 +1,53 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ui = unsigned int;
+const ll INF = 1e17;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+struct vr{
+    string name;
+    int score;
+};
+void solve(){
+    int n;cin>>n;
+    vector<vr>rh(n);
+    unordered_map<string,int>ts;
+    for(int i=0;i<n;++i){
+        cin>>rh[i].name>>rh[i].score;
+        ts[rh[i].name]+=rh[i].score;
+    }
+    int mx=INT_MIN;
+    for(auto x: ts)  mx=max(mx,x.second);
+    unordered_map<string , int>crs;
+    string ans="";
+    for(int i=0;i<n;++i){
+        string cs=rh[i].name;
+        int rs=rh[i].score;
+        crs[cs]+=rs;
+        if(ts[cs]==mx && crs[cs]>=mx){
+            ans=cs;break;
+        }
+    }cout<<ans;
+ }
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    // int t;cin>>t;
+    // while(t--){
+        solve();
+        // cout<<endl;
+    // }
+return 0;
+}

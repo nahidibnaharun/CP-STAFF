@@ -15,14 +15,14 @@ ID: mdnahidibnaharun
 LANG: C++
 TASK: practice 
 */
-
 void solve(){
-int a,b,c;cin>>a>>b>>c;
-if((a+b+c)%2!=0)cout<<-1;
-else{
-    if(a+b,c)cout<<a+b;
-    else cout<<(a+b+c)/2;
-}
+    int a,b,c; cin>>a>>b>>c;
+        if((a+b+c)%2!=0) cout<<-1;
+        else{
+            if(a+b<c) cout<<a+b;
+            else cout<<(a+b+c)/2;
+        }
+
  }
 int main(){
     ios_base::sync_with_stdio(false);

@@ -16,6 +16,9 @@ ID: mdnahidibnaharun
 LANG: C++
 TASK: practice 
 */
+
+
+
 void solve(){
 int n,cnt=0;cin>>n;
 for(int i=0;i<n;i++){

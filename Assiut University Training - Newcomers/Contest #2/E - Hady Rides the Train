@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+#include <climits>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ui = unsigned int;
+const ll INF = 1e17+7;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+void solve(){
+ull a;cin>>a;a++;
+if(a%4==0){
+    ull d=a/4;
+    if(d%2==0){
+        cout<<--d<<" "<<0;
+    }
+    else{
+        cout<<--d<<" "<<3;
+    }
+}
+else{
+    ull d=a/4,x=a%4;
+    d++;
+    if(d%2==0){
+        cout<<--d<<" "<<4-x;
+    }
+    else{
+        cout<<--d<<" "<<--(x);
+    }
+}
+}
+    
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    // int t;cin>>t;
+    // while(t--){
+        solve();
+    //     cout<<endl;
+    // }
+return 0;
+}

@@ -15,7 +15,6 @@ ID: mdnahidibnaharun
 LANG: C++
 TASK: practice 
 */
-
 void solve(){
 ll n;cin>>n;
 __int128 x=0;

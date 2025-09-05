@@ -1,0 +1,58 @@
+#include<bits/stdc++.h>
+using namespace std;
+using lli = long long int;
+using ll = long long;
+using ull = unsigned long long;
+const ll MOD = 200000;
+const ll INF = 2000000007LL;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    vector<char>prchk(MOD+1,true);
+    prchk[0]=prchk[1]=false;
+    for(int i=2;i*i<=MOD;i++){
+        if(prchk[i]){
+            for(int j=i*i;j<=MOD;j+=i)
+            prchk[j]=false;
+        }
+    }
+int t;cin>>t;
+while(t--){
+    int n;cin>>n;
+    vector<int>a(n);for(auto &x:a)cin>>x;
+    int bt=-1;
+    vector<pair<int,int>>prv;
+    for(int i=0;i<n;i++){
+        vector<pair<int,int>>cur;
+        cur.emplace_back(a[i],1);
+        for(auto &pr:prv){
+            int g=std::gcd(pr.first,a[i]);
+            int ln=pr.second+1;
+            if(cur.back().first==g)
+            cur.back().second=max(cur.back().second,ln);
+        else cur.emplace_back(g,ln);
+        }
+        for(auto &pr:cur){
+            int g=pr.first;
+            if(g<=MOD && prchk[g])bt=max(bt,pr.second);
+        }
+        prv.swap(cur);
+    }   
+    if(bt==-1)cout<<-1;
+    else cout<<bt;
+    cout<<endl;
+}
+}

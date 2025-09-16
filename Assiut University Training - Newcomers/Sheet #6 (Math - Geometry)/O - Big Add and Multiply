@@ -1,0 +1,79 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ui = unsigned int;
+const ll INF=(1LL<<62);
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+void solve(){
+ string s, ans = "";
+    cin >> s;
+    int n = s.size(), x = 4, ex = 0;
+
+    // Add 9999 to the last 4 digits
+    for (int i = n - 1; i >= -1;) {
+        if (i == -1 && x == 0 && ex == 0)
+            break;
+        if (x > 0) {
+            int nm = (i > -1 ? (int)(s[i] - '0') : 0);
+            nm += (9 + ex);
+            ex = nm / 10;
+            nm = nm % 10;
+            ans.push_back((char)(nm + '0'));
+            x--;
+        } else {
+            int nm = (i > -1 ? (int)(s[i] - '0') : 0);
+            nm += ex;
+            ex = nm / 10;
+            nm = nm % 10;
+            ans.push_back((char)(nm + '0'));
+        }
+        if (i > -1) i--;
+    }
+    reverse(ans.begin(), ans.end());
+    cout << ans << endl;
+
+    string mult = s + "0000"; 
+    string pad = s;
+    while (pad.size() < mult.size())
+        pad = "0" + pad;
+
+    string ans2 = "";
+    int borrow = 0, n2 = mult.size();
+    for (int i = n2 - 1; i >= 0; i--) {
+        int d = (mult[i] - '0') - (pad[i] - '0') - borrow;
+        if (d < 0) {
+            d += 10;
+            borrow = 1;
+        } else {
+            borrow = 0;
+        }
+        ans2.push_back(d + '0');
+    }
+    while (ans2.size() > 1 && ans2.back() == '0')
+        ans2.pop_back();
+    reverse(ans2.begin(), ans2.end());
+    cout << ans2 << endl;
+}
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    // int t;cin>>t;
+    // while(t--){
+        solve();
+    //     cout<<endl;
+    // }
+return 0;
+}

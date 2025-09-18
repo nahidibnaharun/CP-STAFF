@@ -1,0 +1,49 @@
+#include<bits/stdc++.h>
+#include <numeric>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ui = unsigned int;
+const ll INF = 1e17+7;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+void solve(){
+int n;cin>>n;
+vector<int>p(n),ps,ud(n);
+for(int i=0;i<n;i++){
+    cin>>p[i];
+    --p[i];
+    if(p[i]==-1)ps.push_back(i);
+    else ud[p[i]]=1;
+}
+if(ps.size()==1){
+    int usd=0;
+    for(int i=0;i<n;i++)if(ud[i]==0)usd=i;
+    p[ps[0]]=usd;
+}
+int l=0,r=n-1;
+while(l<n && p[l]==l)l++;
+while(r>=0 && p[r]==r)r--;
+cout<<max(0,r-l+1);
+}
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;cin>>t;
+    while(t--){
+        solve();
+        cout<<endl;
+    }
+return 0;
+}

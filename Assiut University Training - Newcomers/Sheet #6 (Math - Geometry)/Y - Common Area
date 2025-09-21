@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ui = unsigned int;
+const ll INF=(1LL<<62);
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+void solve(){
+
+    
+
+}
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;cin>>t;
+    for(int tc=1;tc<=t;tc++){
+       int n; cin>>n;
+        int lx=-1e4,ly=-1e4,rx=1e4,ry=1e4;
+        for(int i=0;i<n;i++){
+           int x1,y1,x2,y2;
+           cin>>x1>>y1>>x2>>y2;
+           lx=max(lx,min(x1,x2));
+           ly=max(ly,min(y1,y2));
+           rx=min(rx,max(x1,x2));
+           ry=min(ry,max(y1,y2));
+        }
+        int area=0;
+        if(lx<rx&&ly<ry)area=(rx-lx)*(ry-ly);
+        cout<<"Case #"<<tc<<": "<<area<<endl;
+    }
+return 0;
+}

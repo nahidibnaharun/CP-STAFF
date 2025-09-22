@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ui = unsigned int;
+const ll INF = 1e17;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+string s="";
+void f(int n,int sp,int st){
+    if(n==0)return;
+for(int i=1;i<=sp;i++)s+=' ';
+for(int i=1;i<=st;i++)s+='*';
+
+cout<<s<<endl;
+s.clear();
+f(n-1,sp+1,st-2);
+    
+}
+void solve(){
+int n;cin>>n;
+f(n,0,n+n-1);
+ }
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    // int t;cin>>t;
+    // while(t--){
+        solve();
+    //     cout<<endl;
+    // }
+return 0;
+}

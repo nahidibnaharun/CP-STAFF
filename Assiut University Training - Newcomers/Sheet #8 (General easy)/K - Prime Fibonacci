@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ui = unsigned int;
+const int MOD = (int)(1e9) + 7;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+void solve(){
+
+}
+bool isprime(ll x){
+    if(x<2)return false;
+    for(ll i=2;i*i<=x;i++){
+        if(x%i==0)return false;
+    }return true;
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    ll t;cin>>t;
+    vector<ll>fb(52);
+    fb[1]=0;fb[2]=1;
+    for(int i=3;i<=51;i++)fb[i]=fb[i-1]+fb[i-2];
+    vector<bool>fbp(52);
+    for(int i=1;i<=51;i++)fbp[i]=isprime(fb[i]);
+    while(t--){
+        int x;cin>>x;
+       if(fbp[x])cout<<"prime";
+       else cout<<"not prime";
+
+        cout<<endl;
+    }
+return 0;
+}

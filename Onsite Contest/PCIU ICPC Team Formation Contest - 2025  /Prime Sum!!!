@@ -1,0 +1,75 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ui = unsigned int;
+const int MOD = 1000000007;
+/*
+//
+         _   _  __    _   _  _____   _____
+//     / | / / / _ \ \ \__\ \\__  _\\  _   \
+//    /  |/ / / /_\ \ \  __  \  \ \  \ \ \  \
+//   / /|  / / ____  \ \ \  \ _\_\ \__\ \/  /
+//  /_/ |_/ /_/     \__\\_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+
+
+
+
+vector<int> primefinds(int mxlim) {
+    vector<bool>primevec(mxlim+1,true);
+    primevec[0]=false;  primevec[1]=false;
+    for (int i=2;i*i<=mxlim;i++){
+        if(primevec[i]){
+            for(int j=i*i;j<=mxlim;j+=i){
+                primevec[j]=false;
+            }
+        }
+    }
+    vector<int> primes;
+    for(int i=2;i<=mxlim;i++){
+        if(primevec[i])primes.push_back(i);
+   }
+    return primes;
+}
+
+
+
+
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t;cin >>t;
+    
+    vector<int>sums(t);
+    int maxsum=0;
+
+
+    for(int i=0;i<t;i++){
+        cin>>sums[i];
+        if(sums[i]>maxsum)maxsum=sums[i];
+    }
+    vector<int>primes=primefinds(maxsum);
+    
+    vector<ll>dp(maxsum+1,0);
+    dp[0]=1; 
+
+    for(int prime:primes){
+        for(int j=prime;j<=maxsum;j++){
+            dp[j]=(dp[j]+dp[j-prime])%MOD;
+        }
+    }
+
+    for(int i=0;i<t;i++) {
+        cout<<dp[sums[i]]<<endl;
+    }
+
+return 0;
+}

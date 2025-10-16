@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    int t;cin>>t;
+    while(t--){
+        ll a,b;cin>>a>>b;
+        ll ar[a][b],ans=0;
+        for(int i=0;i<a;i++){
+            for(int j=0;j<b;j++){
+                cin>>ar[i][j];
+            }
+        }
+
+        for(int i=0;i<b;i++){
+            ll temp[a];
+            ll sum=0;
+            for(int j=0;j<a;j++){
+                sum+=ar[j][i];
+                temp[j]=ar[j][i];
+            }sort(temp,temp+a);
+            ll curr=0;
+            for(int j=0;j<a;j++){
+                curr+=temp[j];
+                ans+=llabs((sum-curr)-(a-1-j)*temp[j]);
+            }
+        }
+        cout<<ans<<endl;
+        
+    }
+    
+   return 0;
+    
+}

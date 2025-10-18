@@ -1,0 +1,70 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ui = unsigned int;
+const int INF = 1e9;
+const int MOD = 1000000007;
+/*
+//     
+         _   _  __    _   _  _____   _____
+//     / | / / / _ \ \ \__\ \\__  _\\  _   \ 
+//    /  |/ / / /_\ \ \  __  \  \ \  \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ _\_\ \__\ \/  /
+//  /_/ |_/ /_/     \__\\_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve() {
+    int n,m,h;
+    cin >> n>>m>>h;
+
+    vector<pair<ll,ll>>rank;
+    pair<ll,ll>pos;
+    for(int i=0;i<n;i++){
+        vector<ll>a(m);
+        for(auto &x:a)cin>>x;
+        sort(a.begin(),a.end());
+        for(int i=1;i<m;i++){
+            a[i]+=a[i-1];
+        }
+        ll score=0,penalty=0;
+        for(int i=0;i<m;i++){
+            if(a[i]>h){
+                break;
+            }
+            score++;
+            penalty += a[i];
+        }
+        rank.push_back({score,penalty});
+        if(i==0){
+            pos={score,penalty};
+        }
+    }
+    sort(rank.begin(),rank.end(),[](const auto& a,const auto &b){
+        if(a.first!=b.first)return a.first>b.first;
+        return a.second<b.second;
+    });
+    for(int i=0;i<n;i++){
+        if(rank[i]==pos){
+            cout<<i+1;
+            return;
+        }
+    }
+    
+   
+}
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+   
+  int t; cin >>t;
+  while(t--){
+    solve();
+    cout<<endl;
+  }
+return 0;
+}

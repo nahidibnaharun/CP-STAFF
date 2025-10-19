@@ -1,0 +1,53 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ui = unsigned int;
+const int INF = 1e9;
+const int MOD = 1e9+7;
+/*
+//
+
+         _   _  __    _   _  _____   _____
+//     / | / / / _ \ \ \__\ \\__  _\\  _   \ 
+//    /  |/ / / /_\ \ \  __  \  \ \  \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ _\_\ \__\ \/  /
+//  /_/ |_/ /_/     \__\\_\  \_\\______\\___/
+ 
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+void solve(){
+   
+   int n,k;cin>>n>>k;
+   vector<int>a(n); for(auto &x:a)cin>>x;
+   ll s=0,sum=0;
+   ll cur=0;
+   for(int i=0;i<n;i++){
+    sum+=a[i];
+    cur+=a[i];
+    cur=max(cur,0LL);
+    s=max(s,cur);
+   }
+   sum=(sum%MOD + MOD)%MOD;
+   s=s%MOD;
+   int t=1;
+   for(int i=0;i<k;i++)t=t*2%MOD;
+
+   int ans=(sum+s*t-s+MOD)%MOD;
+   cout<<ans;
+}
+int main(){
+ios_base::sync_with_stdio(false);
+cin.tie(NULL);
+    int Test_Case;
+    cin >> Test_Case;
+    
+    while(Test_Case--){
+        solve();
+        cout<<endl;
+    }
+return 0;
+}
+    

@@ -1,0 +1,56 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ui = unsigned int;
+const int INF = 1e9;
+const int MOD = 1e9+7;
+/*
+//
+
+         _   _  __    _   _  _____   _____
+//     / | / / / _ \ \ \__\ \\__  _\\  _   \ 
+//    /  |/ / / /_\ \ \  __  \  \ \  \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ _\_\ \__\ \/  /
+//  /_/ |_/ /_/     \__\\_\  \_\\______\\___/
+ 
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+void solve() {
+    int a,b; cin >> a>>b;
+    if(__builtin_clz(a) > __builtin_clz(b))cout<< "-1"<<endl;
+    else if( a==b ) cout<<"0"<<endl;
+    else{
+        vector<int> val;
+        for(int i=0 ; i<31 ;i++){
+            int x = (1<<i);
+            if( x<=a && (a&x) ==0) a+=x, val.push_back(x);
+        }
+
+        for(int i=0 ;i<31 ;i++){
+            int x=(1<<i);
+            if(x<=a && (b&x) ==0)val.push_back(x);
+        }
+
+        cout << val.size() <<endl;
+        for(auto x: val)cout<<x<<" ";
+        cout<<endl;
+    }
+
+}
+
+int main(){
+ios_base::sync_with_stdio(false);
+cin.tie(NULL);
+    int Test_Case;
+    cin >> Test_Case;
+    
+    while(Test_Case--){
+        solve();
+        // cout<<endl;
+    }
+return 0;
+}
+    

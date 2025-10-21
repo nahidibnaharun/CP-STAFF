@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ui = unsigned int;
+const int INF = 1e9;
+const int MOD = 1e9+7;
+/*
+//
+
+         _   _  __    _   _  _____   _____
+//     / | / / / _ \ \ \__\ \\__  _\\  _   \ 
+//    /  |/ / / /_\ \ \  __  \  \ \  \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ _\_\ \__\ \/  /
+//  /_/ |_/ /_/     \__\\_\  \_\\______\\___/
+ 
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+ll query(int type, int l, int r){
+    ll x;
+    cout << type << ' ' << l << ' ' << r << flush << endl;
+    cin >> x;
+    return x;
+}
+void solve(){
+    int n;
+    cin >> n;
+    ll sum = query(2,1,n)-1LL*n*(n+1)/2,diff=sum-1;
+    int l=1,r=n;
+    while(l<r){
+        int m=(l+r)/2;
+        if(query(1,1,m)<query(2,1,m)) r=m;
+        else l=m+1;
+    }
+    cout << "!" << ' ' << l << ' ' << diff+l << flush << endl;
+}
+
+int main(){
+ios_base::sync_with_stdio(false);
+cin.tie(NULL);
+    int Test_Case;
+    cin >> Test_Case;
+    
+    while(Test_Case--){
+        solve();
+        // cout<<endl;
+    }
+return 0;
+}
+    

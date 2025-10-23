@@ -1,0 +1,73 @@
+#include <algorithm>
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ui = unsigned int;
+const int INF = 1e9;
+const int MOD = 1e9+7;
+/*
+
+         _   _  __    _   _  _____   _____
+    / | / / / _ \ \ \__\ \\__  _\\  _   \
+   /  |/ / / /_\ \ \  __  \  \ \  \ \ \  \
+  / /|  / / ____  \ \ \  \ _\_\ \__\ \/  /
+ /_/ |_/ /_/     \__\\_\  \_\\______\\___/
+ 
+ID: mdnahidibnaharun
+LANG: C++ 
+TASK: practice
+*/
+
+
+void solve(){
+    
+    int q, d;
+        cin >> q >> d;
+        vector<int> a(q);
+        for (int i = 0; i < q; ++i) cin >> a[i];
+
+        int td = 10 * d;
+
+        const int mxch = max(1000, td + 10); 
+        vector<int> cn;
+        for (int x = 1; x <= mxch; ++x) {
+            int y = x;
+            bool has = false;
+            while (y > 0) {
+                if (y % 10 == d) { has = true; break; }
+                y /= 10;
+            }
+            if (has) cn.push_back(x);
+        }
+
+        vector<char> dp(mxch + 1, 0);
+        dp[0] = 1;
+        for (int c : cn) {
+            for (int s = c; s <= mxch; ++s) {
+                if (!dp[s] && dp[s - c]) dp[s] = 1;
+            }
+        }
+
+        for (int x : a) {
+            if (x >= td) {
+                cout << "YES";
+            } else {
+                cout << (dp[x] ? "YES" : "NO");
+            }
+            cout<<endl;
+        }
+}
+
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int Test_Case;
+    cin >> Test_Case;
+    while(Test_Case--){
+        solve();
+        // cout<<endl;
+    }
+    return 0;
+}

@@ -1,0 +1,61 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ui = unsigned int;
+const int INF = 1e9;
+const int MOD = 1e9+7;
+/*
+
+         _   _  __    _   _  _____   _____
+    / | / / / _ \ \ \__\ \\__  _\\  _   \
+   /  |/ / / /_\ \ \  __  \  \ \  \ \ \  \
+  / /|  / / ____  \ \ \  \ _\_\ \__\ \/  /
+ /_/ |_/ /_/     \__\\_\  \_\\______\\___/
+ 
+ID: mdnahidibnaharun
+LANG: C++ 
+TASK: Codeforces Round 1061 (Div. 2)
+*/
+
+
+
+void solve(){
+    string s; int x; cin >> s >> x;
+    int n =int(s.size());
+    string w(n,'1');
+    
+    for(int i=0 ;i<n;i ++){
+        if(s[i] == '0'){
+            if(i-x >=0)w[i-x]='0';
+            if(i+x <n)w[i+x]='0';
+        }
+        
+    }
+    
+    for(int i=0 ;i<n;i++){
+        bool one=false;
+        one = one || (i-x >=0 && w[i-x] =='1');
+        one = one || (i+x <n && w[i+x] == '1');
+        
+        if(s[i] !=one +'0'){
+            cout<<-1;
+            return;
+        }
+    }
+    cout<<w;
+    
+}
+   
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int Test_Case;
+    cin >> Test_Case;
+    while(Test_Case--){
+        solve();
+        cout<<endl;
+    }
+    return 0;
+}

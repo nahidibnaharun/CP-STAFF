@@ -1,0 +1,50 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ui = unsigned int;
+const int INF = 1e9;
+const int MOD = 1e9+7;
+/*
+
+         _   _  __    _   _  _____   _____
+    / | / / / _ \ \ \__\ \\__  _\\  _   \
+   /  |/ / / /_\ \ \  __  \  \ \  \ \ \  \
+  / /|  / / ____  \ \ \  \ _\_\ \__\ \/  /
+ /_/ |_/ /_/     \__\\_\  \_\\______\\___/
+ 
+ID: mdnahidibnaharun
+LANG: C++ 
+TASK: Codeforces Round 1061 (Div. 2)
+*/
+
+
+
+void solve(){
+    ll p,f,cs,cw,s,w;
+    cin >> p >> f >> cs >> cw >> s>>w;
+    if(s>w)swap(s,w) , swap(cs,cw);
+    
+    ll ans=0;
+    
+    for(int i=0 ;i<=min(cs,p/s); i++){
+        ll w1 = min(cw,(p-i*s)/w);
+        ll s2 = min(cs-i,f/s);
+        ll w2=min(cw-w1,(f-s2*s)/w);
+        ans =max(ans, i +w1+w2+s2);
+    }
+    cout <<ans;
+}
+   
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int Test_Case;
+    cin >> Test_Case;
+    while(Test_Case--){
+        solve();
+        cout<<endl;
+    }
+    return 0;
+}

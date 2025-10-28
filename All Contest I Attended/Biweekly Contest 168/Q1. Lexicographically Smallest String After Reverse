@@ -1,0 +1,17 @@
+class Solution {
+public:
+    string lexSmallest(string s) {
+        int n=s.size() ; 
+        string bt=s;
+        for(int i=1 ;i<=n ;i++){
+            string t=s;
+            reverse(t.begin() , t.begin() + i);
+            if(t<bt)bt=t;
+            t=s;
+
+            reverse(t.end() - i  , t.end());
+            if(t<bt)bt=t;
+        }
+        return bt;
+    }
+};

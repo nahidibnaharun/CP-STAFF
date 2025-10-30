@@ -1,0 +1,71 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ui = unsigned int;
+const int INF = 1e9;
+const int MOD = 1e9+7;
+/*
+
+         _   _  __    _   _  _____   _____
+    / | / / / _ \ \ \__\ \\__  _\\  _   \
+   /  |/ / / /_\ \ \  __  \  \ \  \ \ \  \
+  / /|  / / ____  \ \ \  \ _\_\ \__\ \/  /
+ /_/ |_/ /_/     \__\\_\  \_\\______\\___/
+ 
+ID: mdnahidibnaharun
+LANG: C++ 
+TASK: Practice
+*/
+ll sum;
+
+bool possible(int x, vector<ll>& cnt) {
+    ll task = 0;
+    for (int i = 0; i < cnt.size(); ++i) {
+        if (cnt[i] >= x)
+            task += x;
+        else
+            task += cnt[i] + (x - cnt[i]) / 2;
+    }
+    return (task >= sum);
+}
+void solve(){
+    int n, k, x;
+    cin >> n >> k;
+    vector<ll> task(n, 0);
+    for (int i = 0; i < k; ++i) {
+        cin >> x;
+        task[x - 1]++;
+    }
+    sum = accumulate(task.begin(), task.end(), 0LL);
+    ll lo = 0, hi = *max_element(task.begin(), task.end()), ans = 0;
+    
+    while (lo <= hi) {
+        int mi = (hi + lo) / 2;
+        if (possible(mi, task)) {
+            hi = mi - 1;
+            ans = mi;
+        } else {
+            lo = mi + 1;
+        }
+    }
+    cout << ans;
+}
+
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    
+
+
+    ll Test_Case;
+    cin >> Test_Case;
+    while(Test_Case--){
+        solve();
+        cout<<endl;
+    }
+    return 0;
+}

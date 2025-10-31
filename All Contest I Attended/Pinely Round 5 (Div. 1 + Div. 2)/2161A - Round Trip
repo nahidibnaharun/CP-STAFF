@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+const int INF = 1e9;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+void solve(){
+    int r , x , d , n ; cin >> r >> x >> d >> n;
+
+    string s ; cin >> s;
+    int cnt = 0;
+    for(auto c : s){
+        if( c == '1' ){
+            if(r >= x) r-=d;
+            cnt++;
+        }
+        else{
+            if( r<x )cnt++;
+        }
+    }
+    cout << cnt;
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    
+    ll Test_Case; cin >> Test_Case;
+    while(Test_Case--){
+        solve();
+        cout << endl;
+    }
+    
+    
+    return 0;   
+}

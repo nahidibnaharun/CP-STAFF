@@ -1,0 +1,61 @@
+#include <algorithm>
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ui = unsigned int;
+const int INF = 1e9;
+const int MOD = 1e9+7;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+
+
+void solve(){
+    int n; cin >> n;
+    vector<int>a(n); for(auto &x:a)cin >> x;
+
+    while(!a.empty() && a.back()==0)a.pop_back();
+
+    reverse(a.begin() ,a.end());
+
+    while(!a.empty() && a.back()==0)a.pop_back();
+
+    reverse(a.begin(),a.end());
+
+    if(a.empty()){
+        cout<<0;return;
+    }
+    bool chk=false;
+    for(auto x:a)chk|=x==0;
+    if(chk)cout<<2;
+    else cout<<1;
+}
+
+
+ 
+ 
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    
+
+
+    ll Test_Case; cin >> Test_Case;
+    while(Test_Case--){
+        solve();
+        cout<<endl;
+    }
+    return 0;
+}
+ 

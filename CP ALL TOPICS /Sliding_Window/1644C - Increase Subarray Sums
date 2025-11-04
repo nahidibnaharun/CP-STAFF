@@ -1,0 +1,73 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ui = unsigned int;
+const int INF = 1e9;
+const int MOD = 1e9 + 7;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+void solve() {
+    int n; ll x ; cin >> n >> x;
+    
+    vector<ll>a(n) ; for(auto &x : a) cin >> x;
+
+    vector<ll>ps(n+1, 0); for(int i=0 ; i<n ;i++) ps[i+1] = ps[i]+a[i];
+
+    vector<ll> best(n+1 , -1e18);
+
+    best[0] = 0;
+
+    for(int len = 1 ; len <= n ; len++ ){
+        ll mx=-1e18;
+        
+        for(int i=0 ; i+len <= n ;i++){
+            ll sum = ps[i+len] - ps[i];
+            mx= max(mx,sum);
+        }
+        best[len] = mx;
+    }
+
+    vector<ll>ans(n+1 , 0);
+
+    for(int k=0 ; k<=n ;k++){
+        ll res=0 ;
+
+        for(int len = 0 ; len<=n ; len++){
+            ll cur= best[len] + x*min<ll>(len,k);
+            
+            res = max(res,cur);
+        }
+        ans[k]=res;
+    }
+
+
+    for(auto x : ans ) cout << x <<" ";
+
+}
+
+
+
+
+int main() {
+  ios_base::sync_with_stdio(false);
+  cin.tie(nullptr);
+
+  ll Test_Case; cin >> Test_Case;
+  while (Test_Case--) {
+  solve();
+  cout<<endl;
+  }
+
+  return 0;
+}

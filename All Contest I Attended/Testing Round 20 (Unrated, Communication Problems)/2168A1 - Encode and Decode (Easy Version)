@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ui = unsigned int;
+const int INF = 1e9;
+const int MOD = 1e9 + 7;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+void solve() {
+    string t; cin >> t;
+    if(t=="first"){
+        int n; cin >> n;
+        for(int i=0 ; i<n ;i++){
+            int x; cin >>x ; cout << char(x+'a'-1);
+        }
+    }
+    else{
+        string s; cin >>s;
+        cout<<s.size() <<" ";
+        for(char x:s)cout<<x-'a'+1<<" ";
+    }
+
+}
+
+
+int main() {
+  ios_base::sync_with_stdio(false);
+  cin.tie(nullptr);
+
+//   ll Test_Case; cin >> Test_Case;
+//   while (Test_Case--) {
+  solve();
+//   cout<<endl;
+//   }
+
+  return 0;
+}

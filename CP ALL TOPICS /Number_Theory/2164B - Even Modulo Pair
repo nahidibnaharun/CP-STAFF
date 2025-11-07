@@ -1,0 +1,74 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ui = unsigned int;
+const int INF = 1e9;
+const int MOD = 1e9 + 7;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+
+
+void solve(){
+    int n; cin >> n; vector<ll>a(n); for(auto &x : a)cin >>x;
+    vector<int>ev; for(int i=0 ;i<n;i++)if((a[i]&1)==0)ev.push_back(i);
+    
+    if(ev.size() >=2){
+        cout<<a[ev[0]]<<" "<<a[ev[1]];return;
+    }
+    int N=100;
+    bool chk=false; 
+    int lmt=min(n,N);
+
+    for(int i=0 ;i<lmt && !chk; i++){
+        for(int j=i+1 ; j<n ;j++){
+            if((a[j] % a[i]) %2 ==0){
+                cout<<a[i] <<" "<<a[j];
+                chk=true;
+                break;
+            }
+        }
+    }
+
+    if(!chk){
+        for(int i=N; i<n && !chk ;i++){
+            for(int j=i+1 ;j<min(n,i+1+N) ;j++){
+                if((a[j] % a[i]) %2==0){
+                    cout<<a[i]<<" "<<a[j];
+                    chk=true;
+                    break;
+                }
+            }
+        }
+    }
+    if(!chk)cout<<-1;
+
+}
+
+
+
+
+
+
+int main() {
+  ios_base::sync_with_stdio(false);
+  cin.tie(nullptr);
+
+  ll Test_Case; cin >> Test_Case;
+  while (Test_Case--) {
+  solve();
+  cout<<endl;
+  }
+
+  return 0;
+}

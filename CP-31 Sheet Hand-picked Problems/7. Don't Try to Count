@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+#define sz(x) (int)x.size()
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+void solve(){int n, m;
+  cin >> n >> m;
+  string x, s;
+  cin >> x >> s;
+ 
+  if(x.find(s) != string::npos)
+    return void(cout << 0 << '\n');
+  
+  for(int i = 1; i <= 100; i++) {
+    x += x;
+    if(x.find(s) != string::npos)
+      return void(cout << i << '\n');
+    
+    if(sz(x) >= 4 * m) break;
+  }
+  cout << -1 << '\n';
+return;
+}
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	int t;
+	cin>>t;
+	while(t--)
+	solve();
+return 0;
+}

@@ -1,0 +1,58 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld= long double;
+using ui = unsigned int;
+const int INF = 1e9;
+const int MOD = 1e9 + 7;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+
+void solve(){
+    int n; cin >> n;
+    vector<ld> a(n); for(auto &x:a)cin >>x;
+
+    vector<ld> dp(n+1,0.0L);
+
+    dp[0]=1.0L;
+
+    for(int i=1 ;i<=n;i++){
+        ld pi = a[i-1];
+
+        for(int j=i;j>=1 ;j--)dp[j] = dp[j] * (1.0L-pi) + dp[j-1]*pi;
+
+        dp[0]=dp[0]*(1.0L-pi);
+    }
+
+    int val=n/2+1;
+    ld ans =0.0L;
+
+    for(int j=val;j<=n;j++)ans+=dp[j];
+
+    cout<<setprecision(12)<<(double)ans;
+}
+
+
+int main() {
+  ios_base::sync_with_stdio(false);
+  cin.tie(nullptr);
+
+//   ll Test_Case; cin >> Test_Case;
+//   while (Test_Case--) {
+  solve();
+//   cout<<endl;
+//   }
+
+  return 0;
+}

@@ -1,0 +1,87 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld= long double;
+using ui = unsigned int;
+const int INF = 1e9;
+const int MOD = 1e9 + 7;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+
+void solve(){
+     ll n, m ;cin >> n >> m; 
+     vector<vector<pair<ll,ll>>>adj(n+1);
+
+     for(ll i=0 ; i<m;i++){
+        ll a,b,w; cin >> a >> b >> w;
+
+        adj[a].push_back({b,w});
+
+        adj[b].push_back({a,w});
+     }
+
+     vector<ll>dst(n+1,LLONG_MAX) , parent(n+1,-1);
+
+
+     priority_queue<pair<ll,ll> , vector<pair<ll,ll>>,greater<>> pq;
+
+     dst[1]=0;
+
+     pq.push({0,1});
+
+     
+     while(!pq.empty()){
+        auto [d,u] = pq.top();
+        pq.pop();
+
+        if(d>dst[u])continue;
+
+        for(auto [v,w] : adj[u]){
+            if(dst[u] + w < dst[v]){
+                dst[v] = dst[u] + w;
+
+                parent[v] = u;
+                pq.push({dst[v] , v});
+            }
+        }
+     }
+
+     if(dst[n] == LLONG_MAX){cout<<-1;return;}
+
+
+    vector<ll>path; 
+
+    for(ll v= n; v!=-1 ; v=parent[v])path.push_back(v);
+
+    reverse(path.begin() , path.end());
+
+    for(ll v : path)cout<<v<<" ";
+
+    
+}
+
+
+
+int main() {
+  ios_base::sync_with_stdio(false);
+  cin.tie(nullptr);
+
+//   ll Test_Case; cin >> Test_Case;
+//   while (Test_Case--) {
+  solve();
+//   cout<<endl;
+//   }
+
+  return 0;
+}

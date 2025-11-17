@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+void solve()
+{
+
+    ll x, n;
+    cin >> x >> n;
+
+    ll q = n % 4;
+    if (x % 2 == 0)
+    {
+        if (q == 1)
+            cout << -1 * n + x;
+        else if (q == 2)
+            cout << 1 + x;
+        else if (q == 3)
+            cout << 1 + n + x;
+        else
+            cout << x;
+    }
+    else
+    {
+        if (q == 1)
+            cout << 1 * n + x;
+        else if (q == 2)
+            cout << -1 + x;
+        else if (q == 3)
+            cout << -1 - n + x;
+        else
+            cout << x;
+    }
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int Test_Case;
+    cin >> Test_Case;
+    while (Test_Case--)
+    {
+        solve();
+        cout << "\n";
+    }
+    return 0;
+}

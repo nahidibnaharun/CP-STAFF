@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+void solve()
+{
+    int n;
+    cin >> n;
+    vector<ll> a(n);
+    unordered_map<ll, int> mp;
+
+    for (auto &x : a)
+    {
+        cin >> x;
+        mp[x]++;
+    }
+
+    int mc = 0;
+    for(auto x:a){
+        mc=max(mc,mp[x]);
+    }
+    int nd=n-mc;
+
+    int ans=0;
+
+    while(nd>0){
+        ans +=(1+min(mc,nd));
+
+        mc = mc + min(mc,nd);
+        nd = n-mc;
+    }
+
+    cout<<ans;
+    
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int Test_Case;
+    cin >> Test_Case;
+    while (Test_Case--)
+    {
+        solve();
+        cout << "\n";
+    }
+    return 0;
+}

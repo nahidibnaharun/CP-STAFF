@@ -1,0 +1,64 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int count(string s, char a, char b, int n)
+{
+    int j = -1, i = -1;
+
+    for (int x = n - 1; x >= 0; x--)
+    {
+        if (s[x] == b)
+        {
+            j = x;
+            break;
+        }
+    }
+    if (j == -1)
+        return INT_MAX;
+
+    for (int x = j - 1; x >= 0; x--)
+    {
+        if (s[x] == a)
+        {
+            i = x;
+            break;
+        }
+    }
+    if (i == -1)
+        return INT_MAX;
+
+    return (n - j - 1) + (j - i - 1);
+}
+void solve()
+{
+    string s;
+    cin >> s;
+
+    int n = s.length();
+    int ans = INT_MAX;
+
+    ans = min(ans, count(s, '0', '0', n));
+
+    ans = min(ans, count(s, '2', '5', n));
+
+    ans = min(ans, count(s, '5', '0', n));
+
+    ans = min(ans, count(s, '7', '5', n));
+    cout << ans;
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int Test_Case;
+    cin >> Test_Case;
+    while (Test_Case--)
+    {
+        solve();
+        cout << endl;
+    }
+    return 0;
+}

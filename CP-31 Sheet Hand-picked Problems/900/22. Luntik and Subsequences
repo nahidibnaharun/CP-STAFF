@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+void solve()
+{
+    int n;
+    cin >> n;
+
+    int z = 0, o = 0;
+
+    vector<ll>v(n);
+    for(auto &x:v){
+        cin >> x;
+        if(x==0)z++;
+        if(x==1)o++;
+    }
+
+    ll ans = (ll)o * (1LL<<z);
+    cout << ans;
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int Test_Case;
+    cin >> Test_Case;
+    while (Test_Case--)
+    {
+        solve();
+        cout << endl;
+    }
+    return 0;
+}

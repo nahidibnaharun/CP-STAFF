@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9;
+const int SIZE = 1e5;
+const int MOD = 1e9 + 7;
+
+void solve() {
+
+	int a, v, h, n;
+	cin >> a >> v >> h >> n;
+	if (min(v, a) > n) cout << "YES";
+	else cout << "NO";
+}
+
+int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(nullptr);
+
+	ll Test_Case;
+	cin >> Test_Case;
+	while (Test_Case--)
+	{
+		solve();
+		cout << endl;
+	}
+
+	return 0;
+}

@@ -1,0 +1,68 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9;
+const int SIZE = 1e5;
+const int MOD = 1e9 + 7;
+
+
+void solve() {
+	ll n, m; cin >> n >> m;
+
+	vector<vector<ll>>grid(n, vector<ll>(m));
+	vector<ll>rowwise(n, 0), colwise(m, 0);
+	ll rowsum = 0 , colsum = 0;
+	for (ll i = 0 ; i < n; i++) {
+		ll rowx = 0;
+		for (ll j = 0 ; j < m; j++) {
+			cin >> grid[i][j];
+			rowx ^= grid[i][j];
+		}
+		rowsum += rowx;
+		rowwise[i] = rowx;
+	}
+	for (ll j = 0 ; j < m; j++) {
+		ll colx = 0;
+		for (ll i = 0 ; i < n; i++) {
+			colx ^= grid[i][j];
+		}
+		colsum += colx;
+		colwise[j] = colx;
+	}
+	ll total = rowsum + colsum;
+
+
+	ll ans = total;
+
+	for (ll i = 0 ; i < n; i++) {
+		for (ll j = 0 ; j < m; j++) {
+			// ans = min(ans, total - rowwise[i] - colwise[j] + (colwise[j]^grid[i][j]));
+			ans = min(ans, total - rowwise[i] - colwise[j] + (colwise[j] ^ rowwise[i]));
+			ans = min(ans, total - colwise[j] - rowwise[i]  + (colwise[j] ^ rowwise[i]));
+			// cout<<(grid[i][j]^rowwise[i])<<" "<<(grid[i][j]^colwise[j])<<endl;
+		}
+		// cout<<endl;
+	}
+
+
+	cout << ans;
+
+
+
+
+
+}
+int main()
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(nullptr);
+	int t;
+	cin >> t;
+	while (t--)
+	{
+		solve();
+		cout << endl;
+	}

@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+using ll = long long;
+
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    int t;
+    cin>>t;
+    while(t--){
+        string s,ts;
+        cin>>s;
+        int n=s.length(),z=0,o=0;
+        for(char c: s){
+            if(c=='0')z++;
+            else o++;
+        }
+        if(o==z)cout<<0;
+        else{
+        for(int i=0;i<n;i++){
+            if(s[i]=='0'){
+                if(o<=0){
+                    cout<<n-ts.length();
+                    break;
+                }
+                else{
+                    ts.push_back('1');
+                    o--;
+                }
+            }
+            else{
+                if(z<=0){
+                    cout<<n-ts.length();
+                    break;
+                }
+                else{
+                    ts.push_back('0');
+                    z--;
+                }
+
+            }
+        }
+        }
+          cout<<endl;
+        
+    }
+   return 0;
+    
+}

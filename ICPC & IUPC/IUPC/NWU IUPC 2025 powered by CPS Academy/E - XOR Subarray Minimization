@@ -1,0 +1,82 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9;
+const int SIZE = 1e5;
+const int MOD = 1e9 + 7;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+int main()
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(nullptr);
+	int t;
+	cin >> t;
+	while (t--)
+	{
+		int n;
+		cin >> n;
+		vector<int> a(n);
+		for (auto &x : a)
+			cin >> x;
+		ll ans = 0;
+		for (int p = 0; p < 30; p++)
+		{
+
+			ll val = 1LL << p;
+
+			vector<int> b(n);
+
+			int total = 0;
+			for (int i = 0; i < n; i++)
+			{
+				b[i] = ((a[i] >> p) & 1);
+
+				total += b[i];
+			}
+
+			ll onea = total;
+
+			ll L = (1LL << p);
+
+			if (L <= n)
+			{
+				int cur = 0;
+
+				for (int i = 0; i < (int)L; i++)
+					cur += b[i];
+
+				int maxw = cur;
+
+				for (int i = L; i < n; i++)
+				{
+					cur += b[i];
+					cur -= b[i - L];
+
+					if (cur > maxw)
+						maxw = cur;
+				}
+				ll after = total + L - 2LL * maxw;
+				if (after < onea)
+					onea = after;
+			}
+			ans += onea * val;
+		}
+		cout << ans << endl;
+	}
+
+	return 0;
+}

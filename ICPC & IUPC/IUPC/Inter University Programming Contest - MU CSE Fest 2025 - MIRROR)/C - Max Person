@@ -1,0 +1,74 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9;
+const int SIZE = 1e5;
+const int MOD = 1e9 + 7;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+void solve()
+{
+    ll n, m;
+    cin >> n >> m;
+
+    if (m % 2 == 1)
+    {
+        cout << -1;
+        return;
+    }
+
+    ll ans = 0;
+    bool ok = true;
+    for (int i = 1; i <= 60 && m > 0; ++i)
+    {
+        ll w = 1LL << i;
+        ll max_take = min(n, m / w);
+        ll p = (m / w) & 1LL;
+        ll take = max_take;
+        if ((take & 1LL) != p)
+        {
+            take--;
+        }
+        if (take < 0)
+        {
+            ok = false;
+            break;
+        }
+        ans += take;
+        m -= take * w;
+    }
+
+    if (!ok || m != 0)
+        cout << -1;
+    else
+        cout << ans;
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll Test_Case;
+    cin >> Test_Case;
+    while (Test_Case--)
+    {
+        solve();
+        cout << endl;
+    }
+
+    return 0;
+}

@@ -1,0 +1,60 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9;
+const int SIZE = 1e5;
+const int MOD = 1e9 + 7;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+const int kmin = -1000, kmax = 1000;
+vector<int> ans(kmax - kmin + 1, 0);
+void solve()
+{
+    int n; cin >> n;
+
+    if(n<0)cout<<0;
+    else cout<<ans[n-kmin];
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    for (int x = -32; x <= 32; x++)
+    {
+        for (int y = -32; y <= 32; y++)
+        {
+            int s = x * x + y * y;
+            if (s <= kmax)
+            {
+                for (int k = s; k <= kmax; k++)
+                {
+                    ans[k - kmin]++;
+                }
+            }
+        }
+    }
+
+    ll Test_Case;
+    cin >> Test_Case;
+    while (Test_Case--)
+    {
+        solve();
+        cout << endl;
+    }
+
+    return 0;
+}

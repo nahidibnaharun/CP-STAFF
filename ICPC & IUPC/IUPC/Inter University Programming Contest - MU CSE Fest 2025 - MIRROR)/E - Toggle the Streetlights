@@ -1,0 +1,59 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define opt() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define tc int t; cin >> t; for (int _ = 1; _ <= t; _++)
+using ll = long long;
+#define endl '\n'
+#define sz(x) (ll)(x).size()
+//-------------------------------------------
+
+int main()
+{   
+    opt();
+    
+    tc{
+        int n, k; cin >> n >> k;
+        string s; cin >> s;
+        if(k == 0) cout << s << endl;
+        else if(k == 1){
+            string t = s;
+            for(int i = 1; i < n - 1; i++){
+                if(s[i - 1] == '1' and s[i + 1] == '1'){
+                    if(t[i] == '1') t[i] = '0';
+                    else t[i] = '1';
+                }
+            }
+            cout << t << endl;
+        }
+        else if(k >= 2){
+            string t = s;
+            for(int i = 1; i < n - 1; i++){
+                if(s[i - 1] == '1' and s[i + 1] == '1'){
+                    if(t[i] == '1') t[i] = '0';
+                    else t[i] = '1';
+                }
+            }
+            s = t;
+            for(int i = 1; i < n - 1; i++){
+                if(s[i - 1] == '1' and s[i + 1] == '1'){
+                    if(t[i] == '1') t[i] = '0';
+                    else t[i] = '1';
+                }
+            }
+            s = t;
+            for(int i = 1; i < n - 1; i++){
+                if(s[i - 1] == '1' and s[i + 1] == '1'){
+                    if(s[i] == '1'){
+                        if(k % 2) t[i] = '0';
+                    }
+                    else{
+                        if(k % 2) t[i] = '1';
+                    }
+                }
+            }
+            cout << t << endl;
+        }
+    }
+    
+    return 0;
+}

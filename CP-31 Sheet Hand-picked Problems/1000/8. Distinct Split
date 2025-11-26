@@ -1,0 +1,75 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9;
+const int SIZE = 1e5;
+const int MOD = 1e9 + 7;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+void solve()
+{
+    int n;
+    cin >> n;
+    string s;
+    cin >> s;
+
+    vector<int> suf(n + 1, 0);
+    vector<int> seen(26, 0);
+
+    int cnt = 0;
+    for (int i = n - 1; i >= 0; i--)
+    {
+        int c = s[i] - 'a';
+        if (!seen[c])
+        {
+            seen[c] = 1;
+            cnt++;
+        }
+        suf[i] = cnt;
+    }
+
+    fill(seen.begin(), seen.end(), 0);
+
+    int pref = 0, ans = 0;
+    for (int i = 0; i < n - 1; i++)
+    {
+        int c = s[i] - 'a';
+        if (!seen[c])
+        {
+            seen[c] = 1;
+            pref++;
+        }
+        ans = max(ans, pref + suf[i + 1]);
+    }
+
+    cout << ans;
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll Test_Case;
+    cin >> Test_Case;
+    while (Test_Case--)
+    {
+        solve();
+        cout << endl;
+    }
+
+    return 0;
+}

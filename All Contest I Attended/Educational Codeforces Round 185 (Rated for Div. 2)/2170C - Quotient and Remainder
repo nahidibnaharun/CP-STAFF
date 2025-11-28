@@ -1,0 +1,83 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9;
+const int SIZE = 1e5;
+const int MOD = 1e9 + 7;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+void solve()
+{
+    int n;
+    ll k;
+    cin >> n >> k;
+    vector<ll> q(n), r(n);
+    for (auto &x : q)
+        cin >> x;
+    for (auto &x : r)
+        cin >> x;
+    vector<ll> th;
+    th.reserve(n);
+
+    for (int i = 0; i < n; i++)
+    {
+        ll a = q[i];
+        if (a > k)
+            continue;
+        ll dnm = a + 1, num = k - a;
+        if (num < 0)
+            continue;
+        ll mx = num / dnm;
+        if (mx >= 0)
+            th.push_back(mx);
+    }
+    sort(th.begin(), th.end());
+    sort(r.begin(), r.end());
+    multiset<ll> ava;
+    int rx = 0, match = 0;
+    for (auto mx : th)
+    {
+        while (rx < n && r[rx] <= mx)
+        {
+            ava.insert(r[rx]);
+            rx++;
+        }
+        if (!ava.empty())
+        {
+            auto it = prev(ava.end());
+            ava.erase(it);
+            ++match;
+        }
+    }
+
+    cout << match;
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll Test_Case;
+    cin >> Test_Case;
+    while (Test_Case--)
+    {
+        solve();
+        cout << endl;
+    }
+
+    return 0;
+}

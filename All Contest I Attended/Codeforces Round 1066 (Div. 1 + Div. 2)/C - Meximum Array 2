@@ -1,0 +1,91 @@
+
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9;
+const int SIZE = 1e5;
+const int MOD = 1e9 + 7;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+
+
+void solve()
+{
+    int n, k, q;
+    cin >> n >> k >> q;
+
+    vector<int> ans(n, -1);
+    vector<pair<int,int>> later;
+
+    for (int i = 0; i < q; i++)
+    {
+        int x, l, r;
+        cin >> x >> l >> r;
+
+        if (x == 1)
+        {
+            for (int j = l - 1; j < r; j++)
+                ans[j] = k;
+        }
+        else
+        {
+            later.push_back({l, r});
+        }
+    }
+
+    for (auto &it : later)
+    {
+        int l = it.first;
+        int r = it.second;
+
+        for (int i = l - 1; i < r; i++)
+        {
+            if (ans[i] >= k)
+                ans[i] = k + 100;
+
+            if (ans[i] != -1)
+                continue;
+
+            ans[i] = i % k;
+        }
+    }
+
+    for (auto &x : ans)
+    {
+        if (x == -1)
+            x = k + 100;
+    }
+
+    for (int x : ans)
+        cout << x << " ";
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll Test_Case;
+    cin >> Test_Case;
+    while (Test_Case--)
+    {
+        solve();
+        cout << endl;
+    }
+
+    return 0;
+}

@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9;
+const int SIZE = 1e5;
+const int MOD = 1e9 + 7;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+void solve()
+{
+    int n, r, b;
+    cin >> n >> r >> b;
+    int p = r / (b + 1), q = r % (b + 1);
+    for (int i = 0; i < q; i++)
+        cout << string(p + 1, 'R') << 'B';
+    for (int i = q; i < b; i++)
+        cout << string(p, 'R') << 'B';
+    cout << string(p, 'R');
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll Test_Case;
+    cin >> Test_Case;
+    while (Test_Case--)
+    {
+        solve();
+        cout << endl;
+    }
+
+    return 0;
+}

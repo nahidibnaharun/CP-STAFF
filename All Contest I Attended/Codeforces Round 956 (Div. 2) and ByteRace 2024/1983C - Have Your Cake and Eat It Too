@@ -1,0 +1,62 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef long long int ll;
+#define nl "\n"
+#define sp " "
+#define sz(v) (int)v.size()
+#define all(v) v.begin(), v.end()
+#define pii pair<int, int>
+
+void solve(int test_case) {
+    int n;
+    cin >> n;
+
+    ll dat[3][n];
+    for (int i = 0; i < n; i++) cin >> dat[0][i];
+    for (int i = 0; i < n; i++) cin >> dat[1][i];
+    for (int i = 0; i < n; i++) cin >> dat[2][i];
+
+    ll tot = 0;
+    for (int i = 0; i < n; i++) tot += dat[0][i];
+
+    ll target = (tot + 2ll) / 3ll;
+
+    vector<int> order = {0, 1, 2};
+
+    do {
+        bool flag = true;
+        vector<pii> ans(3);
+
+        for (int i = 0, j = 0; i < 3; i++) {
+            ll val = 0;
+            int l = j;
+            while (j < n && val < target) {
+                val += dat[order[i]][j++];
+            }
+            if (val < target) flag = false;
+            else ans[order[i]] = make_pair(l + 1, j);
+        }
+
+        if (flag) {
+            for (int i = 0; i < 3; i++) 
+                cout << ans[i].first << sp << ans[i].second << sp;
+            cout << nl;
+            return;
+        }
+    } while (next_permutation(all(order)));
+
+    cout << -1 << nl;
+}
+
+int main() {
+    ios_base::sync_with_stdio(0); 
+    cout.tie(nullptr); 
+    cin.tie(nullptr);
+
+    int t; 
+    cin >> t;
+    for (int tc = 1; tc <= t; tc++) solve(tc);
+
+    return 0;
+}

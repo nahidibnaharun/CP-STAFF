@@ -1,0 +1,84 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9;
+const int SIZE = 1e5;
+const int MOD = 1e9 + 7;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+void solve()
+{
+    int n;
+    cin >> n;
+
+    vector<ll> a(n + 1);
+    vector<pair<ll, int>> v;
+    for (int i = 1; i <= n; i++)
+    {
+        cin >> a[i];
+        v.push_back({a[i], i});
+    }
+
+    sort(v.begin(), v.end(), [&](auto &x, auto &y)
+         { return x.first > y.first; });
+
+    vector<ll> x(n + 1, 0);
+
+    ll s = 1; 
+    for (int i = 1; i <= n; i++)
+    {
+        int idx = v[i - 1].second;
+        x[idx] = s;
+
+        if (s < 0)
+        {
+            s *= -1;
+            s++;
+        }
+        else
+        {
+            s *= -1;
+        }
+    }
+
+    ll total = 0;
+    for (int i = 1; i <= n; i++)
+    {
+        total += (abs(x[i]) * 2LL * a[i]);
+    }
+
+    cout << total << endl;
+    cout << 0;
+    for (int i = 1; i <= n; i++)
+        cout << " " << x[i];
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll Test_Case;
+    cin >> Test_Case;
+    while (Test_Case--)
+    {
+        solve();
+        cout << endl;
+    }
+
+    return 0;
+}

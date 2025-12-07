@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int> applyPermutationCycles(const vector<int>& sequence, const vector<int>& permutation, long long k) {
+    int n = sequence.size();
+    vector<int> result(n);
+    vector<bool> visited(n, false);
+
+    for (int i = 0; i < n; i++) {
+        if (!visited[i]) {
+            // Build the cycle starting from i
+            vector<int> cycle;
+            int x = i;
+            do {
+                cycle.push_back(x);
+                visited[x] = true;
+                x = permutation[x];
+            } while (x != i);
+
+            int len = cycle.size();
+            for (int j = 0; j < len; j++) {
+                // Move each element k steps forward in the cycle
+                int newPos = (j + k) % len;
+                result[cycle[newPos]] = sequence[cycle[j]];
+            }
+        }
+    }
+    return result;
+}
+
+int main() {
+    vector<int> sequence = {10, 20, 30, 40, 50};
+    vector<int> permutation = {2, 0, 1, 4, 3};
+    long long k = 2;
+
+    vector<int> result = applyPermutationCycles(sequence, permutation, k);
+
+    for (int val : result) cout << val << " ";
+    cout << endl;
+
+    return 0;
+}

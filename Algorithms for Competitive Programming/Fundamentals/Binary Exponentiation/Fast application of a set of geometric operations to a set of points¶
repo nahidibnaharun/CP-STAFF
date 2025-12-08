@@ -1,0 +1,94 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Matrix {
+    double a[4][4];
+    
+    // Identity matrix
+    Matrix() {
+        for(int i=0;i<4;i++)
+            for(int j=0;j<4;j++)
+                a[i][j] = (i==j ? 1 : 0);
+    }
+
+    // Matrix multiplication
+    Matrix operator*(const Matrix &other) const {
+        Matrix res;
+        for(int i=0;i<4;i++) {
+            for(int j=0;j<4;j++) {
+                res.a[i][j] = 0;
+                for(int k=0;k<4;k++)
+                    res.a[i][j] += a[i][k] * other.a[k][j];
+            }
+        }
+        return res;
+    }
+
+    // Matrix exponentiation (for loops)
+    Matrix power(int k) const {
+        Matrix res;
+        Matrix base = *this;
+        while(k) {
+            if(k & 1) res = res * base;
+            base = base * base;
+            k >>= 1;
+        }
+        return res;
+    }
+};
+
+// Apply matrix to column vector point
+array<double,3> apply(const Matrix &m, array<double,3> p) {
+    array<double,4> v = {p[0], p[1], p[2], 1};
+    array<double,4> res = {0,0,0,0};
+    for(int i=0;i<4;i++)
+        for(int j=0;j<4;j++)
+            res[i] += m.a[i][j] * v[j];
+    return {res[0], res[1], res[2]};
+}
+
+// Shift
+Matrix shift(double dx, double dy, double dz) {
+    Matrix m;
+    m.a[0][3] = dx;
+    m.a[1][3] = dy;
+    m.a[2][3] = dz;
+    return m;
+}
+
+// Scale
+Matrix scale(double sx, double sy, double sz) {
+    Matrix m;
+    m.a[0][0] = sx;
+    m.a[1][1] = sy;
+    m.a[2][2] = sz;
+    return m;
+}
+
+// Rotate around X axis (degrees)
+Matrix rotateX(double deg) {
+    Matrix m;
+    double rad = deg * M_PI / 180.0;
+    m.a[1][1] = cos(rad);
+    m.a[1][2] = -sin(rad);
+    m.a[2][1] = sin(rad);
+    m.a[2][2] = cos(rad);
+    return m;
+}
+
+int main() {
+    // Test points
+    vector<array<double,3>> points = {{1,1,1},{2,0,3}};
+
+    // Build total transformation: shift then scale
+    // Column vector convention: last operation * first operation
+    Matrix M_total = scale(2,2,2) * shift(1,0,0);
+
+    // Apply to all points
+    for(auto p: points) {
+        auto q = apply(M_total, p);
+        cout << fixed << setprecision(2) << q[0] << " " << q[1] << " " << q[2] << "\n";
+    }
+
+    return 0;
+}

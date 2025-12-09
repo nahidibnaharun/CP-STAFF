@@ -1,0 +1,21 @@
+class Solution {
+public:
+    const long long N = 1e9 + 7;
+    long long binpow(long long a, long long b) {
+        a %= N;
+        long long res = 1;
+        while (b > 0) {
+            if (b & 1)
+                res = res * a % N;
+            a = a * a % N;
+            b >>= 1;
+        }
+        return res;
+    }
+    int countGoodNumbers(long long n) {
+        long long x = n / 2, y = n - x;
+        long long ans = 1LL * binpow(5, y) * binpow(4, x);
+        ans %= N;
+        return ans;
+    }
+};

@@ -1,0 +1,59 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int T;
+    cin >> T;
+
+    while (T--) {
+        long long N, K;
+        cin >> N >> K;
+
+        vector<int> p(N);        // permutation π
+        vector<int> ans(N);      // final answer
+        vector<int> vis(N, 0);   // visited nodes in cycle detection
+
+        // Build the riffle permutation π
+        for (int i = 0; i < N; i++) {
+            if (i % 2 == 0) 
+                p[i] = i / 2;        // even index → first half
+            else 
+                p[i] = N/2 + i/2;    // odd index → second half
+        }
+
+        // Cycle decomposition
+        for (int start = 0; start < N; start++) {
+            if (vis[start]) continue;
+
+            vector<int> cycle;
+            int x = start;
+
+            // Build this cycle
+            while (!vis[x]) {
+                vis[x] = 1;
+                cycle.push_back(x);
+                x = p[x];
+            }
+
+            int L = cycle.size();
+            long long shift = K % L;
+
+            // Rotate the cycle by K steps
+            for (int i = 0; i < L; i++) {
+                int from = cycle[i];
+                int to   = cycle[(i + shift) % L];
+                ans[to] = from + 1;     // +1 because values are 1..N
+            }
+        }
+
+        // Output
+        for (int i = 0; i < N; i++)
+            cout << ans[i] << " ";
+        cout << "\n";
+    }
+
+    return 0;
+}

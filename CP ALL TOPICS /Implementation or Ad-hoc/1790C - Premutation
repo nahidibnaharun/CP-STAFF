@@ -1,0 +1,81 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9;
+const int SIZE = 1e5;
+const int MOD = 998244353;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+
+void solve()
+{
+     ll n;
+    cin >> n;
+
+    vector<vector<ll>> v;
+    map<ll, ll> mp;
+
+    for (ll i = 0; i < n; i++)
+    {
+        vector<ll> temp(n - 1);
+        for (ll j = 0; j < n - 1; j++)
+            cin >> temp[j];
+
+        mp[temp[0]]++;
+        v.push_back(temp);
+    }
+
+    ll first, second;
+
+    for (auto &u : mp)
+    {
+        if (u.second == 1)
+            first = u.first;
+        else
+            second = u.first;
+    }
+
+    ll idx = 0;
+    for (ll i = 0; i < n; i++)
+    {
+        if (v[i][0] == first)
+        {
+            idx = i;
+            break;
+        }
+    }
+
+    cout << second << " ";
+    for (ll j = 0; j < n - 1; j++)
+        cout << v[idx][j] << " ";
+    
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll Test_Case;
+    cin >> Test_Case;
+    while (Test_Case--)
+    {
+        solve();
+        cout << endl;
+    }
+
+    return 0;
+}

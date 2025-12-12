@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+#define endl '\n'
+
+using namespace std;
+using ll = long long int;
+
+set<ll> se;
+void check(string s, int i) {
+	s[i] = '6';
+	if(i==0) {
+		se.insert(stoll(s));
+		s[i] = '9';
+		se.insert(stoll(s));
+		return;
+	}
+
+	check(s, i-1);
+	s[i] = '9';
+	check(s, i-1);
+}
+
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+
+    string s;
+    while(s.size() < 18) {
+    	s += '6';
+    	check(s, s.size() - 1);
+    }
+
+    vector<ll> a;
+    for(auto x : se) a.push_back(x);
+
+	int tt; cin >> tt;
+	while(tt--) {
+		ll l, r; cin >> l >> r;
+		auto lb = lower_bound(a.begin(), a.end(), l);
+		auto ub = upper_bound(a.begin(), a.end(), r);
+
+		ub--;
+
+		cout << (int) ( ub - lb) + 1 << '\n';
+	}
+
+	return 0;
+}

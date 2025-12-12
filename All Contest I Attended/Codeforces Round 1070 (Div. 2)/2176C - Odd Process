@@ -1,0 +1,109 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9;
+const int SIZE = 1e5;
+const int MOD = 998244353;
+const int MAX = 1e7 + 10;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+void solve()
+{
+    ll n;
+    cin >> n;
+    ll odd = 0, evn = 0;
+    deque<ll> oddsum, evnsum, v(n);
+
+    for (ll i = 0; i < n; i++)
+        cin >> v[i];
+    sort(v.rbegin(), v.rend());
+
+    for (ll i = 0; i < n; i++)
+    {
+        if (v[i] % 2)
+        {
+            ll x = 0;
+            odd++;
+            if (!oddsum.empty())
+                x = oddsum.back();
+            oddsum.push_back(x + v[i]);
+        }
+        else
+        {
+            ll x = 0;
+            evn++;
+            if (!evnsum.empty())
+                x = evnsum.back();
+            evnsum.push_back(x + v[i]);
+        }
+    }
+
+    oddsum.push_front(0);
+    evnsum.push_front(0);
+    oddsum.resize(odd + 1);
+    evnsum.resize(evn + 1);
+
+    for (ll i = 1; i <= n; i++)
+    {
+        ll sum = 0;
+        if (odd == 0)
+            sum = 0;
+        else if (evn == 0)
+        {
+            if (i % 2 == 0)
+                sum = 0;
+            else
+                sum = oddsum[1];
+        }
+        else if (i == n)
+        {
+            sum = oddsum[odd] + evnsum[evn];
+            if (sum % 2 == 0)
+                sum = 0;
+            else
+                sum = oddsum[1] + evnsum[evn];
+        }
+        else if (1 + evn >= i)
+        {
+            sum = oddsum[1] + evnsum[i - 1];
+        }
+        else
+        {
+            ll baki = i - 1 - evn;
+            sum = oddsum[1] + evnsum[evn];
+            if (baki % 2)
+                sum -= evnsum[evn] - evnsum[evn - 1];
+        }
+
+        cout << sum << " ";
+    }
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin >> t;
+
+    for (int i = 1; i <= t; i++)
+    {
+        solve();
+        cout << endl;
+    }
+
+    return 0;
+}

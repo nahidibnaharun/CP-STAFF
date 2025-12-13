@@ -1,0 +1,59 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int t;
+    if (!(cin >> t))
+        return 0;
+    while (t--)
+    {
+        long long n, m;
+        long long r1, c1, r2, c2;
+        cin >> n >> m >> r1 >> c1 >> r2 >> c2;
+        long long nm = n * m;
+        // total ones = nm - 2 must be even => nm even
+        if (nm % 2 == 1)
+        {
+            cout << "NO\n";
+            continue;
+        }
+        if (n == 1)
+        {
+            // single row: check segments between removed columns
+            long long a = min(c1, c2);
+            long long b = max(c1, c2);
+            long long left = a - 1;
+            long long mid = b - a - 1;
+            long long right = m - b;
+            if (left % 2 == 0 && mid % 2 == 0 && right % 2 == 0)
+                cout << "YES\n";
+            else
+                cout << "NO\n";
+            continue;
+        }
+        if (m == 1)
+        {
+            // single column: check segments between removed rows
+            long long a = min(r1, r2);
+            long long b = max(r1, r2);
+            long long top = a - 1;
+            long long mid = b - a - 1;
+            long long bottom = n - b;
+            if (top % 2 == 0 && mid % 2 == 0 && bottom % 2 == 0)
+                cout << "YES\n";
+            else
+                cout << "NO\n";
+            continue;
+        }
+        // general case (both dimensions >= 2): need removed cells to be opposite colors
+        int p1 = (r1 + c1) & 1;
+        int p2 = (r2 + c2) & 1;
+        if (p1 != p2)
+            cout << "YES\n";
+        else
+            cout << "NO\n";
+    }
+    return 0;
+}

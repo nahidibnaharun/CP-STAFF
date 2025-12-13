@@ -1,0 +1,57 @@
+#include<bits/stdc++.h>
+#define endl '\n'
+
+using namespace std;
+using ll = long long int;
+
+
+void solve() {
+	string s; cin >> s;
+	int n = s.size();
+	vector<int> vis(n + 1, 0);
+	int flag = 1, ok = 0;
+	while(flag){
+		flag = 0;
+		for(int i = 0; i < n - 1; i++){
+			if(s[i] == s[i + 1]){
+				flag = 1;
+				int j = i, k = i + 1;
+				while(j >= 0 and k < n and s[j] == s[k] and !vis[j]){
+					vis[j] = 1, vis[k] = 1;
+					j--; k++;
+				}
+				i = k - 1;
+			}
+		}
+		string t;
+		for(int i = 0; i < n; i++){
+			if(!vis[i]) t += s[i];
+		}
+		if(t.empty()){
+			ok = 1; break;
+		}
+		if(s == t){
+			ok = 0; break;
+		}
+		s = t;
+		n = s.size();
+		for(int i=0;i< n;i++) vis[i] = 0;
+		// cout << s<<endl;
+		
+	}
+	if(ok) cout <<"YES";
+	else cout << "NO";
+	cout << '\n';
+}
+
+int main() {
+	int tt; cin >> tt;
+	// int tt = 1;
+	for(int tc=1; tc <= tt; tc++) {
+		// cout << "Case #" << tc <<": ";
+
+		solve();
+	}
+
+	return 0;
+}

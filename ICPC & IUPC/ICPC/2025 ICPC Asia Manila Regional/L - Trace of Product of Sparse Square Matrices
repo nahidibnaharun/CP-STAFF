@@ -1,0 +1,82 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9;
+const int SIZE = 1e5;
+const int MOD = 1006903069;
+const int MAX = 1e7 + 10;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+void solve()
+{
+    int n;
+    cin >> n;
+    // vector<vector<ll>> a(n, vector<ll>(n, 0)), b(n, vector<ll>(n, 0));
+    map<pair<int, int>, ll> a, b;
+
+    int ka, kb;
+    cin >> ka;
+
+    while (ka--)
+    {
+        int i, j;
+        cin >> i >> j;
+        ll x;
+        cin >> x;
+        a[{i - 1, j - 1}] = x;
+    }
+    cin >> kb;
+    while (kb--)
+    {
+        int i, j;
+        cin >> i >> j;
+        ll x;
+        cin >> x;
+        b[{i - 1, j - 1}] = x;
+    }
+    ll ans = 0;
+
+    for (auto &it : a)
+    {
+        int i = it.first.first;
+        int j = it.first.second;
+
+        ll val = it.second;
+
+        auto it2 = b.find({j, i});
+        if (it2 != b.end())
+        {
+            ans += (val * it2->second) % MOD;
+        }
+    }
+
+    cout << ans % MOD;
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t = 1;
+
+    for (int i = 1; i <= t; i++)
+    {
+        solve();
+        cout << endl;
+    }
+
+    return 0;
+}

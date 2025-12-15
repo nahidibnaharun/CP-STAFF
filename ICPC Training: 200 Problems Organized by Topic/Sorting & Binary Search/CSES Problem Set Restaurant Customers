@@ -1,0 +1,61 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9;
+const int SIZE = 1e5;
+const int MOD = 1006903069;
+const int MAX = 1e7 + 10;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+void solve()
+{
+    int n;
+    cin >> n;
+    vector<pair<int, int>> a(n);
+    a.reserve(2 * n);
+    for (int i = 0; i < n; i++)
+    {
+        int c, d;
+        cin >> c >> d;
+        a.push_back({c, 1});
+        a.push_back({d, -1});
+    }
+    int ans = 0, cnt = 0;
+    sort(a.begin(), a.end());
+
+    for (auto &x : a)
+    {
+        cnt += x.second;
+        ans = max(ans, cnt);
+    }
+
+    cout << ans;
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t = 1;
+
+    for (int i = 1; i <= t; i++)
+    {
+        solve();
+        cout << endl;
+    }
+
+    return 0;
+}

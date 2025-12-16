@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9;
+const int SIZE = 1e5;
+const int MOD = 1006903069;
+const int MAX = 1e7 + 10;
+const int mxr = 500, mxxor = 512;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n, p;
+    ll m;
+    cin >> n >> p >> m;
+    int r = n - p;
+
+    vector<vector<ll>> dp(r + 1, vector<ll>(mxxor, 0));
+
+    dp[0][0] = 1;
+
+    for (int k = 1; k <= r; ++k)
+    {
+        for (int i = k; i <= r; ++i)
+        {
+            for (int j = 0; j < mxxor; ++j)
+            {
+
+                dp[i][j] = (dp[i][j] + dp[i - k][j ^ k]);
+                if (dp[i][j] >= m)
+                {
+                    dp[i][j] -= m;
+                }
+            }
+        }
+    }
+
+    cout << dp[r][p];
+
+    return 0;
+}

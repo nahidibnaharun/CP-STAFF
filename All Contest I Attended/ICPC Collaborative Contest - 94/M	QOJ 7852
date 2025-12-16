@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9;
+const int SIZE = 1e5;
+const int MOD = 1006903069;
+const int MAX = 1e7 + 10;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int a, b, c;
+    cin >> a >> b >> c;
+    int width = 2 * a;
+    // int eve = c / 2;
+    if (c > 1)
+    {
+
+        width += 2 * (b + 1) + 1;
+        // width += 2 * c;
+        c -= 2;
+    }
+    width += (c / 2) * 3;
+    cout << width << endl;
+
+    return 0;
+}

@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9;
+const int SIZE = 1e5;
+const int MOD = 998244353;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+void solve() {
+
+ ll n, one = 0, no = 0, x;
+        cin >> n;
+ 
+        while(n--) {
+            cin >> x;
+            if(x==1 && !no) one++;
+            else no = 1;
+        }
+ 
+        if(!no) one--;
+ 
+        if(one%2) cout << "Second";
+        else cout << "First";
+}
+
+int main() {
+  ios_base::sync_with_stdio(false);
+  cin.tie(nullptr);
+
+  ll Test_Case;
+  cin >> Test_Case;
+  while (Test_Case--) {
+    solve();
+    cout << endl;
+  }
+
+  return 0;
+}

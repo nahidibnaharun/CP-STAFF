@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+#define endl '\n'
+
+using namespace std;
+using ll = long long int;
+
+int main() {
+	ios_base::sync_with_stdio(0);
+	cin.tie(0); cout.tie(0);
+
+	
+	int tt; cin >> tt;
+	while(tt--) {
+		double l, v, t;
+		int n;
+		cin >> l >> v >> t >> n;
+
+		while(n--) {
+			double x, y; cin >> x >> y;
+
+			double v_diff = abs(v - y);
+			double temp = l / v_diff;
+			double time = t - x;
+
+			int temp2 = time / temp;
+
+			cout << temp2 + 1 << ((n==0)? "" : " ") ;
+			// if(y < 0) {
+				
+			// }
+			// else {
+			// 	double v_diff = abs(v - y);
+			// 	double temp = l / v_diff;
+			// 	double time = t - x;
+
+			// 	int temp2 = time / temp;
+
+			// 	cout << temp2 + 1 << ' ';
+			// }
+		}
+		cout << '\n';
+	}
+
+	return 0;
+}

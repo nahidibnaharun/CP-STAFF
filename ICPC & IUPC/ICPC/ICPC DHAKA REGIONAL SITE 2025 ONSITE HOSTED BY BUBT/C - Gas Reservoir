@@ -1,0 +1,89 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define opt() ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define tc int t; cin >> t; for (int _ = 1; _ <= t; _++)
+using ll = long long;
+#define endl '\n'
+#define sz(x) (ll)(x).size()
+//-------------------------------------------
+int x, y, z;
+char g[50][50][50];
+int id[50][50][50];
+int dx[] = {1, -1, 0, 0};
+int dy[] = {0, 0, 1, -1};
+bool valid(int k, int i, int j){
+    return i >= 0 and i < x and j >= 0 and j < y and k >= 0 and k < z;
+}
+
+int dfs(int sk, int si, int sj, int com){
+    id[sk][si][sj] = com;
+    int cnt = 1;
+    for(int i = 0; i < 4; i++){
+        int ci = si + dx[i];
+        int cj = sj + dy[i];
+        if(valid(sk, ci, cj) and g[sk][ci][cj] == '.' and id[sk][ci][cj] == -1){
+            cnt += dfs(sk, ci, cj, com);
+        }
+    }
+    if(valid(sk - 1, si, sj) and g[sk - 1][si][sj] == '.' and id[sk - 1][si][sj] == -1){
+        cnt += dfs(sk - 1, si, sj, com);
+    }
+    if(valid(sk + 1, si, sj) and g[sk + 1][si][sj] == '.' and id[sk + 1][si][sj] == -1){
+        cnt += dfs(sk + 1, si, sj, com);
+    }
+    
+    return cnt;
+}
+
+int main()
+{   
+    opt();
+    
+    tc{
+        cin >> x >> y >> z;
+        for(int k = 0; k < z; k++){
+            for(int i = 0; i < x; i++){
+                for(int j = 0; j < y; j++){
+                    cin >> g[k][i][j];
+                    id[k][i][j] = -1;
+                }
+            }
+        }
+
+        int com = 0;
+        vector<int> v;
+
+        for(int k = 0; k < z; k++){
+            for(int i = 0; i < x; i++){
+                for(int j = 0; j < y; j++){
+                    if(g[k][i][j] == '.' and id[k][i][j] == -1){
+                        int tot = dfs(k, i, j, com);
+                        com++;
+                        v.push_back(tot);
+                    }
+                }
+            }
+        }
+
+        int ans = 0;
+
+        for(int i = 0; i < x; i++){
+            for(int j = 0; j < y; j++){
+                set<int> se;
+                for(int k = 0; k < z; k++){
+                    if(id[k][i][j] != -1){
+                        se.insert(id[k][i][j]);
+                    }
+                }
+                int sum = 0;
+                for(int s : se){
+                    sum += v[s];
+                }
+                ans = max(ans, sum);
+            }
+        }
+        cout << ans << endl;
+    }
+    
+    return 0;
+}

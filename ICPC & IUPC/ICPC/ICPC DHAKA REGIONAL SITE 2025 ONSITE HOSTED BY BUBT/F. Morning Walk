@@ -1,45 +1,43 @@
-#include<bits/stdc++.h>
-#define endl '\n'
+#include <iostream>
+#include <vector>
+#include <cmath>
 
 using namespace std;
-using ll = long long int;
+
+typedef long long ll;
+
+void solve() {
+    ll L, v0, T, N;
+    if (!(cin >> L >> v0 >> T >> N)) return;
+
+    for (int i = 0; i < N; ++i) {
+        ll ti, vi;
+        cin >> ti >> vi;
+
+        ll v_rel = abs(v0 - vi);
+        
+        ll time_left = T - ti;
+
+        if (time_left < 0) {
+            cout << 0;
+        } else {
+            ll additional_meetings = (time_left * v_rel) / L;
+            cout << 1 + additional_meetings;
+        }
+
+        cout << (i == N - 1 ? "" : " ");
+    }
+    cout << "\n";
+}
 
 int main() {
-	ios_base::sync_with_stdio(0);
-	cin.tie(0); cout.tie(0);
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
 
-	
-	int tt; cin >> tt;
-	while(tt--) {
-		double l, v, t;
-		int n;
-		cin >> l >> v >> t >> n;
-
-		while(n--) {
-			double x, y; cin >> x >> y;
-
-			double v_diff = abs(v - y);
-			double temp = l / v_diff;
-			double time = t - x;
-
-			int temp2 = time / temp;
-
-			cout << temp2 + 1 << ((n==0)? "" : " ") ;
-			// if(y < 0) {
-				
-			// }
-			// else {
-			// 	double v_diff = abs(v - y);
-			// 	double temp = l / v_diff;
-			// 	double time = t - x;
-
-			// 	int temp2 = time / temp;
-
-			// 	cout << temp2 + 1 << ' ';
-			// }
-		}
-		cout << '\n';
-	}
-
-	return 0;
+    int K;
+    cin >> K;
+    while (K--) {
+        solve();
+    }
+    return 0;
 }

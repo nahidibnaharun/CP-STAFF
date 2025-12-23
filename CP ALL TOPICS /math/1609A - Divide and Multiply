@@ -1,0 +1,73 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const ll INF = 1e9 + 7;
+const int SIZE = 1e5;
+const int MOD = 998244353;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+void solve()
+{
+
+	int n;
+	cin >> n;
+
+	vector<ll> a(n);
+	for (auto &x : a)
+		cin >> x;
+
+	ll cnt = 0;
+	ll sumOdd = 0;
+
+	for (ll x : a)
+	{
+		while (x % 2 == 0)
+		{
+			cnt++;
+			x /= 2;
+		}
+		sumOdd += x;
+	}
+
+	ll mx = 0;
+	for (auto x : a)
+	{
+		while (x % 2 == 0)
+			x /= 2;
+		mx = max(mx, x);
+	}
+
+	sumOdd -= mx;
+	ll ans = sumOdd + (mx << cnt);
+
+	cout << ans;
+}
+
+int main()
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(nullptr);
+
+	ll Test_Case;
+	cin >> Test_Case;
+	while (Test_Case--)
+	{
+		solve();
+		cout << endl;
+	}
+
+	return 0;
+}

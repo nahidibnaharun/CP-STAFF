@@ -1,0 +1,78 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const ll INF = 1e9 + 7;
+const int SIZE = 1e5;
+const int MOD = 998244353;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+void solve()
+{
+
+    string s, t;
+    cin >> s >> t;
+    int n = s.size(), m = t.size();
+    int i = 0, j = 0;
+    while (i < n && j < m)
+    {
+        if (s[i] != t[j])
+        {
+            cout << "NO";
+            return;
+        }
+        char cr = s[i];
+        int cnts = 0, cntt = 0;
+
+        while (i < n && s[i] == cr)
+        {
+            i++;
+            cnts++;
+        }
+
+        while (j < m && t[j] == cr)
+        {
+            j++;
+            cntt++;
+        }
+        if (cntt < cnts)
+        {
+            cout << "NO";
+            return;
+        }
+    }
+    if (i == n && j == m)
+    {
+        cout << "YES";
+    }
+    else
+        cout << "NO";
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll Test_Case;
+    cin >> Test_Case;
+    while (Test_Case--)
+    {
+        solve();
+        cout << endl;
+    }
+
+    return 0;
+}

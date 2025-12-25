@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const ll INF = 1e9 + 7;
+const int SIZE = 1e5;
+const int MOD = 998244353;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+void solve()
+{
+
+    ll x1, y1, x2, y2, x3, y3, x4, y4;
+    cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3 >> x4 >> y4;
+    ll area = (x2 - x1) * (y2 - y1);
+
+    ll left = max(x1, x3), right = min(x2, x4), bottom = max(y1, y3), top = min(y2, y4);
+
+    ll width = max(0LL, right - left), height = max(0LL, top - bottom);
+
+    ll totalarea = width * height;
+    cout << area - totalarea;
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    // ll Test_Case;
+    // cin >> Test_Case;
+    // while (Test_Case--)
+    // {
+    solve();
+    //     cout << endl;
+    // }
+
+    return 0;
+}

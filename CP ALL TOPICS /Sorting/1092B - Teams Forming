@@ -1,0 +1,18 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+int main(){
+    int n;
+    if(!(std::cin>>n)) return 0;
+    std::vector<int> a(n);
+    for(int i=0;i<n;++i){
+        std::cin>>a[i];
+    }
+    std::sort(a.begin(),a.end());
+    int r=0;
+    for(int i=0;i<n;i+=2){
+        r+=(a[i+1]-a[i]);
+    }
+    std::cout<<r<<std::endl;
+    return 0;
+}

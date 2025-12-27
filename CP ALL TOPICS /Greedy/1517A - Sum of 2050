@@ -1,0 +1,21 @@
+#include<iostream>
+int main(){
+    int t;
+    if(!(std::cin>>t)) return 0;
+    while(t--){
+        long long n;
+        std::cin>>n;
+        if(n%2050!=0){
+            std::cout<<-1<<std::endl;
+        }else{
+            long long k=n/2050;
+            long long s=0;
+            while(k>0){
+                s+=k%10;
+                k/=10;
+            }
+            std::cout<<s<<std::endl;
+        }
+    }
+    return 0;
+}

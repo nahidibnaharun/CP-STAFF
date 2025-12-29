@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+#include <iterator>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const ll INF = 1e9 + 7;
+const int SIZE = 1e5;
+const int MOD = 998244353;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+
+
+    
+
+void solve()
+{
+    int n; cin >> n;
+    vector<int> a(n); 
+    for(auto& x : a) cin >> x;
+    vector<ll> pf(n + 1), sf(n);
+    for(int i = 1; i < n; i++) pf[i + 1] = pf[i] + abs(a[i]);
+    for(int i = n - 1; i >= 1; i--) sf[i - 1] = sf[i] - a[i];
+ 
+    ll ans = sf[0];
+    for(int i = 1; i < n; i++) ans = max(ans, a[0] + pf[i] + sf[i]);
+    cout << ans ;
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    // seive();
+    ll Test_Case;
+    cin >> Test_Case;
+    while (Test_Case--)
+    {
+        solve();
+        cout << endl;
+    }
+
+    return 0;
+}

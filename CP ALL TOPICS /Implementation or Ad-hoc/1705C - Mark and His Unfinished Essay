@@ -1,0 +1,73 @@
+#include <bits/stdc++.h>
+#include <iterator>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const ll INF = 1e9 + 7;
+const int SIZE = 1e5;
+const int MOD = 998244353;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+void solve()
+{
+    int n, c, q;
+    cin >> n >> c >> q;
+    string s;
+    cin >> s;
+    vector<ll> left(c + 1), right(c + 1), dif(c + 1);
+    left[0] = 0;
+    right[0] = n;
+
+    for (int i = 1; i <= c; i++)
+    {
+        ll l, r;
+        cin >> l >> r;
+        l--;
+        r--;
+        left[i] = right[i - 1];
+        right[i] = left[i] + (r - l + 1);
+        dif[i] = left[i] - l;
+    }
+    while (q--)
+    {
+        ll k;
+        cin >> k;
+        k--;
+        for (int i = c; i >= 1; i--)
+        {
+            if (k < left[i])
+                continue;
+            else
+                k -= dif[i];
+        }
+        cout << s[k] << endl;
+    }
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll Test_Case;
+    cin >> Test_Case;
+    while (Test_Case--)
+    {
+        solve();
+        // cout << endl;
+    }
+
+    return 0;
+}

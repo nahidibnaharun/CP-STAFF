@@ -1,0 +1,75 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const ll INF = 1e9 + 7;
+const int SIZE = 1e5;
+const int MOD = 998244353;
+const ll INFLL = (1LL << 60);
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+bool check(const vector<int> &x, const vector<int> &y, int n, int k)
+{
+    for (int i = 0; i < n; i++)
+    {
+        if (x[i] <= y[(i + k) % n])
+        {
+            return false;
+        }
+    }
+    return true;
+}
+void solve()
+{
+
+    int n;
+    cin >> n;
+
+    vector<int> a(n), b(n), c(n);
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
+    for (int i = 0; i < n; i++)
+        cin >> b[i];
+    for (int i = 0; i < n; i++)
+        cin >> c[i];
+
+    ll k1 = 0, k2 = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (check(b, a, n, i))
+            k1++;
+        if (check(c, b, n, i))
+            k2++;
+    }
+
+    cout << k1 * k2 * n;
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll Test_Case;
+    cin >> Test_Case;
+    while (Test_Case--)
+    {
+        solve();
+        cout << endl;
+    }
+
+    return 0;
+}

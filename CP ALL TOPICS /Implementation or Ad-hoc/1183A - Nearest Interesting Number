@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const ll INF = 1e9 + 7;
+const int SIZE = 1e5;
+const int MOD = 998244353;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+int sum(int a){
+    int ans=0;
+    while(a>0){
+        ans+=a%10;
+        a/=10;
+    }
+    return ans;
+}
+
+    
+
+void solve()
+{int a; cin >> a;
+while(sum(a)%4!=0){
+    a++;
+}
+cout<<a;
+    
+    
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    // seive();
+    // ll Test_Case;
+    // cin >> Test_Case;
+    // while (Test_Case--)
+    // {
+        solve();
+    //     cout << endl;
+    // }
+
+    return 0;
+}

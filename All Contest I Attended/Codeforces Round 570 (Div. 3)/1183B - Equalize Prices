@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const ll INF = 1e9 + 7;
+const int SIZE = 1e5;
+const int MOD = 998244353;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+
+    
+
+void solve()
+{
+    
+        int n,k; cin >> n>>k;
+        vector<int>a(n);for(auto &x:a)cin >> x;
+        int mn=*min_element(a.begin() , a.end()), mx = *max_element(a.begin() , a.end());
+        if(mx-mn>2*k)cout<<-1;
+        else cout<<mn+k;
+
+
+    
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    // seive();
+    ll Test_Case;
+    cin >> Test_Case;
+    while (Test_Case--)
+    {
+        solve();
+        cout << endl;
+    }
+
+    return 0;
+}

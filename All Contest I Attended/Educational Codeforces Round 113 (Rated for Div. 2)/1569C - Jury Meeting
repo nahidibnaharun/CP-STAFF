@@ -1,0 +1,60 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const ll INF = 1e9 + 7;
+const int SIZE = 200100;
+const int MOD = 998244353;
+const ll INFLL = (1LL << 60);
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+void solve()
+{
+    int n;
+    cin >> n;
+    vector<int> a(n);
+    for (int &x : a)
+        cin >> x;
+    int mx = *max_element(a.begin(), a.end());
+    int cmx = count(a.begin(), a.end(), mx);
+    int k = count(a.begin(), a.end(), mx - 1);
+    int ans = 1, sub = 1;
+    for (long long i = 1; i <= n; ++i)
+    {
+        ans = ans * i % MOD;
+        if (i != k + 1)
+            sub = sub * i % MOD;
+    }
+    if (cmx == 1)
+        ans = (ans - sub + MOD) % MOD;
+    cout << ans;
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    // freopen("balancing.in", "r", stdin);
+    // freopen("balancing.out", "w", stdout);
+
+    ll Test_Case;
+    cin >> Test_Case;
+    while (Test_Case--)
+    {
+        solve();
+        cout << endl;
+    }
+
+    return 0;
+}

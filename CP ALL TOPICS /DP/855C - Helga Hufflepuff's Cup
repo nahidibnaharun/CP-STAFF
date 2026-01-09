@@ -1,0 +1,66 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+const int MOD = 1000000007;
+
+int n, m, k, x;
+vector<int> tree[100001];
+long long dp[100001][3][11], tmp[11];
+
+void dfs(int parent, int u) {
+    dp[u][0][0] = k - 1;
+    dp[u][1][1] = 1;
+    dp[u][2][0] = m - k;
+
+    for (int v : tree[u]) {
+        if (v == parent) continue;
+        dfs(u, v);
+
+        memset(tmp, 0, sizeof(tmp));
+        for (int i = 0; i <= x; i++)
+            for (int j = 0; j + i <= x; j++)
+                tmp[i + j] = (tmp[i + j] + dp[u][0][i] * (dp[v][0][j] + dp[v][1][j] + dp[v][2][j])) % MOD;
+        for (int i = 0; i <= x; i++) dp[u][0][i] = tmp[i];
+
+        memset(tmp, 0, sizeof(tmp));
+        for (int i = 0; i <= x; i++)
+            for (int j = 0; j + i <= x; j++)
+                tmp[i + j] = (tmp[i + j] + dp[u][1][i] * dp[v][0][j]) % MOD;
+        for (int i = 0; i <= x; i++) dp[u][1][i] = tmp[i];
+
+        memset(tmp, 0, sizeof(tmp));
+        for (int i = 0; i <= x; i++)
+            for (int j = 0; j + i <= x; j++)
+                tmp[i + j] = (tmp[i + j] + dp[u][2][i] * (dp[v][0][j] + dp[v][2][j])) % MOD;
+        for (int i = 0; i <= x; i++) dp[u][2][i] = tmp[i];
+    }
+}
+
+void solve() {
+    cin >> n >> m;
+    for (int i = 1; i < n; i++) {
+        int u, v;
+        cin >> u >> v;
+        tree[u].push_back(v);
+        tree[v].push_back(u);
+    }
+    cin >> k >> x;
+
+    dfs(0, 1);
+
+    long long ans = 0;
+    for (int i = 0; i <= x; i++)
+        for (int j = 0; j < 3; j++)
+            ans = (ans + dp[1][j][i]) % MOD;
+
+    cout << ans;
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    solve();
+
+    return 0;
+}

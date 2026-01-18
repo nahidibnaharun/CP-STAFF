@@ -1,0 +1,92 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+
+const int MAX = 200005;
+
+ll n, k;
+ll a[MAX];
+
+void solve()
+{
+    cin >> n >> k;
+    for (ll i = 1; i <= n; i++)
+        cin >> a[i];
+
+    priority_queue<ll, vector<ll>, greater<ll>> pq;
+    priority_queue<ll> q;
+
+    ll cur = 0, ans = 0;
+
+    for (ll i = n - 1; i >= 1; i--)
+    {
+        ll gap = n - i - (k + 1) * pq.size();
+
+        if (k <= gap)
+        {
+            pq.push(a[i]);
+        }
+        else
+        {
+            ll lo = 0, hi = pq.size() - 1, res = -1;
+
+            while (lo <= hi)
+            {
+                ll mid = (lo + hi) / 2;
+                ll nw = n - i - (k + 1) * mid;
+
+                if (nw >= k)
+                    res = mid, lo = mid + 1;
+                else
+                    hi = mid - 1;
+            }
+
+            if (res != -1)
+            {
+                while ((ll)pq.size() > res)
+                {
+                    cur += pq.top();
+                    q.push(pq.top());
+                    pq.pop();
+                }
+
+                if (cur <= a[i])
+                {
+                    pq.push(a[i]);
+                    cur = 0;
+                    while (!q.empty())
+                        q.pop();
+                }
+
+                while ((ll)pq.size() <= res)
+                {
+                    cur -= q.top();
+                    pq.push(q.top());
+                    q.pop();
+                }
+            }
+        }
+    }
+
+    while (!pq.empty())
+    {
+        ans += pq.top();
+        pq.pop();
+    }
+
+    cout << ans << '\n';
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin >> t;
+    while (t--)
+        solve();
+
+    return 0;
+}

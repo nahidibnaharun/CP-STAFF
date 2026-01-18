@@ -1,0 +1,54 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    //  freopen("tracing.in", "r", stdin); 
+    // freopen("tracing.out", "w", stdout); 
+int t;
+cin>>t;
+while(t--){
+    int n;
+    ll k;
+    cin>>n>>k;
+    string s;
+    cin>>s;
+    bool ans=1;
+    for(int i=1;i<n;i++){
+        if(s[i]!= s[0]){
+            ans=0;
+            break;
+        }
+    }
+
+    if(n==1 || ans){
+        cout<<"NO"<<endl;
+        continue;
+    }
+    string r=s;
+    reverse(r.begin(),r.end());
+    if(s<r){
+        cout<<"YES"<<endl;
+        continue;
+    }
+
+    if(k>=1)cout<<"YES"<<endl;
+    else cout<<"NO"<<endl;
+}
+    
+    return 0;   
+}
+ 

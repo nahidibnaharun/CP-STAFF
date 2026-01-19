@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+static const int VAL[5] = {1, 10, 100, 1000, 10000};
+static const int NEG_INF = -1000000000;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin >> t;
+    while (t--) {
+        string s;
+        cin >> s;
+        reverse(s.begin(), s.end());
+
+
+        int dp[2][5][2];
+        for (int j = 0; j < 5; j++)
+            dp[0][j][0] = dp[0][j][1] = NEG_INF;
+
+        dp[0][0][0] = 0;
+        int cur = 0, nxt = 1;
+
+        for (char c : s) {
+            int x = c - 'A';
+            for (int j = 0; j < 5; j++)
+                dp[nxt][j][0] = dp[nxt][j][1] = NEG_INF;
+
+            for (int mx = 0; mx < 5; mx++) {
+                for (int used = 0; used < 2; used++) {
+                    if (dp[cur][mx][used] == NEG_INF) continue;
+                    for (int y = 0; y < 5; y++) {
+                        int nused = used + (y != x);
+                        if (nused >= 2) continue;
+                        int nmx = max(mx, y);
+                        int add = (y < nmx ? -VAL[y] : VAL[y]);
+                        dp[nxt][nmx][nused] = max(
+                            dp[nxt][nmx][nused],
+                            dp[cur][mx][used] + add
+                        );
+                    }
+                }
+            }
+            swap(cur, nxt);
+        }
+
+        int ans = NEG_INF;
+        for (int j = 0; j < 5; j++)
+            ans = max(ans, max(dp[cur][j][0], dp[cur][j][1]));
+
+        cout << ans <<endl;
+    }
+
+    return 0;
+}

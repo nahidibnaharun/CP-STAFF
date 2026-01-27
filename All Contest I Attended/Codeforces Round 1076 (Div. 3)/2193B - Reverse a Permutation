@@ -1,0 +1,74 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+
+const int INF = 1e9;
+const int MOD = 1000000007;
+const int MAX = 1e5 + 7;
+
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+void solve()
+{
+    int n;
+    cin >> n;
+
+    vector<int> p(n + 1);
+    for (int i = 1; i <= n; i++)
+    {
+        cin >> p[i];
+    }
+
+    int ind = 1;
+    while (ind <= n && p[ind] == n - ind + 1)
+        ind++;
+
+    int id = -1;
+    for (int i = ind; i <= n; i++)
+    {
+        if (p[i] == n - ind + 1)
+            id = i;
+    }
+
+    for (int i = 1; i < ind; i++)
+        cout << p[i] << ' ';
+
+    if (id != -1)
+    {
+        for (int i = id; i >= ind; i--)
+            cout << p[i] << ' ';
+        for (int i = id + 1; i <= n; i++)
+            cout << p[i] << ' ';
+    }
+
+    cout << endl;
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        solve();
+    }
+    return 0;
+}

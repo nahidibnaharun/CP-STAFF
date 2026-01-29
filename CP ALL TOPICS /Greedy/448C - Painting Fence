@@ -1,0 +1,93 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+
+const int INF = 1e9;
+const int MOD = 1000000007;
+const int MAX = 1e5 + 7;
+
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+int a[MAX];
+int t[MAX], d;
+
+int rmq(int i, int j)
+{
+    int r = i;
+    for (i += d, j += d; i <= j; ++i >>= 1, --j >>= 1)
+    {
+        if (i & 1)
+            r = a[r] > a[t[i]] ? t[i] : r;
+        if (~j & 1)
+            r = a[r] > a[t[j]] ? t[j] : r;
+    }
+    return r;
+}
+
+int calc(int l, int r, int h)
+{
+    if (l > r)
+        return 0;
+
+    int m = rmq(l, r);
+    int mn = a[m];
+
+    int res = min(
+        r - l + 1,
+        calc(l, m - 1, mn) + calc(m + 1, r, mn) + mn - h);
+
+    return res;
+}
+
+void solve()
+{
+    int n;
+    cin >> n;
+
+    for (int i = 0; i < n; ++i)
+        cin >> a[i];
+
+    a[n] = 2e9;
+
+    for (d = 1; d < n; d <<= 1)
+        ;
+
+    for (int i = 0; i < n; ++i)
+        t[i + d] = i;
+    for (int i = n + d; i < d + d; ++i)
+        t[i] = n;
+
+    for (int i = d - 1; i; --i)
+        t[i] = a[t[i << 1]] < a[t[i << 1 | 1]] ? t[i << 1] : t[i << 1 | 1];
+
+    cout << calc(0, n - 1, 0) << endl;
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    // int t;
+    // cin >> t;
+    // while (t--)
+    // {
+    solve();
+    // }
+    return 0;
+}

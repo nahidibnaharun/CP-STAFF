@@ -1,0 +1,80 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+
+const int INF = 1e9;
+const int MOD = 1000000007;
+const int MAX = 10000;
+const ll MAXN = 2e5 + 5;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+void solve()
+{
+    int n;
+    cin >> n;
+
+    vector<int> ab(n);
+    for (auto &it : ab)
+        cin >> it;
+
+    int ans = 1;
+
+    for (int i = 0; i < n; i++)
+    {
+        int lsb = ab[i];
+        int j;
+
+        for (j = i + 1; j < n; j++)
+        {
+            if (ab[j] > ab[j - 1])
+            {
+                if (ab[j] != ab[j - 1] + 1)
+                {
+                    ans++;
+                    break;
+                }
+            }
+            else
+            {
+                if (ab[j] <= lsb)
+                {
+                    ans++;
+                    break;
+                }
+            }
+        }
+
+        i = j - 1;
+    }
+
+    cout << ans << "\n";
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        solve();
+    }
+
+    return 0;
+}

@@ -1,0 +1,96 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+
+const int INF = 1e9;
+const int MOD = 1000000007;
+const int MAX = 10000;
+
+/*
+      _   __  ___  __   __ _______ _______
+     / | / / / _ \ \ \__\ \\__  __\\  __  \
+    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: -
+*/
+
+void solve()
+{
+    int t;
+    cin >> t;
+
+    while (t--)
+    {
+        string s;
+        cin >> s;
+
+        int n = s.size();
+
+        vector<int> a(n);
+        vector<int> mn(n + 1, 9);
+
+        for (int i = 0; i < n; i++)
+        {
+            a[i] = s[i] - '0';
+        }
+
+        for (int i = n - 1; i >= 0; i--)
+        {
+            mn[i] = min(mn[i + 1], a[i]);
+        }
+
+        vector<int> buff(10, 0);
+        string ans = "";
+        string t = "0123456789";
+
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < mn[i]; j++)
+            {
+                while (buff[j])
+                {
+                    buff[j]--;
+                    ans += t[j];
+                }
+            }
+
+            if (a[i] == mn[i])
+            {
+                ans += t[a[i]];
+            }
+            else
+            {
+                buff[min(9, a[i] + 1)]++;
+            }
+        }
+
+        for (int j = 0; j < 10; j++)
+        {
+            while (buff[j])
+            {
+                buff[j]--;
+                ans += t[j];
+            }
+        }
+
+        cout << ans << "\n";
+    }
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    solve();
+
+    return 0;
+}

@@ -1,0 +1,64 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+
+const int INF = 1e9;
+const int MOD = 1000000007;
+const int MAX = 10000;
+
+/*
+      _   __  ___  __   __ _______ _______
+     / | / / / _ \ \ \__\ \\__  __\\  __  \
+    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: -
+*/
+
+void solve()
+{
+    int t;
+    cin >> t;
+
+    while (t--)
+    {
+        int n, k;
+        cin >> n >> k;
+
+        int L = 0, R = 55;
+
+        while (n--)
+        {
+            int l, r;
+            cin >> l >> r;
+
+            if (l <= k && k <= r)
+            {
+                L = max(L, l);
+                R = min(R, r);
+            }
+        }
+
+        if (L == R)
+            cout << "YES\n";
+        else
+            cout << "NO\n";
+    }
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    solve();
+
+    return 0;
+}

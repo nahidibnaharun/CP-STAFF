@@ -1,0 +1,84 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+
+const int INF = 1e9;
+const int MOD = 1000000007;
+const int MAX = 10000;
+
+const int N = 1001;
+const int K = 1001;
+
+/*
+      _   __  ___  __   __ _______ _______
+     / | / / / _ \ \ \__\ \\__  __\\  __  \
+    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: -
+*/
+
+int n, k;
+int dp[N][K][2];
+
+int go(int curr, int step, int dir)
+{
+    if (step == 1)
+        return 1;
+
+    if (dp[curr][step][dir] != -1)
+        return dp[curr][step][dir];
+
+    int ans = 2;
+
+    if (dir == 1)
+    {
+        if (curr < n)
+            ans = (ans + go(curr + 1, step, dir) - 1) % MOD;
+
+        if (curr > 1)
+            ans = (ans + go(curr - 1, step - 1, 1 - dir) - 1) % MOD;
+    }
+    else
+    {
+        if (curr > 1)
+            ans = (ans + go(curr - 1, step, dir) - 1) % MOD;
+
+        if (curr < n)
+            ans = (ans + go(curr + 1, step - 1, 1 - dir) - 1) % MOD;
+    }
+
+    return dp[curr][step][dir] = ans;
+}
+
+void solve()
+{
+    int t;
+    cin >> t;
+
+    while (t--)
+    {
+        cin >> n >> k;
+
+        memset(dp, -1, sizeof(dp));
+
+        cout << go(1, k, 1) << "\n";
+    }
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    solve();
+
+    return 0;
+}

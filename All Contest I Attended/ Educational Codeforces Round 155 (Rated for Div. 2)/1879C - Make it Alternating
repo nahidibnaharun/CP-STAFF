@@ -1,0 +1,72 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+
+const int INF = 1e9;
+const int MOD = 998244353;
+const int MAX = 10000;
+
+/*
+      _   __  ___  __   __ _______ _______
+     / | / / / _ \ \ \__\ \\__  __\\  __  \
+    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: -
+*/
+
+void upd(int &a, int b)
+{
+    a = (a * 1LL * b) % MOD;
+}
+
+void solve()
+{
+    int t;
+    cin >> t;
+
+    while (t--)
+    {
+        string s;
+        cin >> s;
+
+        int res = 1;
+        int k = s.size();
+        int n = s.size();
+
+        for (int l = 0; l < n;)
+        {
+            int r = l + 1;
+
+            while (r < n && s[l] == s[r])
+                r++;
+
+            upd(res, r - l);
+            k--;
+
+            l = r;
+        }
+
+        for (int i = 1; i <= k; i++)
+            upd(res, i);
+
+        cout << k << " " << res << "\n";
+    }
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    solve();
+
+    return 0;
+}

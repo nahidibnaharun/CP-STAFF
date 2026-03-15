@@ -1,0 +1,94 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+
+const int INF = 1e9;
+const int MOD = 1000000007;
+const int MAX = 10000;
+
+/*
+      _   __  ___  __   __ _______ _______
+     / | / / / _ \ \ \__\ \\__  __\\  __  \
+    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: -
+*/
+
+unordered_set<int> get_candidates(int a)
+{
+    unordered_set<int> candidates;
+
+    for (int i = 1; i * i <= a; i++)
+    {
+        if (a % i == 0)
+        {
+            if (i % 2 == 0)
+            {
+                candidates.insert(i);
+            }
+
+            if ((a / i) % 2 == 0)
+            {
+                candidates.insert(a / i);
+            }
+        }
+    }
+
+    unordered_set<int> ans;
+
+    for (int x : candidates)
+    {
+        ans.insert(1 + x / 2);
+    }
+
+    return ans;
+}
+
+void solve()
+{
+    int n, pos;
+    cin >> n >> pos;
+
+    unordered_set<int> candidates = get_candidates(n - pos);
+
+    for (int x : get_candidates(n + pos - 2))
+    {
+        candidates.insert(x);
+    }
+
+    int ans = 0;
+
+    for (int x : candidates)
+    {
+        if (x >= pos)
+        {
+            ans++;
+        }
+    }
+
+    cout << ans << "\n";
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin >> t;
+
+    while (t--)
+    {
+        solve();
+    }
+
+    return 0;
+}

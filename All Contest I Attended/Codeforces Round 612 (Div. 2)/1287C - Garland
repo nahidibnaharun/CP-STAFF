@@ -2,26 +2,8 @@
 using namespace std;
 
 using ll = long long;
-using ull = unsigned long long;
-using ld = long double;
-using ui = unsigned int;
 
 const ll INF = 1e18;
-const int MOD = 1000000007;
-const int MAX = 10000;
-
-/*
-//      _   __  ___  __   __ _______ _______
-//     / | / / / _ \ \ \__\ \\__  __\\  __  \
-//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
-//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
-//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
-//
-// ID: mdnahidibnaharun
-// LANG: C++
-// TASK: practice
-*/
-
 const int N = 105;
 
 int n;
@@ -30,23 +12,7 @@ ll dp[N][N][N][2];
 
 ll solveDP(int pos, int even, int odd, int par)
 {
-    if (pos == n - 1)
-    {
-        if (a[pos] == 0)
-        {
-            if (par == 0)
-            {
-                if (even > 0) return 0;
-                if (odd > 0) return 1;
-            }
-            else
-            {
-                if (even > 0) return 1;
-                if (odd > 0) return 0;
-            }
-        }
-        return 0;
-    }
+    if (pos == n) return 0;
 
     ll &res = dp[pos][even][odd][par];
     if (res != -1) return res;
@@ -56,58 +22,20 @@ ll solveDP(int pos, int even, int odd, int par)
     if (a[pos] != 0)
     {
         int cur = a[pos] % 2;
-        if (a[pos + 1] == 0)
-        {
-            res = solveDP(pos + 1, even, odd, cur);
-        }
-        else
-        {
-            int nxt = a[pos + 1] % 2;
-            res = solveDP(pos + 1, even, odd, cur) + (cur != nxt);
-        }
-        return res;
-    }
-
-    if (par == 0)
-    {
-        if (a[pos + 1] != 0)
-        {
-            int nxt = a[pos + 1] % 2;
-
-            if (even > 0)
-                res = min(res, solveDP(pos + 1, even - 1, odd, 0) + (0 != nxt));
-
-            if (odd > 0)
-                res = min(res, solveDP(pos + 1, even, odd - 1, 1) + (0 != 1) + (1 != nxt));
-        }
-        else
-        {
-            if (even > 0)
-                res = min(res, solveDP(pos + 1, even - 1, odd, 0));
-
-            if (odd > 0)
-                res = min(res, solveDP(pos + 1, even, odd - 1, 1) + 1);
-        }
+        res = (par != cur) + solveDP(pos + 1, even, odd, cur);
     }
     else
     {
-        if (a[pos + 1] != 0)
+        if (even > 0)
         {
-            int nxt = a[pos + 1] % 2;
-
-            if (even > 0)
-                res = min(res, solveDP(pos + 1, even - 1, odd, 0) + (1 != 0) + (0 != nxt));
-
-            if (odd > 0)
-                res = min(res, solveDP(pos + 1, even, odd - 1, 1) + (1 != nxt));
+            res = min(res,
+                (par != 0) + solveDP(pos + 1, even - 1, odd, 0));
         }
-        else
-        {
-            if (even > 0)
-                res = min(res, solveDP(pos + 1, even - 1, odd, 0) + 1);
 
-            if (odd > 0)
-                res = min(res, solveDP(pos + 1, even, odd - 1, 1));
+        if (odd > 0)
+        {
+            res = min(res,
+                (par != 1) + solveDP(pos + 1, even, odd - 1, 1));
         }
     }
 

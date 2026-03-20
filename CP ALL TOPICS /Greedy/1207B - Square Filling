@@ -1,0 +1,93 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+
+const int INF = 1e9;
+const int MOD = 1000000007;
+const int MAX = 10000;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+void solve()
+{
+    ll n, m;
+    cin >> n >> m;
+
+    vector<vector<ll>> a(n, vector<ll>(m));
+
+    for (ll i = 0; i < n; i++)
+    {
+        for (ll j = 0; j < m; j++)
+        {
+            cin >> a[i][j];
+        }
+    }
+
+    vector<pair<ll, ll>> ans;
+
+    for (ll i = 0; i < n - 1; i++)
+    {
+        for (ll j = 0; j < m - 1; j++)
+        {
+            if (a[i][j] * a[i][j + 1] * a[i + 1][j] * a[i + 1][j + 1] > 0)
+            {
+                a[i][j] = 2;
+                a[i][j + 1] = 2;
+                a[i + 1][j] = 2;
+                a[i + 1][j + 1] = 2;
+
+                ans.push_back({i, j});
+            }
+        }
+    }
+
+    ll cnt1 = 0;
+
+    for (ll i = 0; i < n; i++)
+    {
+        for (ll j = 0; j < m; j++)
+        {
+            if (a[i][j] == 1)
+            {
+                cnt1++;
+            }
+        }
+    }
+
+    if (cnt1 != 0)
+    {
+        cout << -1 << "\n";
+    }
+    else
+    {
+        cout << ans.size() << "\n";
+        for (auto x : ans)
+        {
+            cout << x.first + 1 << " " << x.second + 1 << "\n";
+        }
+    }
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    solve();
+
+    return 0;
+}

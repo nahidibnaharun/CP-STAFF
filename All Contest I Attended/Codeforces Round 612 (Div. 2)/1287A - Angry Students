@@ -1,0 +1,74 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+
+const int INF = 1e9;
+const int MOD = 1000000007;
+const int MAX = 10000;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+void solve()
+{
+    int num;
+    cin >> num;
+
+    string s;
+    cin >> s;
+
+    int ans = 0;
+
+    for (int i = 0; i < (int)s.size(); i++)
+    {
+        if (s[i] == 'A')
+        {
+            int c = 1;
+
+            for (int j = i + 1; j < (int)s.size(); j++)
+            {
+                if (s[j] == 'A')
+                    c = 0;
+
+                if (j + 1 < (int)s.size() && s[j] == 'P' && s[j + 1] == 'P')
+                    c += 1;
+                else
+                {
+                    ans = max(ans, c);
+                    i = j - 1;
+                    break;
+                }
+            }
+        }
+    }
+
+    cout << ans << "\n";
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        solve();
+    }
+
+    return 0;
+}

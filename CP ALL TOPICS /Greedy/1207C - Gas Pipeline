@@ -1,0 +1,71 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+
+const int INF = 1e9;
+const int MOD = 1000000007;
+const int MAX = 10000;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+void solve()
+{
+    ll n, a, b;
+    cin >> n >> a >> b;
+
+    string s;
+    cin >> s;
+
+    const ll INF64 = 1e18;
+
+    vector<vector<ll>> d(n + 1, vector<ll>(2, INF64));
+
+    d[0][0] = b;
+
+    for (ll pos = 0; pos < n; pos++)
+    {
+        if (s[pos] == '0')
+        {
+            d[pos + 1][0] = min(d[pos + 1][0], d[pos][0] + a + b);
+            d[pos + 1][1] = min(d[pos + 1][1], d[pos][0] + 2 * (a + b));
+
+            d[pos + 1][1] = min(d[pos + 1][1], d[pos][1] + a + 2 * b);
+            d[pos + 1][0] = min(d[pos + 1][0], d[pos][1] + 2 * a + b);
+        }
+        else
+        {
+            d[pos + 1][1] = min(d[pos + 1][1], d[pos][1] + a + 2 * b);
+        }
+    }
+
+    cout << d[n][0] << "\n";
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        solve();
+    }
+
+    return 0;
+}

@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9;
+const int MOD = 1000000007;
+const int MAX = 200005;
+/*
+// _ __ ___ __ __ _______ _______
+// / | / / / _ \ \ \__\ \\__ __\\ __ \
+// / |/ / / /_\ \ \ ___ \ \ \ \ \ \ \
+// / /| / / ____ \ \ \ \ \ _\ \___\ \/ /
+// /_/ |_/ /_/ \__\ \_\ \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+void solve()
+{
+ll n, H;
+cin >> n >> H;
+vector<ll> a(n);
+for (ll i = 0; i < n; i++)
+cin >> a[i];
+sort(a.begin(), a.end());
+ll ans = 0;
+ll big = a[n - 1];
+ll second = a[n - 2];
+ans = (H / (big + second)) * 2;
+H %= (big + second);
+if (H > 0)
+{
+ans++;
+H -= big;
+}
+if (H > 0)
+ans++;
+cout << ans << '\n';
+}
+int main()
+{
+ios_base::sync_with_stdio(false);
+cin.tie(nullptr);
+int t;
+cin >> t;
+while (t--)
+{
+solve();
+}
+return 0;
+}

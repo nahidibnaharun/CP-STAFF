@@ -1,0 +1,79 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9;
+const int MOD = 1000000007;
+const int MAX = 200005;
+/*
+// _ __ ___ __ __ _______ _______ // / |/ / / /_\ \ \ ___ \ \ \ \ \ \ \
+// / /| / / ____ \ \ \ \ \ _\ \___\ \/ /
+// /_/ |_/ /_/ \__\ \_\ \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+vector<ll> val, xr;
+vector<vector<ll>> g;
+ll n, k, total_xor, cnt;
+ll dfs(ll node, ll parent)
+{
+xr[node] = val[node];
+for (auto to : g[node])
+{
+if (to == parent)
+continue;
+xr[node] ^= dfs(to, node);
+}
+if (xr[node] == total_xor)
+{
+cnt++;
+xr[node] = 0;
+}
+return xr[node];
+}
+void solve()
+{
+cin >> n >> k;
+val.assign(n + 1, 0);
+xr.assign(n + 1, 0);
+g.assign(n + 1, {});
+total_xor = 0;
+cnt = 0; for (ll i = 1; i <= n; i++)
+{
+cin >> val[i];
+total_xor ^= val[i];
+}
+for (ll i = 1; i < n; i++)
+{
+ll u, v;
+cin >> u >> v;
+g[u].push_back(v);
+g[v].push_back(u);
+}
+if (total_xor == 0)
+{
+cout << "YES\n";
+return;
+}
+dfs(1, 0);
+if (cnt >= 3 && k > 2)
+cout << "YES\n";
+else
+cout << "NO\n";
+}
+int main()
+{
+ios_base::sync_with_stdio(false);
+cin.tie(nullptr);
+int t;
+cin >> t;
+while (t--)
+{
+solve();
+}
+return 0;
+}

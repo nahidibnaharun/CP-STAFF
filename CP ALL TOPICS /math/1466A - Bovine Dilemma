@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+void solve() {
+ll n;
+cin >> n;
+vector<ll> x(n);
+for (ll i = 0; i < n; i++)
+cin >> x[i];
+set<ll> diff;
+for (ll i = 0; i < n; i++) {
+    for (ll j = i + 1; j < n; j++) {
+diff.insert(x[j] - x[i]);
+}
+}
+cout << diff.size() << '\n';
+}
+int main() {
+ios_base::sync_with_stdio(false);
+cin.tie(nullptr);
+int t;
+cin >> t;
+while (t--) solve();
+return 0;
+}

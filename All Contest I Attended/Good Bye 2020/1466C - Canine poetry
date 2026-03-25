@@ -1,0 +1,71 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9;
+const int MOD = 1000000007;
+const int MAX = 100007;
+/*
+// _ __ ___ __ __ _______ _______
+// / | / / / _ \ \ \__\ \\__ __\\ __ \
+// / |/ / / /_\ \ \ ___ \ \ \ \ \ \ \
+// / /| / / ____ \ \ \ \ \ _\ \___\ \/ /
+// /_/ |_/ /_/ \__\ \_\ \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+char in[MAX];
+int dp[MAX][2][2];
+int n;
+
+void solve()
+{
+    scanf("%s", in + 1);
+    n = strlen(in + 1);
+
+    for (int ta = 0; ta < 2; ta++)
+        for (int tb = 0; tb < 2; tb++)
+            dp[0][ta][tb] = 0;
+
+    for (int i = 1; i <= n; i++)
+        for (int ta = 0; ta < 2; ta++)
+            for (int tb = 0; tb < 2; tb++)
+                dp[i][ta][tb] = INF;
+
+    for (int i = 1; i <= n; i++)
+    {
+        if (in[i] != in[i - 1])
+        {
+            if (in[i] != in[i - 2])
+                dp[i][0][0] = min(dp[i][0][0], dp[i - 1][0][0]);
+            dp[i][0][0] = min(dp[i][0][0], dp[i - 1][0][1]);
+        }
+
+        if (in[i] != in[i - 2])
+            dp[i][0][1] = min(dp[i][0][1], dp[i - 1][1][0]);
+        dp[i][0][1] = min(dp[i][0][1], dp[i - 1][1][1]);
+
+        dp[i][1][0] = min(dp[i][1][0], min(dp[i - 1][0][0], dp[i - 1][0][1]) + 1);
+        dp[i][1][1] = min(dp[i][1][1], min(dp[i - 1][1][0], dp[i - 1][1][1]) + 1);
+    }
+
+    int ans = INF;
+    for (int ta = 0; ta < 2; ta++)
+        for (int tb = 0; tb < 2; tb++)
+            ans = min(ans, dp[n][ta][tb]);
+
+    printf("%d\n", ans);
+}
+
+int main()
+{
+    int cases;
+    scanf("%d", &cases);
+    while (cases--)
+        solve();
+    return 0;
+}

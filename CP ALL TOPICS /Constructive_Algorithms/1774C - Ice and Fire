@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+void solve()
+{
+    ll n;
+    cin >> n;
+
+    string s;
+    cin >> s;
+
+    bool flg = (s[0] == '0');
+    ll cnt = 0;
+
+    for (ll i = 0; i < (ll)s.size(); i++)
+    {
+        if (s[i] == '0')
+        {
+            if (flg) cnt++;
+            else cnt = 1;
+            flg = true;
+            cout << i + 2 - cnt << " ";
+        }
+        else
+        {
+            if (!flg) cnt++;
+            else cnt = 1;
+            flg = false;
+            cout << i + 2 - cnt << " ";
+        }
+    }
+    cout << "\n";
+}
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll t;
+    cin >> t;
+    while (t--) solve();
+
+    return 0;
+}

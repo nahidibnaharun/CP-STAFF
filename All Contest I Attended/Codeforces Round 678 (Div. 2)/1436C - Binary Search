@@ -1,0 +1,72 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ld = long double;
+const int maxn = 2e5 + 3;
+int n;
+int a[maxn];
+int sz[maxn];
+vector<int> g[maxn];
+map<ll,int>* cnt[maxn];
+void add(int v, ll val) {
+ll prev = 0;
+int cc = 0;
+while(cnt[v]->size()) {
+auto [h,c1] = *cnt[v]->begin();
+ll allup = 1ll * cc * (h - prev);
+if(val >= allup) {
+val -= allup;
+prev = h;
+cc += c1;
+cnt[v]->erase(cnt[v]->begin());
+} else break;
+}
+if(cc == 0)
+(*cnt[v])[val]++;
+else {
+ll x = prev + val / cc;
+if(val % cc > 0)
+(*cnt[v])[x + 1] += val % cc;
+(*cnt[v])[x] += cc - val % cc;
+}
+}
+void dfs(int v) {
+int mx = -1, bigChild = -1;
+sz[v] = 1;
+for(auto u : g[v]) {
+dfs(u);
+sz[v] += sz[u];
+if(sz[u] > mx) mx = sz[u], bigChild = u;
+}
+if(bigChild != -1)
+cnt[v] = cnt[bigChild];
+else
+cnt[v] = new map<ll,int>();
+for(auto u : g[v])
+if(u != bigChild)
+for(auto x : *cnt[u])
+(*cnt[v])[x.first] += x.second;
+add(v, a[v]);
+}
+void solve() {
+cin >> n;
+for(int i = 1; i < n; i++) {
+int par;
+cin >> par;
+par--;
+g[par].push_back(i);
+}
+for(int i = 0; i < n; i++)
+cin >> a[i];
+dfs(0);
+ll ans = 0;
+for(auto [k,v] : *cnt[0])
+ans = max(ans, k);
+cout << ans << "\n";
+}
+int main() {
+ios_base::sync_with_stdio(false);
+cin.tie(nullptr);
+solve();
+return 0;
+}

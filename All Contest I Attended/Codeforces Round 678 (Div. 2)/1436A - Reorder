@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9;
+const int MOD = 1000000007;
+const int MAX = 100005;
+/*
+// _ __ ___ __ __ _______ _______
+// / | / / / _ \ \ \__\ \\__ __\\ __ \
+// / |/ / / /_\ \ \ ___ \ \ \ \ \ \ \
+// / /| / / ____ \ \ \ \ \ _\ \___\ \/ /
+// /_/ |_/ /_/ \__\ \_\ \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+ll n, m;
+void solve()
+{
+cin >> n >> m;
+ll sum = 0;
+for (ll i = 0; i < n; i++)
+{
+ll x;
+cin >> x;
+sum += x;
+}
+if (sum == m)
+cout << "YES\n";
+else
+cout << "NO\n";
+}
+int main()
+{
+ios_base::sync_with_stdio(false);
+cin.tie(nullptr);
+ll t;
+cin >> t;
+while (t--)
+solve();
+return 0;
+}

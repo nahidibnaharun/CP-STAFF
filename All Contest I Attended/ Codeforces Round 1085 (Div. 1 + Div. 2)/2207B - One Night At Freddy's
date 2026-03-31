@@ -1,0 +1,53 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+const int INF = 1e9;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+void solve(){
+
+ ll n, m, l; cin >> n >> m >> l;
+    vector<ll> a(n);
+    for(ll i = 0; i < n; i++) cin >> a[i];
+
+    vector<ll> lvls(m, 0);
+    ll curr = n;
+
+    for(ll i = 0; i < l; i++){
+        ll idx = min(m, curr + 1LL) - 1;
+        lvls[idx]++;
+        sort(lvls.begin(), lvls.end(), greater<ll>());
+
+        if(curr > 0 && a[n - curr] - 1 == i){
+            lvls[0] = 0;
+            sort(lvls.begin(), lvls.end(), greater<ll>());
+            curr--;
+        }
+    }
+
+    cout << lvls[0];
+}
+ 
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    
+    ll Test_Case; cin >> Test_Case;
+    while(Test_Case--){
+        solve();
+        cout << endl;
+    }
+    
+    
+    return 0;   
+}

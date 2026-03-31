@@ -1,0 +1,70 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+const int INF = 1e9;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+void solve(){
+
+ll n, h; cin >> n >> h;
+    vector<ll> v(n);
+    for(auto &x : v) cin >> x;
+
+    vector<ll> cnt(n);
+
+    for(ll i = 0; i < n; i++){
+        ll curr = v[i];
+        cnt[i] = h - curr;
+
+        for(ll j = i + 1; j < n; j++){
+            curr = max(curr, v[j]);
+            cnt[i] += h - curr;
+        }
+
+        curr = v[i];
+        for(ll j = i - 1; j >= 0; j--){
+            curr = max(curr, v[j]);
+            cnt[i] += h - curr;
+        }
+    }
+
+    ll best = 0;
+
+    for(ll i = 0; i < n; i++){
+        ll mx = v[i], arg = i;
+
+        for(ll j = i; j < n; j++){
+            if(v[j] > mx){
+                mx = v[j];
+                arg = j;
+            }
+            best = max(best, cnt[i] + cnt[j] - cnt[arg]);
+        }
+    }
+
+    cout << best;
+}
+ 
+int main(){
+    ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+    
+    ll Test_Case; cin >> Test_Case;
+    while(Test_Case--){
+        solve();
+        cout << endl;
+    }
+    
+    
+    return 0;   
+}

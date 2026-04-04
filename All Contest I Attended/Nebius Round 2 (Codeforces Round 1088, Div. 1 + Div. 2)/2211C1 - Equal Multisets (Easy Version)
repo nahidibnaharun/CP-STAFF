@@ -1,0 +1,76 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+const int INF = 1e9;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+const int MAXN = 2e5;
+
+int n, k;
+int a[MAXN], b[MAXN];
+int a_inv[MAXN], b_inv[MAXN];
+
+bool solve(){
+    for(int i = 0; i < n; i++){
+        a[i]--;
+        a_inv[a[i]] = i;
+    }
+
+    for(int i = 0; i < n; i++) b_inv[i] = -1;
+
+    for(int i = 0; i < n; i++){
+        if(b[i] == -1) continue;
+
+        b[i]--;
+
+        if(b_inv[b[i]] != -1) return false;
+
+        b_inv[b[i]] = i;
+    }
+
+    for(int i = 0; i < n; i++){
+        if(n - k <= i && i < k) continue;
+
+        if(b_inv[a[i]] == -1 && b[i] == -1){
+            b_inv[a[i]] = i;
+            b[i] = a[i];
+        }
+
+        if(b_inv[a[i]] != i) return false;
+    }
+
+    return true;
+}
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t;
+    cin >> t;
+    while(t--){
+        cin >> n >> k;
+
+        for(int i = 0; i < n; i++) cin >> a[i];
+        for(int i = 0; i < n; i++) cin >> b[i];
+
+        bool res = solve();
+
+        if(res) cout << "YES";
+        else cout << "NO";
+
+        cout << endl;
+    }
+
+    return 0;   
+}

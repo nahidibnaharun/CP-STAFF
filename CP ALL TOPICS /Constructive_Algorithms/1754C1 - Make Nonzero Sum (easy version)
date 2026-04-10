@@ -1,0 +1,89 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+
+const int INF = 1e9+5;
+const int MOD = 1000000007;
+const int MAX = 10000;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+
+
+
+
+void solve() {
+ll n;
+    cin >> n;
+    vector<ll> v(n);
+    for (ll i = 0; i < n; i++) cin >> v[i];
+
+    vector<pair<ll,ll>> ans;
+    vector<ll> a;
+    ll idx = 0, pO = 0, nO = 0;
+
+    while (idx < n) {
+        if (idx + 1 < n && v[idx] == v[idx + 1]) {
+            if (pO == nO) {
+                ans.push_back({idx, idx + 1});
+                idx += 2;
+            } else {
+                if (v[idx] == 1) pO++;
+                else nO++;
+                ans.push_back({idx, idx});
+                a.push_back(v[idx]);
+                idx++;
+            }
+        } else {
+            if (v[idx] == 1) pO++;
+            else nO++;
+            ans.push_back({idx, idx});
+            a.push_back(v[idx]);
+            idx++;
+        }
+    }
+
+    ll sum = accumulate(a.begin(), a.end(), 0LL);
+    if (sum != 0) {
+        cout << -1 << '\n';
+    } else {
+        cout << ans.size() << '\n';
+        for (auto val : ans)
+            cout << val.first + 1 << " " << val.second + 1 << '\n';
+    }
+ 
+}
+
+
+
+    
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    
+    ll t;
+    cin >> t;
+
+    while (t--)
+    {
+        solve();
+        // cout<<endl;
+    }
+
+    return 0;
+}

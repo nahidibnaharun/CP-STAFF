@@ -1,0 +1,47 @@
+#include <algorithm>
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+
+void solve() {
+    int n;
+    cin >> n;
+    vector<int> p(n + 1);
+    for (int i = 1; i <= n; i++) {
+        cin >> p[i];
+    }
+
+    vector<int> ans(n + 1, 0);
+    for (int i = 1; i <= n; i++) {
+        if (ans[i] == 0) { 
+            vector<int> current_cycle_nodes;
+            int current_kid = i;
+            int days_passed = 0;
+
+            do {
+                current_cycle_nodes.push_back(current_kid);
+                current_kid = p[current_kid];
+                days_passed++;
+            } while (current_kid != i);
+            for (int node : current_cycle_nodes) {
+                ans[node] = days_passed;
+            }
+        }
+    }
+
+    for (int i = 1; i <= n; i++) {
+        cout << ans[i] << " ";
+    }
+    cout << endl;
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int q; 
+    cin >> q;
+    while (q--)
+        solve();
+    return 0;
+}

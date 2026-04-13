@@ -28,36 +28,39 @@ const int MAX = 10000;
 
 void solve() {
   
-   ll n;
+        
+    ll n;
     cin >> n;
 
     string s;
     cin >> s;
 
-    ll k = 1;
+    if (n == 1) {
+        cout << s[0] << s[0];
+        return;
+    }
 
-    for (ll i = 1; i < n; i++) {
-        if (s[i] < s[i-1]) {
-            k++;
+    if (s[0] == s[1]) {
+        cout << s[0] << s[1];
+        return;
+    }
+
+    ll p = n - 1;
+
+    for (ll i = 0; i < n - 1; i++) {
+        if (s[i] < s[i + 1]) {
+            p = i;
+            break;
         }
-        else if (s[i] == s[i-1]) {
-            if (i == 1) k++;
-            else break;
-        }
-        else break;
     }
 
-    string t = "";
-
-    for (ll i = 0; i < k; i++) {
-        t += s[i];
+    for (ll i = 0; i <= p; i++) {
+        cout << s[i];
     }
 
-    for (ll i = k-1; i >= 0; i--) {
-        t += s[i];
+    for (ll i = p; i >= 0; i--) {
+        cout << s[i];
     }
-
-    cout << t;
 }
 
 

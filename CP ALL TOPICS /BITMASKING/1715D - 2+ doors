@@ -1,0 +1,104 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+
+const int INF = 1e9+5;
+const int MOD = 1000000007;
+const int MAX = 10000;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+inline bool get_bit(ui x, ui bt) { return (x >> bt) & 1; }
+inline void make_one(ui &x, ui bt) { x |= (1U << bt); }
+inline void make_null(ui &x, ui bt) { x &= (~(1U << bt)); }
+
+bool solve_bit(vector<ui> &ans,
+               vector<vector<pair<ui, ui>>> &g,
+               ui bt) {
+
+    for (ui i = 0; i < ans.size(); ++i) {
+        for (auto &it : g[i]) {
+            if (!get_bit(it.second, bt))
+                make_null(ans[i], bt);
+            else if (!get_bit(ans[i], bt) && !get_bit(ans[it.first], bt))
+                return false;
+        }
+    }
+
+    for (ui i = 0; i < ans.size(); ++i) {
+        if (get_bit(ans[i], bt)) {
+            make_null(ans[i], bt);
+            for (auto &it : g[i]) {
+                if (!get_bit(ans[it.first], bt) && get_bit(it.second, bt)) {
+                    make_one(ans[i], bt);
+                    break;
+                }
+            }
+        }
+    }
+
+    return true;
+}
+
+void solve() {
+    
+    ui n, m;
+    cin >> n >> m;
+
+    vector<vector<pair<ui, ui>>> g(n);
+
+    while (m--) {
+        ui a, b, c;
+        cin >> a >> b >> c;
+        a--, b--;
+
+        g[a].push_back({b, c});
+        g[b].push_back({a, c});
+    }
+
+    const ui pt = 31;
+
+    vector<ui> ans(n, ~(1U << pt));
+
+    for (ui i = 0; i < pt; ++i) {
+        if (!solve_bit(ans, g, i)) {
+            cout << -1 << '\n';
+            return;
+        }
+    }
+
+    for (auto &it : ans) {
+        cout << it << " ";
+    }
+    cout << '\n';
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    
+    ll t = 1;
+    // cin >> t;
+
+    while (t--)
+    {
+        solve();
+    }
+
+    return 0;
+}

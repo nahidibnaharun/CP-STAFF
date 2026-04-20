@@ -1,0 +1,67 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+
+const int INF = 1e9+5;
+const int MOD = 1000000007;
+const int MAX = 10000;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+void solve() {
+    int n;
+    cin >> n;
+
+    vector<int> c(n);
+    for (int i = 0; i < n; i++) cin >> c[i];
+
+    vector<int> mn(2, 1e9);
+    vector<ll> rem(2, n);
+
+    ll sum = 0;
+    ll ans = 1e18;
+
+    for (int i = 0; i < n; i++) {
+        mn[i % 2] = min(mn[i % 2], c[i]);
+        rem[i % 2]--;
+        sum += c[i];
+
+        if (i > 0) {
+            ll cur = sum + rem[0] * mn[0] + rem[1] * mn[1];
+            ans = min(ans, cur);
+        }
+    }
+
+    cout << ans;
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    
+    ll t;
+    cin >> t;
+
+    while (t--)
+    {
+        solve();
+        cout << '\n';
+    }
+
+    return 0;
+}

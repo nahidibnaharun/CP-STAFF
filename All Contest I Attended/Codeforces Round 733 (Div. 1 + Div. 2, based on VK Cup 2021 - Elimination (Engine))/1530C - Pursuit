@@ -1,0 +1,78 @@
+#include<bits/stdc++.h>
+#define kickStart ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define ll long long int
+using namespace std;
+void solve()
+{
+    int n;
+    cin >> n;
+    int a[n],b[n];
+    ll me=0,you=0;
+    for(int i=0; i<n; i++)
+    {
+        cin >> a[i];
+        me+=a[i];
+    }
+    for(int i=0; i<n; i++)
+    {
+        cin >> b[i];
+        you+=b[i];
+    }
+    sort(a,a+n);
+    sort(b,b+n);
+    int k=n/4;
+    for(int i=0; i<k; i++)
+    {
+        me-=a[i];
+        you-=b[i];
+    }
+    if(me>=you)
+    {
+        cout << 0 << '\n';
+        return;
+    }
+    int x=k,y=k-1,r=n,ans=0,zero=0;
+    while(true)
+    {
+        if(me>=you)
+            break;
+        me+=100;
+        zero++;
+        if(y>=0)
+        {
+            you+=b[y];
+            y--;
+        }
+        r++;
+        if(r/4>k)
+        {
+            k++;
+            me-=a[x];
+            x++;
+            if(zero<k)
+            {
+                you-=b[y+1];
+                y++;
+            }
+        }
+        ans++;
+    }
+    cout << ans << '\n';
+}
+int main()
+{
+    kickStart;
+    int t;
+    cin >> t;
+    while(t--)
+        solve();
+    return 0;
+}
+
+
+
+
+
+
+
+

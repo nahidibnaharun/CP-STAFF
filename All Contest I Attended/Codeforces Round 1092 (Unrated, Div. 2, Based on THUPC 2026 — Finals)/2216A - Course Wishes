@@ -1,0 +1,79 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+
+const int INF = 1e9+5;
+const int MOD = 1000000007;
+const int MAX = 10000;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+const int N = 55, M = 25, K = 1010;
+
+int n, k;
+int a[M], b[N], c[N];
+int p[M][N], q[M][N], lenp[M], lenq[M];
+int cnt, x[K], y[K];
+
+void solve() {
+    memset(a, 0, sizeof(a));
+    memset(b, 0, sizeof(b));
+    memset(lenp, 0, sizeof(lenp));
+
+    cin >> n >> k;
+
+    for (int i = 1; i <= k; i++) cin >> a[i];
+
+    for (int i = 1; i <= n; i++) {
+        cin >> b[i];
+        p[b[i]][++lenp[b[i]]] = i;
+    }
+
+    cnt = 0;
+
+    for (int i = k; i >= 1; i--) {
+        int len = lenp[i];
+        for (int j = 1; j <= len; j++) {
+            for (int l = i; l <= k; l++) {
+                x[++cnt] = p[i][j];
+            }
+        }
+    }
+
+    cout << cnt << '\n';
+    for (int i = 1; i <= cnt; i++) {
+        cout << x[i] << " ";
+    }
+    cout << '\n';
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    
+    ll t;
+    cin >> t;
+
+    while (t--)
+    {
+        solve();
+        cout << endl;
+    }
+
+    return 0;
+}

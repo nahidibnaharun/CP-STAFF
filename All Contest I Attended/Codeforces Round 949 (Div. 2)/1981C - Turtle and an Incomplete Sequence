@@ -1,0 +1,119 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9+5;
+const int MOD = 1000000007;
+const int MAX = 200100;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+int n, a[MAX];
+
+vector<int> path(int x, int y) {
+    vector<int> L, R;
+
+    while (__lg(x) > __lg(y)) {
+        L.push_back(x);
+        x >>= 1;
+    }
+    while (__lg(y) > __lg(x)) {
+        R.push_back(y);
+        y >>= 1;
+    }
+    while (x != y) {
+        L.push_back(x);
+        R.push_back(y);
+        x >>= 1;
+        y >>= 1;
+    }
+
+    L.push_back(x);
+    reverse(R.begin(), R.end());
+
+    for (int v : R) {
+        L.push_back(v);
+    }
+
+    return L;
+}
+
+void solve() {
+    cin >> n;
+
+    int l = -1, r = -1;
+    vector<int> vc;
+
+    for (int i = 1; i <= n; ++i) {
+        cin >> a[i];
+        if (a[i] != -1) {
+            if (l == -1) l = i;
+            r = i;
+            vc.push_back(i);
+        }
+    }
+
+    if (l == -1) {
+        for (int i = 1; i <= n; ++i) {
+            cout << ((i & 1) + 1) << (i == n ? '\n' : ' ');
+        }
+        return;
+    }
+
+    for (int i = l - 1; i >= 1; --i) {
+        a[i] = (((l - i) & 1) ? a[l] * 2 : a[l]);
+    }
+
+    for (int i = r + 1; i <= n; ++i) {
+        a[i] = (((i - r) & 1) ? a[r] * 2 : a[r]);
+    }
+
+    for (int _ = 1; _ < (int)vc.size(); ++_) {
+        int L = vc[_ - 1], R = vc[_];
+        vector<int> p = path(a[L], a[R]);
+
+        if (((int)p.size() & 1) != ((R - L + 1) & 1) || (R - L + 1) < (int)p.size()) {
+            cout << -1 << '\n';
+            return;
+        }
+
+        for (int i = 0; i < (int)p.size(); ++i) {
+            a[L + i] = p[i];
+        }
+
+        for (int i = L + (int)p.size(), o = 1; i <= R; ++i, o ^= 1) {
+            a[i] = (o ? a[i - 1] * 2 : a[i - 1] / 2);
+        }
+    }
+
+    for (int i = 1; i <= n; ++i) {
+        cout << a[i] << (i == n ? '\n' : ' ');
+    }
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    
+    ll t;
+    cin >> t;
+
+    while(t--){
+        solve();
+    }
+
+    return 0;
+}

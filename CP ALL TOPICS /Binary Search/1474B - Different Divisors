@@ -1,0 +1,64 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9;
+const int SIZE = 1e5;
+const int MOD = 1e9 + 7;
+/*
+//	    _   __  ___  __   __ _______ _______
+//	   / | / / / _ \ \ \__\ \\__  __\\  __  \
+//	  /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//	 / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//	/_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+bool prime(int x)
+{
+    if (x < 2)
+        return false;
+    for (int i = 2; i * i <= x; i++)
+    {
+        if (x % i == 0)
+            return false;
+    }
+    return true;
+}
+void solve()
+{
+    int n;
+    cin >> n;
+    int x = n + 1;
+    while (!prime(x))
+    {
+        x++;
+    }
+    int a = x;
+    x += n;
+    while (!prime(x))
+    {
+        x++;
+    }
+    cout << x * a;
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll Test_Case;
+    cin >> Test_Case;
+    while (Test_Case--)
+    {
+        solve();
+        cout << endl;
+    }
+
+    return 0;
+}

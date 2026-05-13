@@ -1,0 +1,86 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+
+#define mod 1000000007
+#define fastio ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+
+ll x,n;
+
+ll bigmod(ll a,ll b){
+
+    if(b==0) return 1;
+
+    ll ret=bigmod(a,b/2);
+
+    ret*=ret;
+    ret%=mod;
+
+    if(b&1){
+
+        ret*=a;
+        ret%=mod;
+    }
+
+    return ret;
+}
+
+void solve(){
+
+    cin >> x >> n;
+
+    ll ans=1;
+
+    for(ll i=2;i*i<=x;i++){
+
+        if(x%i==0){
+
+            ll power=0;
+            ll temp=n;
+
+            while(temp){
+
+                power+=(temp/i);
+                temp/=i;
+            }
+
+            ans*=bigmod(i,power);
+            ans%=mod;
+
+            while(x%i==0){
+                x/=i;
+            }
+        }
+    }
+
+    if(x>1){
+
+        ll power=0;
+        ll temp=n;
+
+        while(temp){
+
+            power+=(temp/x);
+            temp/=x;
+        }
+
+        ans*=bigmod(x,power);
+        ans%=mod;
+    }
+
+    cout << ans << '\n';
+}
+
+int main(){
+
+    fastio;
+
+    int T=1;
+
+    while(T--){
+        solve();
+    }
+
+    return 0;
+}

@@ -1,0 +1,117 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+
+const int INF = 1e9 + 5;
+const int MOD = 1000000007;
+const int MAX = 10000;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+void solve() {
+    ll n;
+    cin >> n;
+
+    vector<ll> a(n);
+
+    for(ll i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+
+    map<ll, ll> cnt1, cnt2;
+
+    ll x = a[0];
+
+    vector<ll> b;
+
+    for(ll i = 1; i < n; i++) {
+        b.push_back(a[i]);
+    }
+
+    set<ll> s;
+
+    ll c = 0;
+
+    while(!s.count(x)) {
+
+        cnt1[x]++;
+        cnt2[x] += c;
+
+        s.insert(x);
+
+        if(x & 1) {
+            x += 1;
+        }
+        else {
+            x >>= 1;
+        }
+
+        c++;
+    }
+
+    for(ll x : b) {
+
+        set<ll> s;
+
+        ll c = 0;
+
+        while(!s.count(x)) {
+
+            if(cnt1.count(x)) {
+                cnt1[x]++;
+                cnt2[x] += c;
+            }
+
+            s.insert(x);
+
+            if(x & 1) {
+                x += 1;
+            }
+            else {
+                x >>= 1;
+            }
+
+            c++;
+        }
+    }
+
+    ll ans = 1e18;
+
+    for(auto [k, v] : cnt1) {
+
+        if(v == n) {
+            ans = min(ans, cnt2[k]);
+        }
+    }
+
+    cout << ans;
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll t;
+    cin >> t;
+
+    while(t--) {
+        solve();
+        cout << endl;
+    }
+
+    return 0;
+}

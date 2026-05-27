@@ -1,0 +1,73 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+
+const int INF = 1e9 + 5;
+const int MOD = 1000000007;
+const int MAX = 10000;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+int ask(int x) {
+    cout << "- " << x << endl;
+
+    if (x == -1) {
+        exit(0);
+    }
+
+    cin >> x;
+
+    return x;
+}
+
+void solve() {
+    int cnt;
+    cin >> cnt;
+
+    int n = 0;
+    int was = 0;
+
+    while (cnt > 0) {
+        n += 1;
+
+        int nw = ask(1 + was);
+
+        int back = nw - cnt + 1;
+
+        n += (1 << back) - 1;
+
+        was = (1 << back) - 1;
+
+        cnt = nw - back;
+    }
+
+    cout << "! " << n << endl;
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll t;
+    cin >> t;
+
+    while (t--) {
+        solve();
+    }
+
+    return 0;
+}

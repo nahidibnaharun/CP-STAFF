@@ -1,0 +1,101 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9 + 5;
+const int MOD = 1000000007;
+const int MAX = 10000;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+const int N = 1007;
+
+int cnt[N];
+int a[20][20];
+
+void solve() {
+    int n;
+    cin >> n;
+
+    for (int i = 0; i < n * n; i++) {
+        int x;
+        cin >> x;
+        cnt[x]++;
+    }
+
+    vector<pair<int, pair<int, int>>> cells;
+
+    for (int i = 0; i < (n + 1) / 2; i++) {
+        for (int j = 0; j < (n + 1) / 2; j++) {
+
+            if (i != n - i - 1 && j != n - j - 1) {
+                cells.push_back({4, {i, j}});
+            }
+            else if ((i != n - i - 1) ^ (j != n - j - 1)) {
+                cells.push_back({2, {i, j}});
+            }
+            else {
+                cells.push_back({1, {i, j}});
+            }
+        }
+    }
+
+    for (int cur : {4, 2, 1}) {
+        int lst = 1;
+
+        for (auto it : cells) {
+            if (it.first != cur) continue;
+
+            int i = it.second.first;
+            int j = it.second.second;
+
+            while (lst < N && cnt[lst] < cur) {
+                lst++;
+            }
+
+            if (lst == N) {
+                cout << "NO";
+                return;
+            }
+
+            a[i][j] = lst;
+            a[n - i - 1][j] = lst;
+            a[i][n - j - 1] = lst;
+            a[n - i - 1][n - j - 1] = lst;
+
+            cnt[lst] -= cur;
+        }
+    }
+
+    cout << "YES\n";
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            cout << a[i][j] << " ";
+        }
+        cout << "\n";
+    }
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    solve();
+    cout << endl;
+
+    return 0;
+}

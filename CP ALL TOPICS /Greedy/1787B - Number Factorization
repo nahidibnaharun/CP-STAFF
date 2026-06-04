@@ -1,0 +1,78 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9+5;
+const int MOD = 1000000007;
+const int MAX = 10000;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+void solve() {
+    ll n;
+    cin >> n;
+
+    vector<pair<ll, ll>> fac;
+
+    for (ll i = 2; i * i <= n; i++) {
+        if (n % i == 0) {
+            ll cnt = 0;
+            while (n % i == 0) {
+                cnt++;
+                n /= i;
+            }
+            fac.push_back({cnt, i});
+        }
+    }
+
+    if (n > 1) fac.push_back({1, n});
+
+    sort(fac.begin(), fac.end());
+
+    ll m = fac.size();
+    vector<ll> d(m + 2, 1);
+
+    for (ll i = m - 1; i >= 0; i--) {
+        d[i] = d[i + 1] * fac[i].second;
+    }
+
+    ll ans = 0;
+    ll prev = 0;
+
+    for (ll i = 0; i < m; i++) {
+        if (fac[i].first != prev) {
+            ans += d[i] * (fac[i].first - prev);
+            prev = fac[i].first;
+        }
+    }
+
+    cout << ans;
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll t;
+    cin >> t;
+
+    while (t--) {
+        solve();
+        cout << '\n';
+    }
+
+    return 0;
+}

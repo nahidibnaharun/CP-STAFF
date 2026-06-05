@@ -1,0 +1,59 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9 + 5;
+const int MOD = 1000000007;
+const int MAX = 100005;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+ll n, k;
+ll a[MAX];
+
+void solve() {
+    cin >> n >> k;
+
+    for (ll i = 1; i <= n; i++) {
+        ll x;
+        cin >> x;
+        a[i % k] = max(a[i % k], x);
+    }
+
+    ll s = 0;
+    for (ll i = 0; i < k; i++) {
+        s += a[i];
+    }
+
+    cout << s;
+
+    fill(a, a + k, 0);
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll t;
+    cin >> t;
+
+    while (t--) {
+        solve();
+        cout << '\n';
+    }
+
+    return 0;
+}

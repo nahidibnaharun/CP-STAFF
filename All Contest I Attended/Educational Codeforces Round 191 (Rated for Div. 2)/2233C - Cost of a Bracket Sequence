@@ -1,0 +1,95 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9+5;
+const int MOD = 1000000007;
+const int MAX = 10000;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+void solve() {
+    ll n, k;
+    cin >> n >> k;
+
+    string s;
+    cin >> s;
+
+    ll val_ans = MOD;
+    string ans(n, '0');
+
+    for (ll i = 0; i <= n; i++) {
+        string t = s;
+        string cur_ans(n, '0');
+        ll cur_k = k;
+
+        for (ll j = 0; j < i; j++) {
+            if (t[j] == '(' && cur_k > 0) {
+                cur_ans[j] = '1';
+                t[j] = ')';
+                cur_k--;
+            }
+        }
+
+        for (ll j = n - 1; j > i; j--) {
+            if (t[j] == ')' && cur_k > 0) {
+                cur_ans[j] = '1';
+                t[j] = '(';
+                cur_k--;
+            }
+        }
+
+        ll val_cur = 0;
+        ll bal = 0;
+
+        for (ll j = 0; j < n; j++) {
+            if (bal > 0 && t[j] == ')') {
+                val_cur += 2;
+                bal--;
+            }
+            else if (t[j] == '(') {
+                bal++;
+            }
+        }
+
+        if (val_ans > val_cur) {
+            val_ans = val_cur;
+            ans = cur_ans;
+        }
+    }
+
+    cout << ans;
+}
+
+
+
+
+
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll t;
+    cin >> t;
+
+    while(t--) {
+        solve();
+        cout << endl;
+    }
+
+    return 0;
+}

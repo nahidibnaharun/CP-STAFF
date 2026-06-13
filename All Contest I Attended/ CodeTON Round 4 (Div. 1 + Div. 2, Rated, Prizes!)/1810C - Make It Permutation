@@ -1,0 +1,73 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9 + 5;
+const int MOD = 1000000007;
+const int MAX = 100005;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+int p[MAX];
+
+void solve() {
+    int n, a, b;
+    cin >> n >> a >> b;
+
+    set<int> st;
+    ll sol = 0, ans = 2e18;
+
+    for (int i = 1; i <= n; i++) {
+        int x;
+        cin >> x;
+
+        if (st.find(x) == st.end()) {
+            st.insert(x);
+        }
+        else {
+            sol += a;
+        }
+    }
+
+    int c = 0;
+
+    for (auto x : st) {
+        p[++c] = x;
+    }
+
+    for (int i = 1; i <= c; i++) {
+        ans = min(ans, 1LL * (p[i] - i) * b + 1LL * (c - i) * a);
+    }
+
+    ans = min(ans, 1LL * c * a + b);
+
+    cout << ans + sol;
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll t;
+    cin >> t;
+
+    while (t--) {
+        solve();
+        cout << endl;
+    }
+
+    return 0;
+}

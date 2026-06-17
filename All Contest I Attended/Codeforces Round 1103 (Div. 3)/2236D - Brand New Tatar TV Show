@@ -1,0 +1,88 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9+5;
+const int MOD = 1000000007;
+const int MAX = 10000;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+void solve() {
+    ll n, k;
+    cin >> n >> k;
+
+    vector<ll> A(n);
+
+    for(auto &x : A) {
+        cin >> x;
+    }
+
+    sort(A.begin(), A.end());
+
+    vector<pair<ll,ll>> a;
+    a.push_back({A[0], 1});
+
+    for(ll i = 1; i < n; i++) {
+        if(A[i] == A[i - 1]) {
+            a.back().second++;
+        }
+        else {
+            a.push_back({A[i], 1});
+        }
+    }
+
+    while(!a.empty()) {
+        n = a.size();
+
+        if(a[n - 1].second % 2 == 0) {
+            cout << "YES";
+            return;
+        }
+
+        if(n == 1) {
+            cout << "NO";
+            return;
+        }
+
+        if(a[n - 1].first - a[n - 2].first <= k) {
+            cout << "YES";
+            return;
+        }
+
+        a.pop_back();
+    }
+}
+
+
+
+
+
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll t;
+    cin >> t;
+
+    while(t--){
+        solve();
+        cout << endl;
+    }
+
+    return 0;
+}

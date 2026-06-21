@@ -1,58 +1,35 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
+#define ll     long long
 using namespace std;
-using ll = long long;
-using ull = unsigned long long;
-using ld = long double;
-using ui = unsigned int;
-const int INF = 1e9+5;
-const int MOD = 1000000007;
-const int MAX = 10000;
 
-/*
-//      _   __  ___  __   __ _______ _______
-//     / | / / / _ \ \ \__\ \\__  __\\  __  \
-//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
-//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
-//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
-//
-// ID: mdnahidibnaharun
-// LANG: C++
-// TASK: practice
-*/
+#define sz 200005
 
-void solve() {
-    ll n;
-    cin >> n;
+ll n,a[sz];
 
-    vector<ll> a(2 * n);
-
-    for (ll i = 0; i < 2 * n; i++) {
-        cin >> a[i];
+void Solve(int t)
+{
+    ll i, j, fg = 0, x, y, ans = 1e10;
+    cin>>n;
+    for(i=1;i<=2*n;i++)
+    {
+        cin>>a[i];
     }
-
-    sort(a.begin(), a.end());
-
-    ll ans = 1e10;
-
-    for (ll i = 0; i < n; i++) {
-        ans = min(ans, abs(a[i] - a[i + n]));
+    sort(a+1,a+n+n+1);
+    for(i=1;i<=2*n;i+=2)
+    {
+        x = (i+1)/2;
+        y = (2*n-i+1)/2;
+        ans = min(ans,abs(a[x]-a[x+y]));
     }
-
-    cout << ans;
+    cout<<ans<<endl;
 }
-
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-
-    ll t;
-    cin >> t;
-
-    while (t--) {
-        solve();
-        cout << '\n';
+    int t,T=1;
+    scanf("%d",&T);
+    for(t=1;t<=T;t++)
+    {
+        Solve(t);
     }
-
     return 0;
 }

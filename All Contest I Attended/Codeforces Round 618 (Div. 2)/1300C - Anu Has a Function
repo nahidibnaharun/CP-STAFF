@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long int
+
+const int sz=200005;
+ll a[sz];
+
+int main()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+
+    int T,t;
+    ll n,i,x,y,ans;
+
+    cin>>T;
+
+    for(t=1; t<=T; t++)
+    {
+        cin>>n;
+
+        for(i=1; i<=2*n; i++)
+            cin>>a[i];
+
+        sort(a+1,a+2*n+1);
+
+        ans=1e10;
+
+        for(i=1; i<=2*n; i+=2)
+        {
+            x=(i+1)/2;
+            y=(2*n-i+1)/2;
+
+            ans=min(ans,abs(a[x]-a[x+y]));
+        }
+
+        cout<<ans<<'\n';
+    }
+
+    return 0;
+}

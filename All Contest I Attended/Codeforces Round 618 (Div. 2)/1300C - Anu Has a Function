@@ -1,41 +1,64 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define ll long long int
-
-const int sz=200005;
-ll a[sz];
+#define lli long long int
+#define flash_all ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
 
 int main()
 {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
-    cout.tie(0);
+    flash_all;
 
-    int T,t;
-    ll n,i,x,y,ans;
+    int n,i,idx=-1;
+    lli ans=-1,val;
 
-    cin>>T;
+    cin>>n;
 
-    for(t=1; t<=T; t++)
+    lli a[n],pre[n],suf[n];
+
+    for(i=0; i<n; i++)
+        cin>>a[i];
+
+    for(i=0; i<n; i++)
     {
-        cin>>n;
+        pre[i]=~a[i];
 
-        for(i=1; i<=2*n; i++)
-            cin>>a[i];
+        if(i)
+            pre[i]&=pre[i-1];
+    }
 
-        sort(a+1,a+2*n+1);
+    for(i=n-1; i>=0; i--)
+    {
+        suf[i]=~a[i];
 
-        ans=1e10;
+        if(i<n-1)
+            suf[i]&=suf[i+1];
+    }
 
-        for(i=1; i<=2*n; i+=2)
+    for(i=0; i<n; i++)
+    {
+        if(i==0)
+            val=suf[i+1]&a[i];
+
+        else if(i==n-1)
+            val=pre[i-1]&a[i];
+
+        else
+            val=pre[i-1]&suf[i+1]&a[i];
+
+        if(val>ans)
         {
-            x=(i+1)/2;
-            y=(2*n-i+1)/2;
-
-            ans=min(ans,abs(a[x]-a[x+y]));
+            ans=val;
+            idx=i;
         }
+    }
 
-        cout<<ans<<'\n';
+    cout<<a[idx];
+
+    for(i=0; i<n; i++)
+    {
+        if(i==idx)
+            continue;
+
+        cout<<' '<<a[i];
     }
 
     return 0;

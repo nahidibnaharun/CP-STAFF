@@ -20,23 +20,37 @@ const int MAX = 10000;
 // TASK: practice
 */
 
-class Solution {
-public:
-    int numberOfSubstrings(string s) {
-        vector<int> cnt(3);
-        ll ans = 0;
-        int l = 0;
+ll pw(ll x) {
+    return 1LL << x;
+}
 
-        for (int r = 0; r < s.size(); r++) {
-            cnt[s[r] - 'a']++;
+void solve() {
+    ll n, m;
+    cin >> n >> m;
 
-            while (cnt[0] && cnt[1] && cnt[2]) {
-                ans += s.size() - r;
-                cnt[s[l] - 'a']--;
-                l++;
-            }
-        }
+    ll ans = 0;
 
-        return ans;
+    for (ll i = 0; i <= 30; i++) {
+        ll num = min(n / pw(i), m);
+        ans += num;
+        n -= num * pw(i);
     }
-};
+
+    cout << ans;
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll t;
+    cin >> t;
+
+    while (t--) {
+        solve();
+        cout << endl;
+    }
+
+    return 0;
+}

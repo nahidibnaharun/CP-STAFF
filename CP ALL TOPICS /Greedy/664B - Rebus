@@ -1,0 +1,83 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9 + 5;
+const int MOD = 1000000007;
+const int MAX = 10000;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+void solve() {
+    char s[100];
+
+    ll k = 0, n, pos = 1, neg = 0;
+
+    while (true) {
+        char c;
+
+        cin >> c;
+        cin >> c;
+
+        if (c == '=') break;
+        if (c == '+') pos++;
+        if (c == '-') neg++;
+
+        s[k++] = c;
+    }
+
+    cin >> n;
+
+    if (pos - n * neg > n || n * pos - neg < n) {
+        cout << "Impossible\n";
+        return;
+    }
+
+    cout << "Possible\n";
+
+    ll sum = 0;
+
+    for (ll i = 0; i < k; i++) {
+        ll sign = 1;
+
+        if (i > 0 && s[i - 1] == '-') sign = -1;
+
+        if (sign == 1) pos--;
+        else neg--;
+
+        for (ll x = 1; x <= n; x++) {
+            if (sum + x * sign + pos - n * neg <= n &&
+                sum + x * sign + n * pos - neg >= n) {
+
+                cout << x << " " << s[i] << " ";
+
+                sum += x * sign;
+                break;
+            }
+        }
+    }
+
+    cout << abs(n - sum) << " = " << n << '\n';
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    solve();
+
+    return 0;
+}

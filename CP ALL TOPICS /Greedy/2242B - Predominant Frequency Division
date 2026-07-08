@@ -1,0 +1,66 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9 + 5;
+const int MOD = 1000000007;
+const int MAX = 10000;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+void solve() {
+    int n;
+    cin >> n;
+
+    vector<int> a(n);
+    for (int i = 0; i < n; i++) cin >> a[i];
+
+    vector<int> pref1(n + 1), pref2(n + 1);
+
+    for (int i = 0; i < n; i++) {
+        pref1[i + 1] = pref1[i] + (a[i] == 1 ? 1 : -1);
+        pref2[i + 1] = pref2[i] + (a[i] == 3 ? -1 : 1);
+    }
+
+    int mn = INF;
+
+    for (int i = 1; i < n; i++) {
+        if (pref2[i] - mn >= 0) {
+            cout << "YES\n";
+            return;
+        }
+
+        if (pref1[i] >= 0) {
+            mn = min(mn, pref2[i]);
+        }
+    }
+
+    cout << "NO\n";
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin >> t;
+
+    while (t--) {
+        solve();
+    }
+
+    return 0;
+}

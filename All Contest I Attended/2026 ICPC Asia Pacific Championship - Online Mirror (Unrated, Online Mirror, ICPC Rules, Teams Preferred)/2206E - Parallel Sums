@@ -1,0 +1,160 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9 + 5;
+const int MOD = 1000000007;
+const int MAX = 10000;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+ll M;
+vector<ll> A(200000), S(200000);
+vector<bool> alive(200000);
+vector<priority_queue<pair<ll, ll>>> Q(200000);
+
+ll sum = 0;
+ll L = 0;
+ll R = 0;
+
+void add(ll i) {
+    if (!alive[i]) {
+        ll j = i % M;
+
+        if (!Q[j].empty()) {
+            sum -= Q[j].top().first;
+        }
+
+        Q[j].push({A[i], i});
+        alive[i] = true;
+
+        sum += Q[j].top().first;
+    }
+}
+
+void del(ll i) {
+    ll j = i % M;
+
+    if (Q[j].top().second == i) {
+        sum -= A[i];
+
+        while (!Q[j].empty() &&
+               (Q[j].top().second < L || Q[j].top().second >= R)) {
+            auto [v, id] = Q[j].top();
+            Q[j].pop();
+            alive[id] = false;
+        }
+
+        if (!Q[j].empty()) {
+            sum += Q[j].top().first;
+        }
+    }
+}
+
+ll calc() {
+    ll len = R - L;
+
+    if (len < M) {
+        return -(ll)1e18;
+    }
+
+    ll x = sum + S[0];
+
+    if (x >= 0) {
+        return (x + M - 1) / M;
+    }
+
+    return x / M;
+}
+
+void solve() {
+    ll n;
+    cin >> n >> M;
+
+    for (int i = 0; i < n - M + 1; i++) {
+        cin >> S[i];
+    }
+
+    for (int i = M; i < n; i++) {
+        A[i] = S[i + 1 - M] - S[i - M] + A[i - M];
+    }
+
+    ll q;
+    cin >> q;
+
+    vector<pair<ll, ll>> query(q);
+
+    for (int i = 0; i < q; i++) {
+        cin >> query[i].first >> query[i].second;
+        query[i].first--;
+    }
+
+    ll blk = 640;
+    vector<int> ord(q);
+
+    iota(ord.begin(), ord.end(), 0);
+
+    sort(ord.begin(), ord.end(), [&](int i, int j) {
+        auto a = query[i];
+        auto b = query[j];
+
+        pair<ll, ll> x = {a.first / blk, a.second ^ (-(a.first / blk & 1))};
+        pair<ll, ll> y = {b.first / blk, b.second ^ (-(b.first / blk & 1))};
+
+        return x < y;
+    });
+
+    vector<ll> ans(q);
+
+    for (int id : ord) {
+        auto [l, r] = query[id];
+
+        while (L > l) {
+            add(--L);
+        }
+
+        while (R < r) {
+            add(R++);
+        }
+
+        while (L < l) {
+            del(L++);
+        }
+
+        while (R > r) {
+            del(--R);
+        }
+
+        ans[id] = calc();
+    }
+
+    for (ll x : ans) {
+        if (x < -(ll)1e17) {
+            cout << "unbounded\n";
+        } else {
+            cout << x << '\n';
+        }
+    }
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    solve();
+
+    return 0;
+}

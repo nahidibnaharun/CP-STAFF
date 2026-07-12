@@ -1,0 +1,100 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9 + 5;
+const int MOD = 1000000007;
+const int MAX = 10000;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+void solve() {
+    int n, m, k;
+    cin >> n >> m >> k;
+
+    vector<int> a(n), b(m);
+
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+
+    for (int i = 0; i < m; i++) {
+        cin >> b[i];
+    }
+
+    vector<int> suma(n), sumb(m);
+
+    suma[0] = a[0];
+    sumb[0] = b[0];
+
+    for (int i = 1; i < n; i++) {
+        if (a[i] == 1) {
+            suma[i] = suma[i - 1] + 1;
+        }
+    }
+
+    for (int i = 1; i < m; i++) {
+        if (b[i] == 1) {
+            sumb[i] = sumb[i - 1] + 1;
+        }
+    }
+
+    vector<int> aa(n + 2), bb(m + 2);
+
+    for (int i = 0; i < n; i++) {
+        if (suma[i] == 0) {
+            continue;
+        }
+
+        aa[1]++;
+        aa[suma[i] + 1]--;
+    }
+
+    for (int i = 0; i < m; i++) {
+        if (sumb[i] == 0) {
+            continue;
+        }
+
+        bb[1]++;
+        bb[sumb[i] + 1]--;
+    }
+
+    for (int i = 1; i <= n; i++) {
+        aa[i] += aa[i - 1];
+    }
+
+    for (int i = 1; i <= m; i++) {
+        bb[i] += bb[i - 1];
+    }
+
+    ll ans = 0;
+
+    for (int i = 1; i <= n; i++) {
+        if (k % i == 0 && k / i <= m) {
+            ans += 1LL * aa[i] * bb[k / i];
+        }
+    }
+
+    cout << ans << "\n";
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    solve();
+
+    return 0;
+}

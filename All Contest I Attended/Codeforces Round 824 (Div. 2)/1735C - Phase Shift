@@ -1,0 +1,88 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9 + 5;
+const int MOD = 1000000007;
+const int MAX = 10000;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+void solve() {
+    int n;
+    cin >> n;
+
+    string t;
+    cin >> t;
+
+    vector<int> edge(26, -1);
+    vector<int> redge(26, -1);
+
+    auto get_path_end = [&](int c) {
+        int len = 0;
+        int cur = c;
+
+        while (edge[cur] != -1) {
+            len++;
+            cur = edge[cur];
+        }
+
+        return make_pair(cur, len);
+    };
+
+    vector<int> vec;
+
+    for (char c : t) {
+        vec.push_back(c - 'a');
+    }
+
+    for (int i = 0; i < n; i++) {
+        if (edge[vec[i]] == -1) {
+            for (int c = 0; c < 26; c++) {
+                if (redge[c] == -1) {
+                    auto [clast, len] = get_path_end(c);
+
+                    if (clast != vec[i] || len == 25) {
+                        edge[vec[i]] = c;
+                        redge[c] = vec[i];
+                        break;
+                    }
+                }
+            }
+        }
+
+        vec[i] = edge[vec[i]];
+    }
+
+    for (int i = 0; i < n; i++) {
+        t[i] = vec[i] + 'a';
+    }
+
+    cout << t << "\n";
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin >> t;
+
+    while (t--) {
+        solve();
+    }
+
+    return 0;
+}

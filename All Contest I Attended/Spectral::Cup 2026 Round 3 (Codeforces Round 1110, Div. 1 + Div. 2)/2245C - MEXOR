@@ -1,0 +1,85 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9 + 5;
+const int MOD = 1000000007;
+const int MAX = 100000 + 10;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+void solve() {
+    ll n, k;
+    cin >> n >> k;
+
+    if (n == 1) {
+        if (k == 1) {
+            cout << "YES\n";
+            cout << 0 << '\n';
+        } else {
+            cout << "NO\n";
+        }
+        return;
+    }
+
+    k ^= n;
+
+    if (64 - __builtin_clzll(k) > 64 - __builtin_clzll(n - 1)) {
+        cout << "NO\n";
+        return;
+    }
+
+    vector<ll> s;
+
+    if (0 < k && k <= n - 1) {
+        s.push_back(k);
+    } else if (k) {
+        s.push_back(n - 1);
+        s.push_back((n - 1) ^ k);
+    }
+
+    s.push_back(0);
+
+    vector<ll> a = s;
+    set<ll> st(s.begin(), s.end());
+
+    for (ll i = 0; i < n; i++) {
+        if (!st.count(i)) {
+            a.push_back(i);
+        }
+    }
+
+    cout << "YES\n";
+    reverse(a.begin(), a.end());
+
+    for (ll x : a) {
+        cout << x << ' ';
+    }
+    cout << '\n';
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int tc;
+    cin >> tc;
+
+    while (tc--) {
+        solve();
+    }
+
+    return 0;
+}

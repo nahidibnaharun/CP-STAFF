@@ -1,0 +1,65 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9 + 5;
+const int MOD = 1000000007;
+const int MAX = 100000 + 10;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+void solve() {
+    ll n;
+    cin >> n;
+
+    vector<ll> a(n), b(n);
+
+    for (ll &x : a) cin >> x;
+    for (ll &x : b) cin >> x;
+
+    if (a == b) {
+        cout << 0 << '\n';
+        return;
+    }
+
+    ll sum = 0;
+
+    for (ll i = 0; i < n; i++) {
+        if (a[i] != b[i]) {
+            sum += a[i];
+        }
+    }
+
+    if (accumulate(a.begin(), a.end(), 0LL) == 0 || accumulate(b.begin(), b.end(), 0LL) == n) {
+        cout << -1 << '\n';
+        return;
+    }
+
+    cout << (sum % 2 ? 1 : 2) << '\n';
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int tc;
+    cin >> tc;
+
+    while (tc--) {
+        solve();
+    }
+
+    return 0;
+}

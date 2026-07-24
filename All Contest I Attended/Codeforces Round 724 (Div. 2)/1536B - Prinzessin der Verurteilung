@@ -1,0 +1,90 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ui = unsigned int;
+const int INF = 1e9;
+const int MOD = 1000000007;
+/*
+//
+
+         _   _  __    _   _  _____   _____
+//     / | / / / _ \ \ \__\ \\__  _\\  _   \ 
+//    /  |/ / / /_\ \ \  __  \  \ \  \ \ \  \ 
+//   / /|  / / ____  \ \ \  \ _\_\ \__\ \/  /
+//  /_/ |_/ /_/     \__\\_\  \_\\______\\___/
+ 
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+void solve(){
+    int n;
+    string s;
+    cin >> n >> s;
+
+    vector<int> hash(26,0);
+
+    for( auto x : s ) hash[ x - 'a' ]++;
+
+    for(int i = 0 ; i < 26 ; i++ ){
+        if( hash[i] == 0 ){
+            cout << (char)( i + 'a');
+            return;
+        }
+    }
+
+    unordered_set<string>substring2;
+    for(int i=0 ;i<n-1;i++){
+        substring2.insert(s.substr(i,2));
+    }
+
+    for(char c1='a' ; c1<= 'z'; c1++){
+        for(char c2 = 'a' ; c2 <= 'z' ; c2++){
+            string temp="";
+            temp += c1;
+            temp += c2;
+            if(substring2.find(temp) == substring2.end()){
+                cout << temp;
+                return;
+            }
+        }
+    }
+
+    unordered_set<string> substring3;
+
+    for(int i=0 ;i<n-2 ;i++){
+        substring3.insert((s.substr( i,3)));
+    }
+
+    for(char c1 = 'a' ; c1 <= 'z' ; c1++){
+        for( char c2 = 'a' ; c2 <= 'z' ; c2++){
+            for( char c3 = 'a' ; c3 <= 'z' ; c3++){
+                string temp ="";
+                temp +=c1 ; temp+= c2; temp +=c3;
+                if(substring3.find(temp) ==substring3.end()){
+                    cout<<temp;
+                    return;
+                }
+            }
+        }
+    }
+
+
+}
+
+
+int main(){
+ios_base::sync_with_stdio(false);
+cin.tie(NULL);
+    int Test_Case;
+    cin >> Test_Case;
+    
+    while(Test_Case--){
+        solve();
+        cout<<endl;
+    }
+return 0;
+}
+    

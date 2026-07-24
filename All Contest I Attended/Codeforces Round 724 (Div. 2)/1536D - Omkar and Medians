@@ -1,0 +1,83 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9 + 5;
+const int MOD = 1000000007;
+const int MAX = 200000 + 10;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+int a[MAX];
+
+void solve() {
+    int n;
+    cin >> n;
+
+    for (int i = 1; i <= n; i++) {
+        cin >> a[i];
+    }
+
+    set<int> st;
+    st.insert(a[1]);
+
+    bool ok = true;
+
+    for (int i = 2; i <= n; i++) {
+        int prev = a[i - 1];
+
+        if (prev != a[i]) {
+            if (prev < a[i]) {
+                auto it = st.upper_bound(prev);
+
+                if (it != st.end() && *it < a[i]) {
+                    ok = false;
+                    break;
+                }
+            }
+
+            if (prev > a[i]) {
+                auto it = st.lower_bound(prev);
+
+                if (it != st.begin()) {
+                    --it;
+
+                    if (*it > a[i]) {
+                        ok = false;
+                        break;
+                    }
+                }
+            }
+        }
+
+        st.insert(a[i]);
+    }
+
+    cout << (ok ? "YES" : "NO") << '\n';
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int tc;
+    cin >> tc;
+
+    while (tc--) {
+        solve();
+    }
+
+    return 0;
+}

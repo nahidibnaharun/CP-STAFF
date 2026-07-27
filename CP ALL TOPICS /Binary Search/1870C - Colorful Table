@@ -1,0 +1,89 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9+5;
+const int MOD = 1000000007;
+const int MAX = 10000;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+ll GCD(ll x,ll y){
+    if(y==0) return x;
+    return GCD(y,x%y);
+}
+
+ll LCM(ll x,ll y){
+    return (x*y)/GCD(x,y);
+}
+
+bool cmp(pair<ll,ll>&a,pair<ll,ll>&b){
+    if(a.first>b.first) return true;
+    if(a.first==b.first) return a.second<b.second;
+    return false;
+}
+
+void print_binary(ll n){
+    for(int i=10;i>=0;i--)
+        cout<<((n>>i)&1);
+    cout<<'\n';
+}
+
+void solve() {
+
+    ll n,k;
+    cin>>n>>k;
+
+    vector<ll> v(n+1);
+    vector<ll> p(k+2,INF);
+    vector<ll> s(k+2,0);
+
+    map<ll,ll> mp;
+
+    for(int i=1;i<=n;i++){
+        cin>>v[i];
+        mp[v[i]]=1;
+        p[v[i]]=min(p[v[i]],(ll)i);
+        s[v[i]]=max(s[v[i]],(ll)i);
+    }
+
+    for(int i=k;i>=1;i--)
+        p[i]=min(p[i],p[i+1]);
+
+    for(int i=k;i>=1;i--)
+        s[i]=max(s[i],s[i+1]);
+
+    for(int i=1;i<=k;i++){
+        if(!mp[i])
+            cout<<0<<" ";
+        else
+            cout<<2*(s[i]-p[i]+1)<<" ";
+    }
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll t;
+    cin>>t;
+
+    while(t--){
+        solve();
+        cout<<'\n';
+    }
+
+    return 0;
+}

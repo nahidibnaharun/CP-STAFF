@@ -1,12 +1,10 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-
 using ll = long long;
 using ull = unsigned long long;
 using ld = long double;
 using ui = unsigned int;
-
 const int INF = 1e9;
 const int MOD = 1000000007;
 const int MAX = 10000;

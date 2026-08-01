@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+int ang;
+
+bool read(){
+    if(!(cin>>ang))
+        return false;
+    return true;
+}
+
+void solve(){
+
+    int g=__gcd(ang,180);
+
+    int k=ang/g;
+    int n=180/g;
+
+    if(k+1==n){
+        k*=2;
+        n*=2;
+    }
+
+    cout<<n;
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin>>t;
+
+    while(t--){
+        read();
+        solve();
+        cout<<'\n';
+    }
+
+    return 0;
+}

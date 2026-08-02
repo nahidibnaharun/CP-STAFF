@@ -1,0 +1,68 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9+5;
+const int MOD = 1000000007;
+const int MAX = 10000;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+void solve(){
+
+    ll n,m;
+    cin>>n>>m;
+
+    vector<ll>a(n),b(m);
+
+    for(auto &x:a)
+        cin>>x;
+
+    for(auto &x:b)
+        cin>>x;
+
+    sort(a.begin(),a.end());
+    sort(b.begin(),b.end());
+
+    if(n<2*m){
+        cout<<"NO\n";
+        return;
+    }
+
+    ll i=0;
+
+    while(i<m && a[i]<b[i] && b[i]<a[n-m+i])
+        i++;
+
+    if(i<m)
+        cout<<"NO\n";
+    else
+        cout<<"YES\n";
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll t;
+    cin>>t;
+
+    while(t--){
+        solve();
+    }
+
+    return 0;
+}

@@ -1,0 +1,72 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9+5;
+const int MOD = 1000000007;
+const int MAX = 10000;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+void solve(){
+
+    ll n;
+    cin>>n;
+
+    vector<ll>a(2*n);
+
+    for(auto &x:a)
+        cin>>x;
+
+    vector<ll>lp(2*n,-1);
+    vector<ll>occ(n,-1);
+
+    for(ll i=0;i<2*n;i++){
+        if(occ[a[i]-1]!=-1)
+            lp[i]=occ[a[i]-1];
+        else
+            occ[a[i]-1]=i;
+    }
+
+    vector<ll>dp(2*n);
+
+    dp[0]=1;
+
+    for(ll i=1;i<2*n;i++){
+
+        dp[i]=dp[i-1]+1;
+
+        if(lp[i]!=-1){
+            dp[i]=max(dp[i],(lp[i]==0?0:dp[lp[i]-1])+1LL*(i-lp[i]+1)*(i-lp[i]+1));
+        }
+    }
+
+    cout<<dp[2*n-1]<<'\n';
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll t;
+    cin>>t;
+
+    while(t--){
+        solve();
+    }
+
+    return 0;
+}

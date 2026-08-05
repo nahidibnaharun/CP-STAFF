@@ -1,0 +1,16 @@
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        long long l=x,d=0,c=0;
+    //    if((2147483648<=x)&&( x<=2147583647))
+        while(x>0){
+        c=x%10;
+        x=x/10;
+        d=d*10+c;}
+        if(l==d)
+        return true;
+     else{
+            return false;
+        }
+    }
+};

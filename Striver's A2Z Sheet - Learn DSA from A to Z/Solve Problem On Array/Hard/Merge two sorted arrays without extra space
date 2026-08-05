@@ -1,0 +1,14 @@
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+      vector<int> num;
+    int l=0,h=0;
+    while(l<m)num.push_back(nums1[l++]);
+    while(h<n)num.push_back(nums2[h++]);
+    sort(num.begin(),num.end());
+    nums1=num;
+        
+        return ;
+    }
+    
+};

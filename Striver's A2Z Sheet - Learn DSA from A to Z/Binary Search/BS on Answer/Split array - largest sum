@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int splitArray(vector<int>& nums, int k) {
+        long long l = *max_element(nums.begin(), nums.end());
+        long long r = accumulate(nums.begin(), nums.end(), 0LL);
+
+        while (l < r) {
+            long long m = (l + r) / 2;
+            int cnt = 1;
+            long long s = 0;
+
+            for (int x : nums) {
+                if (s + x > m) {
+                    cnt++;
+                    s = 0;
+                }
+                s += x;
+            }
+
+            if (cnt <= k) r = m;
+            else l = m + 1;
+        }
+
+        return l;
+    }
+};

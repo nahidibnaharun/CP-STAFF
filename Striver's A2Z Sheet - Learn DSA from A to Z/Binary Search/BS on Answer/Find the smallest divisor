@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int smallestDivisor(vector<int>& nums, int threshold) {
+        int l = 1, r = *max_element(nums.begin(), nums.end());
+        while (l < r) {
+            int m = (l + r) / 2;
+            long long s = 0;
+            for (int x : nums) s += (x + m - 1) / m;
+            if (s <= threshold) r = m;
+            else l = m + 1;
+        }
+        return l;
+    }
+};

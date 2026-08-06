@@ -1,0 +1,77 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9+5;
+const int MOD = 1000000007;
+const int MAX = 10000;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+ll ask(ll x,ll y){
+    cout<<"? "<<x<<" "<<y<<endl;
+    ll res;
+    cin>>res;
+    return res;
+}
+
+void give(ll x,ll y){
+    cout<<"! "<<x<<" "<<y<<endl;
+}
+
+void solve() {
+
+    ll n,m;
+    cin>>n>>m;
+
+    ll t1=ask(1,1);
+
+    if(t1>=n){
+        ll t2=ask(1,t1+1);
+        give(t2+1,t1+1);
+    }
+    else if(t1>=m){
+        ll t2=ask(t1+1,1);
+        give(t1+1,t2+1);
+    }
+    else{
+        ll t2=ask(t1+1,1);
+        ll t3=ask(1,t1+1);
+
+        if(t2==t1 && t3==t1){
+            give(t1+1,t1+1);
+        }
+        else if(t3==t1){
+            give(t1+1,t2+1);
+        }
+        else{
+            give(t3+1,t1+1);
+        }
+    }
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll t;
+    cin>>t;
+
+    while(t--){
+        solve();
+    }
+
+    return 0;
+}

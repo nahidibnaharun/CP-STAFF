@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9+5;
+const int MOD = 1000000007;
+const int MAX = 10000;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+ll f(ll x, ll y, ll n, ll m){
+    if((x==1 || x==n) && (y==1 || y==m)) return 2;
+    if(x==1 || x==n || y==1 || y==m) return 3;
+    return 4;
+}
+
+void solve() {
+
+    ll n,m,x1,y1,x2,y2;
+    cin>>n>>m>>x1>>y1>>x2>>y2;
+
+    cout<<min(f(x1,y1,n,m),f(x2,y2,n,m));
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll t;
+    cin>>t;
+
+    while(t--){
+        solve();
+        cout<<'\n';
+    }
+
+    return 0;
+}

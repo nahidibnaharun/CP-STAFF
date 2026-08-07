@@ -1,0 +1,56 @@
+/* Structure of Linked List Node
+class Node {
+public:
+    int data;
+    Node* next;
+    Node* bottom;
+
+    Node(int x) {
+        data = x;
+        next = nullptr;
+        bottom = nullptr;
+    }
+};*/
+
+class Solution {
+  public:
+    Node* flatten(Node* head) {
+        // code here
+        
+        vector<int>res;
+        
+        Node* temp = head;
+        while(temp){
+            
+            res.push_back(temp->data);
+            
+            Node* x= temp->bottom;
+            while(x){
+                res.push_back(x->data);
+                
+                x=x->bottom;
+            }
+            temp =temp->next;
+        }
+        
+        
+        sort(res.begin(),res.end());
+        
+        head = nullptr;
+        
+        Node* tail = nullptr;
+        
+        for(int i=0 ;i<res.size(); i++){
+            
+            Node* newnode = new Node(res[i]);
+            
+            if(!head)head= newnode;
+            else{
+                tail->bottom=newnode;
+            }
+            tail = newnode;
+        }
+        return head;
+        
+    }
+};

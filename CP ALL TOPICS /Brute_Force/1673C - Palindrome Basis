@@ -1,0 +1,98 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9 + 5;
+const int MOD = 1000000007;
+const int MAX = 10000;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+const int N = 40004;
+const int M = 502;
+
+ll dp[N][M];
+
+ll rev(ll n) {
+
+    ll r = 0;
+
+    while (n > 0) {
+        r = r * 10 + n % 10;
+        n /= 10;
+    }
+
+    return r;
+}
+
+bool palindrome(ll n) {
+    return (rev(n) == n);
+}
+
+void precompute() {
+
+    vector<ll> palin;
+    palin.push_back(0);
+
+    for (ll i = 1; i < 2 * N; i++) {
+        if (palindrome(i)) {
+            palin.push_back(i);
+        }
+    }
+
+    for (ll j = 1; j < M; j++) {
+        dp[0][j] = 1;
+    }
+
+    for (ll i = 1; i < N; i++) {
+
+        dp[i][0] = 0;
+
+        for (ll j = 1; j < M; j++) {
+
+            if (palin[j] <= i) {
+                dp[i][j] = (dp[i][j - 1] + dp[i - palin[j]][j]) % MOD;
+            }
+            else {
+                dp[i][j] = dp[i][j - 1];
+            }
+        }
+    }
+}
+
+void solve() {
+
+    ll n;
+    cin >> n;
+
+    cout << dp[n][M - 1];
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    precompute();
+
+    ll t;
+    cin >> t;
+
+    while (t--) {
+        solve();
+        cout << '\n';
+    }
+
+    return 0;
+}

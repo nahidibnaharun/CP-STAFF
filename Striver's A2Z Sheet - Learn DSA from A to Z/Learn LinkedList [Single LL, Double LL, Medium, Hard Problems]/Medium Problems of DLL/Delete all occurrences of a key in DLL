@@ -1,0 +1,46 @@
+/* a Node of the doubly linked list
+class Node {
+	public:
+	int data;
+	Node* next;
+	Node* prev;
+	
+	Node(int x) {
+		data = x;
+		next = nullptr;
+		prev = nullptr;
+	}
+};
+*/
+
+class Solution {
+	public:
+	
+	// Function to delete a specified node from the linked list
+	Node* deleteAllOccurOfX(Node* head, int x) {
+		
+		Node* curr = head;
+		while (curr!=nullptr) {
+			
+			if (curr->data == x) {
+				Node * temp = curr;
+				if (curr == head) {
+					head = curr->next;
+				}
+				
+				if (curr->prev!=nullptr) {
+					curr->prev->next = curr->next;
+				}
+				
+				if (curr->next!=nullptr)
+					curr->next->prev = curr->prev;
+				
+				curr = curr->next;
+				delete temp;
+			}
+			else
+				curr = curr->next;
+		}
+		return head ;
+	}
+};

@@ -1,0 +1,27 @@
+class Solution {
+public:
+    string frequencySort(string s) {
+
+        vector<int> cnt(256, 0);
+        for (char c : s)
+            cnt[(unsigned char)c]++;
+
+        int n = s.size();
+        vector<vector<char>> bucket(n + 1);
+        for (int i = 0; i < 256; i++) {
+            if (cnt[i] > 0)
+                bucket[cnt[i]].push_back((char)i);
+        }
+
+        string ans;
+        ans.reserve(n); // optimize memory allocation
+        for (int f = n; f > 0; f--) {
+            for (char c : bucket[f]) {
+                ans.append(f, c);
+            }
+        }
+        return ans;
+    }
+}
+
+;

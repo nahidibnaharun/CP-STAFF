@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int beautySum(string s) {
+
+        int ans = 0;
+
+        for (int i = 0; i < s.size() - 1; i++) {
+            vector<int> freq(26, 0);
+
+            for (int j = i; j < s.size(); j++) {
+                freq[s[j] - 'a']++;
+                int mxf = -1, mif = INT_MAX;
+                for (int l = 0; l < 26; l++) {
+                    if (freq[l] > 0) {
+                        mxf = max(mxf, freq[l]);
+                        mif = min(mif, freq[l]);
+                    }
+                }
+
+                ans += (mxf - mif);
+            }
+        }
+        return ans;
+    }
+};

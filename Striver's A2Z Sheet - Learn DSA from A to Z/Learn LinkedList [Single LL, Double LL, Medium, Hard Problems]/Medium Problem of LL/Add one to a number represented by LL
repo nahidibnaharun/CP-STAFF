@@ -1,0 +1,43 @@
+/* Structure of linked list Node
+class Node {
+public:
+    int data;
+    Node* next;
+
+    Node(int x) {
+        data = x;
+        next = nullptr;
+    }
+};
+*/
+class Solution {
+  public:
+  
+  int add(Node* head){
+      if(!head)return 1;
+      
+      
+      int carry = add(head->next);
+     
+     carry = head->data + carry;
+     
+     head->data = carry%10;
+     return carry/10;
+  }
+    Node* addOne(Node* head) {
+        // code here
+        
+        
+        if(!head)return head;
+        
+        int carry = add(head);
+        
+        if(carry){
+            Node* NH = new Node(carry);
+            NH->next=head;
+            head=NH;
+        }
+        return head;
+        
+    }
+};

@@ -1,0 +1,104 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+
+const int INF = 1e9 + 5;
+const int MOD = 1000000007;
+const int MAX = 10000;
+
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+
+ll S[100009];
+
+ll solve(vector<ll> A, vector<ll> B, ll sa, ll sb, int n)
+{
+    ll ret = 0;
+    vector<pair<ll, ll>> v;
+
+    for (ll i = 1; i <= n; i++) {
+        v.push_back({B[i] - A[i], i});
+    }
+
+    sort(v.begin(), v.end());
+    reverse(v.begin(), v.end());
+
+    for (auto i : v) {
+        ll ind = i.second;
+
+        if (sb == 0) {
+            ret += A[ind] * S[ind];
+        }
+        else if (sb >= S[ind]) {
+            ret += B[ind] * S[ind];
+            sb -= S[ind];
+        }
+        else {
+            ret += B[ind] * sb;
+
+            ll left = S[ind] - sb;
+            sb = 0;
+
+            ret += A[ind] * left;
+        }
+    }
+
+    return ret;
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll n, s;
+    cin >> n >> s;
+
+    vector<ll> A(n + 1), B(n + 1);
+
+    ll sum = 0;
+    ll poss = 0;
+    ll a = 0, b = 0, c = 0;
+
+    for (ll i = 1; i <= n; i++) {
+        cin >> S[i] >> A[i] >> B[i];
+    }
+
+    for (ll i = 1; i <= n; i++) {
+        sum += S[i];
+        poss += max(A[i], B[i]) * S[i];
+
+        if (A[i] > B[i]) {
+            a += S[i];
+        }
+        else if (A[i] < B[i]) {
+            b += S[i];
+        }
+        else {
+            c += S[i];
+        }
+    }
+
+    ll no = (sum + s - 1) / s;
+    ll type1 = (a + s - 1) / s;
+    ll type2 = (b + s - 1) / s;
+    ll no1 = type1 + type2;
+
+    if (no1 <= no) {
+        cout << poss;
+        return 0;
+    }
+
+    ll ans = max(
+        solve(A, B, type1 * s, (type2 - 1) * s, n),
+        solve(B, A, type2 * s, (type1 - 1) * s, n)
+    );
+
+    cout << ans;
+
+    return 0;
+}

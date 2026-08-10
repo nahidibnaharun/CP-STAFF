@@ -1,0 +1,101 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+
+const int INF = 1e9 + 5;
+const int MOD = 1e9 + 7;
+const int MAX = 10000;
+
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+vector<ll> get_k_last(const vector<ll>& l, ll k) {
+    if (k < (ll)l.size()) {
+        return vector<ll>(l.end() - k, l.end());
+    }
+
+    return l;
+}
+
+void solve() {
+    ll n, m, x, y;
+    cin >> n >> m >> x >> y;
+
+    vector<ll> a(x);
+    vector<ll> b(y);
+
+    for (ll i = 0; i < x; ++i) {
+        cin >> a[i];
+    }
+
+    for (ll i = 0; i < y; ++i) {
+        cin >> b[i];
+    }
+
+    vector<ll> c;
+    vector<ll> d;
+    vector<ll> e;
+
+    ll i = 0;
+    ll j = 0;
+
+    while (i < x && j < y) {
+        if (a[i] == b[j]) {
+            c.push_back(a[i]);
+            ++i;
+            ++j;
+        } else if (a[i] < b[j]) {
+            d.push_back(a[i]);
+            ++i;
+        } else {
+            e.push_back(b[j]);
+            ++j;
+        }
+    }
+
+    d.insert(d.end(), a.begin() + i, a.end());
+    e.insert(e.end(), b.begin() + j, b.end());
+
+    vector<ll> res;
+
+    vector<ll> temp = get_k_last(d, n);
+    res.insert(res.end(), temp.begin(), temp.end());
+
+    temp = get_k_last(e, m);
+    res.insert(res.end(), temp.begin(), temp.end());
+
+    res.insert(res.end(), c.begin(), c.end());
+
+    sort(res.begin(), res.end());
+
+    res = get_k_last(res, n + m - 1);
+
+    ll ans = 0;
+
+    for (ll value : res) {
+        ans += value;
+    }
+
+    cout << ans << '\n';
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll t;
+    cin >> t;
+
+    while (t--) {
+        solve();
+    }
+
+    return 0;
+}

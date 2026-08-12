@@ -1,0 +1,154 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+
+const int INF = 1e9 + 5;
+const int MOD = 1e9 + 7;
+const int MAX = 10000;
+
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+pair<int, int> get_center(vector<string> a) {
+    int n = a.size();
+
+    int sum_row = 0;
+    int sum_col = 0;
+    int cnt = 0;
+
+    for(int row = 0; row < n; ++row) {
+        for(int col = 0; col < n; ++col) {
+            if(a[row][col] == '#') {
+                cnt++;
+                sum_row += row;
+                sum_col += col;
+            }
+        }
+    }
+
+    sum_row %= n;
+    sum_col %= n;
+
+    int inv = -1;
+
+    for(int i = 1; i < n; ++i) {
+        if(i * cnt % n == 1) {
+            inv = i;
+            break;
+        }
+    }
+
+    assert(inv != -1);
+
+    sum_row = sum_row * inv % n;
+    sum_col = sum_col * inv % n;
+
+    return {sum_row, sum_col};
+}
+
+void first() {
+    int n;
+    cin >> n;
+
+    vector<string> a(n);
+
+    for(string &s : a) {
+        cin >> s;
+    }
+
+    pair<int, int> p = get_center(a);
+
+    int sum_row = p.first;
+    int sum_col = p.second;
+
+    int want_row, want_col;
+    cin >> want_row >> want_col;
+
+    want_row--;
+    want_col--;
+
+    if(sum_row == want_row && sum_col == want_col) {
+        cout << "1 1 1 1\n";
+        return;
+    }
+
+    int cnt = 0;
+
+    for(auto row : a) {
+        for(auto ch : row) {
+            if(ch == '#') {
+                cnt++;
+            }
+        }
+    }
+
+    int d_row = (want_row - sum_row + n) * cnt % n;
+    int d_col = (want_col - sum_col + n) * cnt % n;
+
+    for(int row = 0; row < n; ++row) {
+        for(int col = 0; col < n; ++col) {
+            if(a[row][col] == '#') {
+                int r2 = (row + d_row) % n;
+                int c2 = (col + d_col) % n;
+
+                if(a[r2][c2] != '#') {
+                    cout << row + 1 << " "
+                         << col + 1 << " "
+                         << r2 + 1 << " "
+                         << c2 + 1 << '\n';
+
+                    return;
+                }
+            }
+        }
+    }
+
+    assert(false);
+}
+
+void second() {
+    int n;
+    cin >> n;
+
+    vector<string> a(n);
+
+    for(string &s : a) {
+        cin >> s;
+    }
+
+    pair<int, int> p = get_center(a);
+
+    int sum_row = p.first;
+    int sum_col = p.second;
+
+    cout << sum_row + 1 << " "
+         << sum_col + 1 << '\n';
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    string name;
+    cin >> name;
+
+    int t;
+    cin >> t;
+
+    while(t--) {
+        if(name == "first") {
+            first();
+        } else {
+            second();
+        }
+    }
+
+    return 0;
+}

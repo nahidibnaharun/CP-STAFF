@@ -1,0 +1,113 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+
+const int INF = 1e9 + 5;
+const int MOD = 998244353;
+const int MAX = 1e6 + 10;
+
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+ll fact[MAX], invfact[MAX];
+
+ll binpow(ll a, ll b) {
+    if(b == 0) return 1;
+
+    ll res = binpow(a, b / 2);
+
+    if(b % 2) {
+        return res * res % MOD * a % MOD;
+    } else {
+        return res * res % MOD;
+    }
+}
+
+void calc() {
+    fact[0] = 1;
+
+    for(int i = 1; i < MAX; ++i) {
+        fact[i] = fact[i - 1] * i % MOD;
+    }
+
+    invfact[MAX - 1] = binpow(fact[MAX - 1], MOD - 2);
+
+    for(int i = MAX - 2; i >= 0; --i) {
+        invfact[i] = invfact[i + 1] * (i + 1) % MOD;
+    }
+}
+
+ll nCr(int n, int r) {
+    if(r < 0 || n < 0 || n < r) return 0;
+
+    return fact[n] * invfact[n - r] % MOD * invfact[r] % MOD;
+}
+
+void solve() {
+    int n;
+    cin >> n;
+
+    string s;
+    cin >> s;
+
+    int sumzero = 0;
+    int sumone = 0;
+
+    int blockzero = 0;
+    int blockone = 0;
+
+    int i = 0;
+
+    while(i < (int)s.size()) {
+        int j = i;
+
+        while(j < (int)s.size() && s[i] == s[j]) {
+            j++;
+        }
+
+        if(s[i] == '1') {
+            sumone += j - i;
+            blockone++;
+        } else if(s[i] == '0') {
+            sumzero += j - i;
+            blockzero++;
+        }
+
+        i = j;
+    }
+
+    ll ans = 1;
+
+    if(blockone > 0) {
+        ans = ans * nCr(sumone - 1, blockone - 1) % MOD;
+    }
+
+    if(blockzero > 0) {
+        ans = ans * nCr(sumzero - 1, blockzero - 1) % MOD;
+    }
+
+    cout << ans << '\n';
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    calc();
+
+    ll t;
+    cin >> t;
+
+    while(t--) {
+        solve();
+    }
+
+    return 0;
+}

@@ -1,0 +1,42 @@
+class Solution {
+public:
+
+    long long helper(string &s, int i, long long sum, int sign) {
+
+        int n = s.length();
+
+        if (i >= n || s[i] < '0' || s[i] > '9')
+            return sum * sign;
+
+        if (sum > (INT_MAX - (s[i] - '0')) / 10) {
+            return sign == 1 ? INT_MAX : INT_MIN;
+        }
+
+        sum = sum * 10 + (s[i] - '0');
+
+        return helper(s, i + 1, sum, sign);
+    }
+
+    int myAtoi(string s) {
+
+        int n = s.length();
+        int i = 0;
+
+        while (i < n && s[i] == ' ')
+            i++;
+
+        int sign = 1;
+
+        if (i < n && (s[i] == '+' || s[i] == '-')) {
+            if (s[i] == '-')
+                sign = -1;
+
+            i++;
+        }
+
+        if (i >= n || s[i] < '0' || s[i] > '9')
+            return 0;
+
+        return helper(s, i, 0, sign);
+    }
+};

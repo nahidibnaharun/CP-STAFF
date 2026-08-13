@@ -1,0 +1,38 @@
+/* Structure of a link list node
+class Node {
+	public:
+	int data;
+	Node* next;
+	Node* prev;
+	Node(int value) {
+		data = value;
+		next = nullptr;
+		prev = nullptr;
+	}
+};
+*/
+class Solution {
+	public:
+	Node* removeDuplicates(Node* headRef) {
+		// code here
+		Node* curr = headRef;
+		
+		while (curr->next) {
+			
+			if (curr->data == curr->next->data) {
+				Node* temp = curr;
+				if (curr == headRef)headRef = curr->next ;
+				if (curr->prev)
+					curr->prev->next = curr->next;
+				if (curr->next)
+					curr->next->prev = curr->prev;
+				
+				curr = curr->next;
+				
+				delete temp;
+			}
+			else curr = curr->next;
+		}
+		return headRef;
+	}
+};

@@ -1,0 +1,16 @@
+class Solution {
+public:
+
+
+    double pow(double x,int n){
+        if(n==0)return 1;
+        return x*pow(x,n-1);
+    }
+    double myPow(double x, int n) {
+        bool divd=n>=0?0:1;
+        if(divd)n*=-1;
+        double ans=pow(x,n);
+        if(divd)ans=(1.0/ans);
+        return ans;
+    }
+};

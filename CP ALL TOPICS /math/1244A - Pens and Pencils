@@ -1,0 +1,56 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+
+const int INF = 1e9 + 5;
+const int MOD = 1e9 + 7;
+const int MAX = 10000;
+
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+void solve() {
+    ll a, b, c, d, e;
+    cin >> a >> b >> c >> d >> e;
+
+    ll x, y;
+
+    if(a % c != 0) {
+        x = (a / c) + 1;
+    } else {
+        x = a / c;
+    }
+
+    if(b % d != 0) {
+        y = (b / d) + 1;
+    } else {
+        y = b / d;
+    }
+
+    if(x + y > e) {
+        cout << -1 << '\n';
+    } else {
+        cout << x << " " << y << '\n';
+    }
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll t;
+    cin >> t;
+
+    while(t--) {
+        solve();
+    }
+
+    return 0;
+}

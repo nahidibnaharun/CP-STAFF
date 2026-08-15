@@ -1,0 +1,65 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+
+const int INF = 1e9 + 5;
+const int MOD = 1e9 + 7;
+const int MAX = 10000;
+
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+void solve() {
+    ll n, k;
+    cin >> n >> k;
+
+    vector<ll> ans(n + 1);
+    ll num = n;
+
+    for(ll i = 2; i < n; i += 2) {
+        if(k == 0) break;
+
+        ans[i] = num--;
+        k--;
+    }
+
+    if(k) {
+        cout << -1 << '\n';
+        return;
+    }
+
+    ll cur = 1;
+
+    for(ll i = 1; i <= n; i++) {
+        if(!ans[i]) {
+            ans[i] = cur++;
+        }
+    }
+
+    for(ll i = 1; i <= n; i++) {
+        cout << ans[i] << " ";
+    }
+
+    cout << '\n';
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll t;
+    cin >> t;
+
+    while(t--) {
+        solve();
+    }
+
+    return 0;
+}

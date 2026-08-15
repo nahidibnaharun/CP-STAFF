@@ -1,0 +1,65 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+
+const int INF = 1e9 + 5;
+const int MOD = 1e9 + 7;
+const int MAX = 200005;
+
+ll dp[MAX];
+
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+void solve() {
+    ll n, m;
+    cin >> n >> m;
+
+    ll ans = 0;
+
+    while(n > 0) {
+        ll x = n % 10;
+
+        if(m + x < 10) {
+            ans++;
+        } else {
+            ans += dp[m + x - 10];
+        }
+
+        ans %= MOD;
+        n /= 10;
+    }
+
+    cout << ans << '\n';
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    for(ll i = 0; i < 9; i++) {
+        dp[i] = 2;
+    }
+
+    dp[9] = 3;
+
+    for(ll i = 10; i < MAX; i++) {
+        dp[i] = (dp[i - 9] + dp[i - 10]) % MOD;
+    }
+
+    ll t;
+    cin >> t;
+
+    while(t--) {
+        solve();
+    }
+
+    return 0;
+}

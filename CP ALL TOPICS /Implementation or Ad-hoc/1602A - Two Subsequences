@@ -1,0 +1,68 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+
+const int INF = 1e9 + 5;
+const int MOD = 1e9 + 7;
+const int MAX = 10000;
+
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+void solve() {
+    string s;
+    cin >> s;
+
+    map<char, int> occ;
+
+    for(char ch : s) {
+        occ[ch]++;
+    }
+
+    string b;
+    char a;
+    int nxt = 1;
+
+    for(pair<char, int> p : occ) {
+        if(nxt == 1) {
+            a = p.first;
+            nxt++;
+            break;
+        }
+    }
+
+    int cnt = 0;
+
+    for(int i = 0; i < (int)s.size(); i++) {
+        if(s[i] == a && cnt == 0) {
+            cnt++;
+            continue;
+        }
+        else {
+            b.push_back(s[i]);
+        }
+    }
+
+    cout << a << " " << b << '\n';
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll t;
+    cin >> t;
+
+    while(t--) {
+        solve();
+    }
+
+    return 0;
+}

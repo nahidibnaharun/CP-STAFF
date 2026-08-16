@@ -1,0 +1,83 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+
+const int INF = 1e9 + 5;
+const int MOD = 1e9 + 7;
+const int MAX = 10000;
+
+/*
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice
+*/
+
+vector<ll> trans(vector<ll> v) {
+    vector<ll> c(v.size() + 1);
+
+    for(auto i : v) {
+        c[i]++;
+    }
+
+    for(ll i = 0; i < (ll)v.size(); i++) {
+        v[i] = c[v[i]];
+    }
+
+    return v;
+}
+
+void solve() {
+    ll n;
+    cin >> n;
+
+    vector<ll> a(n);
+
+    for(ll i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+
+    vector<vector<ll>> vv = {a};
+
+    while(1) {
+        vector<ll> na = trans(vv.back());
+
+        if(na != vv.back()) {
+            vv.push_back(na);
+        }
+        else {
+            break;
+        }
+    }
+
+    ll q;
+    cin >> q;
+
+    while(q--) {
+        ll x, k;
+        cin >> x >> k;
+
+        x--;
+
+        k = min(k, (ll)vv.size() - 1);
+
+        cout << vv[k][x] << '\n';
+    }
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll t;
+    cin >> t;
+
+    while(t--) {
+        solve();
+    }
+
+    return 0;
+}

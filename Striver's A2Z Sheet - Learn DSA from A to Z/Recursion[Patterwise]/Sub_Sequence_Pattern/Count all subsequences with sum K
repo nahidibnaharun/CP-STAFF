@@ -1,0 +1,15 @@
+class Solution {
+  public:
+    bool checkSubsequenceSum(vector<int>& arr, int k) {
+        // Code here
+        vector<bool>dp(k+1,0);
+        dp[0]=true;
+        
+        for(auto &x:arr){
+            for(int sum=k; sum>=x; --sum){
+                dp[sum]=dp[sum]||dp[sum-x];
+            }
+        }
+        return dp[k];
+    }
+};

@@ -1,0 +1,24 @@
+class Solution {
+public:
+    const long long  N=1e9+7;
+    long long binpow(long long x, long long n) {
+        long long ans = 1;
+
+        while (n >= 1) {
+            if (n % 2 == 1) {
+                ans *= x;
+                ans%=N;
+            }
+            x *= x;
+            x%=N;
+            n /= 2;
+        }
+        return ans;
+    }
+    int countGoodNumbers(long long n) {
+        long long x = n / 2, y = n - x;
+
+        int ans = (binpow(5, y) * binpow(4, x))%N;
+        return ans;
+    }
+};

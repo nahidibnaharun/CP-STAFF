@@ -1,0 +1,31 @@
+class Solution {
+public:
+    void func(int l,int r,string &s,vector<string>&ans,int n){
+        if(s.length()==2*n){
+            ans.push_back(s);
+            return;
+        }
+        if(l<n){
+            s.push_back('(');
+            func(l+1,r,s,ans,n);
+            s.pop_back();
+        }
+
+        
+
+        if(r<l){
+            s.push_back(')');
+            func(l,r+1,s,ans,n);
+            s.pop_back();
+        }
+        
+        
+    }
+    vector<string> generateParenthesis(int n) {
+        string s ="";
+        vector<string>ans;
+
+        func(0,0,s,ans,n);
+        return ans;
+    }
+};

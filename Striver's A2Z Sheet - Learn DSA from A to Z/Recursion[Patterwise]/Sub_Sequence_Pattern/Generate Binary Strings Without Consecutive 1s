@@ -1,0 +1,19 @@
+void func(int i,int n,string &s,vector<string> &ans){
+    if(i>=n){
+        ans.push_back(s);
+        return;
+    }
+
+    func(i+1,n,s,ans);
+    s[i]='1';
+    func(i+2,n,s,ans);
+    s[i]='0';
+    return;
+}
+vector<string> generateString(int n) {
+    // Write your code here.
+    vector<string> ans;
+    string s(n,'0');
+    func(0,n,s,ans);
+    return ans;
+}

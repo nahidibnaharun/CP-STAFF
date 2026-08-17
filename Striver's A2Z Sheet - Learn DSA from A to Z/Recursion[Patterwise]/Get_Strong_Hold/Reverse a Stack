@@ -1,0 +1,26 @@
+class Solution {
+  public:
+    void insertst(int x,stack<int>&st){
+        if(st.empty()){
+            st.push(x);return;
+        }
+        
+        int top=st.top();
+        st.pop();
+        insertst(x,st);
+        st.push(top);
+        return;
+    }
+    void reverseStack(stack<int> &st) {
+     
+     if(st.empty())return;
+     
+     int top = st.top();
+     st.pop();
+     reverseStack(st);
+     
+     insertst(top,st);
+     return;
+        
+    }
+};

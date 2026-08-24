@@ -1,0 +1,124 @@
+#include <algorithm>
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+
+const int INF = 1e9+5;
+const int MOD = 1000000007;
+const int MAX = 10000;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \  \  \
+//   / /|  / / ____  \ \  \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+int cnt[26];
+
+int get(int x, int k) {
+    return (k - x % k) % k;
+}
+
+void solve() {
+    int n, k;
+    cin >> n >> k;
+
+    string str;
+    cin >> str;
+
+    for(int i = 0; i < 26; i++){
+        cnt[i] = 0;
+    }
+
+    for(char c : str){
+        cnt[c - 'a']++;
+    }
+
+    int sum = 0;
+    int flag = 1;
+
+    for(int i = 0; i < 26; i++){
+        sum += get(cnt[i], k);
+    }
+
+    if(sum == 0){
+        cout << str << '\n';
+        flag = 0;
+    }
+
+    if(n % k != 0){
+        cout << -1 << '\n';
+        return;
+    }
+
+    for(int i = n - 1; i >= 0 && flag; i--){
+        sum -= get(cnt[str[i] - 'a'], k);
+        cnt[str[i] - 'a']--;
+
+        sum += get(cnt[str[i] - 'a'], k);
+
+        for(int j = str[i] - 'a' + 1; j < 26; j++){
+            int last_sum = sum;
+
+            sum -= get(cnt[j], k);
+            cnt[j]++;
+            sum += get(cnt[j], k);
+
+            if(i + sum + 1 <= n){
+                for(int pos = 0; pos < i; pos++){
+                    cout << str[pos];
+                }
+
+                cout << char('a' + j);
+
+                string add = "";
+
+                for(int w = 0; w < 26; w++){
+                    int f = get(cnt[w], k);
+
+                    while(f--){
+                        add += char('a' + w);
+                    }
+                }
+
+                while((int)add.size() + i + 1 < n){
+                    add += 'a';
+                }
+
+                sort(add.begin(), add.end());
+
+                cout << add << '\n';
+
+                flag = 0;
+                break;
+            }
+
+            cnt[j]--;
+            sum = last_sum;
+        }
+    }
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin >> t;
+
+    while(t--){
+        solve();
+    }
+
+    return 0;
+}

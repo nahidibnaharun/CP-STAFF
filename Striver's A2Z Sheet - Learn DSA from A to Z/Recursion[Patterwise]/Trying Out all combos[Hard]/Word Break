@@ -1,0 +1,28 @@
+class Solution {
+public:
+    bool wordBreak(string s, vector<string>& wordDict) {
+        unordered_set<string> dict(wordDict.begin(), wordDict.end());
+        vector<int> dp(s.size() + 1, -1);
+        function<bool(int)> solve = [&](int i) {
+            if (i == s.size())
+                return true;
+            if (dp[i] != -1) {
+                return dp[i] == 1;
+            }
+            for (string word : dict) {
+                int len = word.size();
+
+                if (i + len <= s.size() && s.substr(i, len) == word) {
+                    if (solve(i + len)) {
+                        dp[i] = 1;
+                        return true;
+                    }
+                }
+            }
+            dp[i] = 0;
+            return false;
+        };
+
+        return solve(0);
+    }
+};

@@ -1,0 +1,67 @@
+class Solution {
+  public:
+    vector<string> ratInMaze(vector<vector<int>>& maze) {
+        // code here
+        
+        vector<string> ans; 
+        string current;
+        int n=maze.size();
+        if (maze[0][0] == 0 || maze[n-1][n-1] == 0)
+        return {};
+
+        function<void(int,int)> backtrack =
+        [&](int row,int col){
+            if(row==n-1 && col==n-1){
+                ans.push_back(current);
+                return;
+            }
+            
+            
+            if(row<n-1){
+                if(maze[row+1][col]==1){
+                current.push_back('D');
+                maze[row+1][col]=0;
+                backtrack(row+1,col);
+                maze[row+1][col]=1;
+                current.pop_back();
+                }
+            }
+            
+            
+            if(col>0){
+                if(maze[row][col-1]==1){
+                current.push_back('L');
+                maze[row][col-1]=0;
+                backtrack(row,col-1);
+                maze[row][col-1]=1;
+                current.pop_back();
+                }
+            }
+            
+            
+            if(col<n-1){
+                if(maze[row][col+1]==1){
+                current.push_back('R');
+                maze[row][col+1]=0;
+                backtrack(row,col+1);
+                maze[row][col+1]=1;
+                current.pop_back();
+                }
+            }
+            if(row>0){
+                if(maze[row-1][col]==1){
+                current.push_back('U');
+                maze[row-1][col]=0;
+                backtrack(row-1,col);
+                maze[row-1][col]=1;
+                current.pop_back();
+                }
+            }
+            
+        };
+        maze[0][0]=0;
+        backtrack(0,0);
+        
+        return ans;
+    }
+};

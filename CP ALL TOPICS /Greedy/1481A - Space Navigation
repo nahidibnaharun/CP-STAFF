@@ -26,10 +26,8 @@ void solve()
 {
     int x, y;
     cin >> x >> y;
-
     string s;
     cin >> s;
-
     int u = 0, d = 0, l = 0, r = 0;
 
     for (char c : s)

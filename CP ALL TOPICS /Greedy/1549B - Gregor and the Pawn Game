@@ -1,0 +1,67 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int T;
+    cin >> T;
+
+    while(T--)
+    {
+        int n;
+        cin >> n;
+
+        string s, t;
+        cin >> t >> s;
+
+        int ans = 0;
+
+        if(s[0] == '1')
+        {
+            if(t[0] == '0')
+            {
+                t[0] = '2';
+                ans++;
+            }
+            else if(t[1] == '1')
+            {
+                t[1] = '2';
+                ans++;
+            }
+        }
+
+        for(int i = 1; i < n - 1; i++)
+        {
+            if(s[i] == '1')
+            {
+                if(t[i] == '0')
+                {
+                    t[i] = '2';
+                    ans++;
+                }
+                else if(t[i - 1] == '1')
+                {
+                    t[i - 1] = '2';
+                    ans++;
+                }
+                else if(t[i + 1] == '1')
+                {
+                    t[i + 1] = '2';
+                    ans++;
+                }
+            }
+        }
+
+        if(s[n - 1] == '1')
+        {
+            if(t[n - 1] == '0' || t[n - 2] == '1')
+            {
+                ans++;
+            }
+        }
+
+        cout << ans << '\n';
+    }
+
+    return 0;
+}

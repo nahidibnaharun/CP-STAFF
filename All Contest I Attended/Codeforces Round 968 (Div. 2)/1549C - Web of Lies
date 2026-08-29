@@ -1,0 +1,67 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+const ll M=1e9+1;
+
+const int maxN=3*1e5+10;
+set<int>groups[maxN];
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \ 
+//    / /|  / / ____  \ \  \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+void solve(){
+    int n,m;cin>>n>>m;
+
+    for(int i=1;i<=m;i++){
+        int u,v;cin>>u>>v;
+
+        if(u>v)swap(u,v);
+        groups[u].insert(v);
+    }
+
+    int res=0;
+    for(int i=1;i<=n;i++)
+        if(groups[i].size()==0)++res;
+
+    int q;cin>>q;
+
+    for(int query=1;query<=q;query++){
+        int t;cin>>t;
+
+        if(t==1||t==2){
+            int u,v;cin>>u>>v;
+
+            if(u>v)swap(u,v);
+
+            if(t==1){
+                if(groups[u].empty())--res;
+                groups[u].insert(v);
+            }else{
+                groups[u].erase(v);
+
+                if(groups[u].empty())++res;
+            }
+        }else{
+            cout<<res<<'\n';
+        }
+    }
+}
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t=1;
+    //cin>>t;
+    while(t--)
+        solve();
+}

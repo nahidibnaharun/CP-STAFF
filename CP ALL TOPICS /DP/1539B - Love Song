@@ -1,0 +1,62 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+
+const ll M=1e9+7;
+
+const int maxN=3*1e5+10;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \  \ 
+//    / /|  / / ____  \ \  \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+void solve(){
+    string alpha="abcdefghijklmnopqrstuvwxyz";
+
+    map<char,int> cnt;
+
+    int next=1;
+    for(auto ch:alpha){
+        cnt[ch]=next;
+        next++;
+    }
+
+    int n,q;cin>>n>>q;
+
+    string s;cin>>s;
+
+    vector<int> index;
+
+    int i=0;
+    while(i!=s.size()){
+        index.push_back(cnt[s[i]]);
+        i++;
+    }
+
+    vector<int> pref(n+1);
+
+    for(int i=1;i<=n;i++)
+        pref[i]=pref[i-1]+index[i-1];
+
+    while(q--){
+        int l,r;cin>>l>>r;
+
+        cout<<pref[r]-pref[l-1]<<'\n';
+    }
+}
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    solve();
+}

@@ -1,0 +1,67 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+
+const ll M=1e9+7;
+
+const int maxN=3*1e5+10;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \  \ 
+//    / /|  / / ____  \ \  \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+void solve(){
+    ll n,k,x;
+    cin>>n>>k>>x;
+
+    vector<ll> a(n);
+
+    for(int i=0;i<n;i++)
+        cin>>a[i];
+
+    sort(a.begin(),a.end());
+
+    vector<ll> v;
+
+    for(int i=1;i<n;i++){
+        if(a[i]-a[i-1]>x){
+            ll need=(a[i]-a[i-1]+x-1)/x;
+            v.push_back(need-1);
+        }
+    }
+
+    sort(v.begin(),v.end());
+
+    ll ans=v.size()+1;
+
+    for(int i=0;i<v.size();i++){
+        if(v[i]<=k){
+            k-=v[i];
+            ans--;
+        }
+        else
+            break;
+    }
+
+    cout<<ans<<'\n';
+}
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t=1;
+//    cin>>t;
+
+    while(t--)
+        solve();
+}

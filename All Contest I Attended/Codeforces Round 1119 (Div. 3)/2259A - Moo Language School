@@ -1,0 +1,51 @@
+#include<bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+
+const ll M=1e9+7;
+
+const int maxN=3*1e5+10;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \ 
+//     /  |/ / / /_\ \ \  ___ \  \ \   \ \  \ 
+//     / /|  / / ____  \ \  \  \  \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+
+ID: mdnahidibnaharun
+LANG: C++
+TASK: practice 
+*/
+
+void solve(){
+    int n,k;cin>>n>>k;
+
+    string s;cin>>s;
+
+    int cnt=0;
+
+    for(int i=0;i<n;i+=k){
+        bool ok=true;
+
+        for(int j=i;j<i+k;j++)
+            if(s[j]=='0')
+                ok=false;
+
+        if(ok)
+            cnt++;
+    }
+
+    cout<<cnt<<'\n';
+}
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t;cin>>t;
+
+    while(t--)
+        solve();
+}

@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<string> addOperators(string num, int target) {
+        vector<string> ans;
+        int n = num.size();
+        function<void(int, string, long long, long long)> backtrack =
+            [&](int pos, string expr, long long value, long long prev) {
+                if (pos == n) {
+                    if (value == target)ans.push_back(expr);
+                    return;
+                }
+                long long currNum = 0;
+                for (int i = pos; i < n; i++) {
+                    if (i > pos && num[pos] == '0') break;
+                    currNum=currNum * 10 + (num[i] - '0');
+                    string currStr = num.substr(pos, i - pos + 1);
+                    if (pos == 0) backtrack(i + 1, currStr, currNum, currNum);
+                    else {
+                        backtrack(i + 1,expr + "+" + currStr,value + currNum,currNum);
+                        backtrack(i + 1,expr + "-" + currStr, value - currNum,-currNum);
+                        backtrack(i + 1,expr + "*" + currStr,value - prev + prev * currNum,prev * currNum);
+                    }
+                }
+            };
+        backtrack(0, "", 0, 0);
+
+        return ans;
+    }
+};

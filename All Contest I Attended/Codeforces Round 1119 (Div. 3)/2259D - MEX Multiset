@@ -1,0 +1,111 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9+5;
+const int MOD = 1000000007;
+const int MAX = 1e5+5;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+void solve() {
+
+    int n; cin >> n;
+    vector<int>v(n),bc(n);
+    map<int,int>mp;
+
+    for(auto &x:v){
+        cin >> x;
+        mp[x]++;
+    }
+
+    bc=v;
+    sort(v.begin(),v.end());
+    v.erase(unique(v.begin(),v.end()),v.end());
+
+    map<int,int>a,b,c;
+    int x=0,ok=0,mxa=0,mxb=0,mxc=0;
+
+    for(auto i:v){
+        if(i!=x){
+            ok=1;
+        }
+
+        if(ok){
+            a[i]+=mp[i];
+            continue;
+        }
+
+        if(mp[i]>=3){
+            if(mxa==mxb and mxb==mxc){
+                mxa++,mxb++,mxc++;
+                a[i]++,b[i]++,c[i]+=mp[i]-2;
+            }
+            else{
+                c[i]+=mp[i];
+            }
+        }
+        else if(mp[i]==2){
+            if(mxa==mxb and mxb==mxc){
+                mxa++,mxb++;
+                a[i]++,b[i]++;
+            }
+            else{
+                c[i]+=mp[i];
+            }
+        }
+        else if(mp[i]==1){
+            if(mxa==mxb and mxb==mxc){
+                mxa++;
+                a[i]++;
+            }
+            else{
+                c[i]+=mp[i];
+            }
+        }
+
+        x++;
+    }
+
+    if(mxa>mxb+mxc){
+        cout<<"NO";
+        return;
+    }
+
+    string s="";
+
+    for(auto i:bc){
+        if(a[i])s+='A',a[i]--;
+        else if(b[i])s+='B',b[i]--;
+        else if(c[i])s+='C',c[i]--;
+    }
+
+    cout<<"YES"<<endl<<s;
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll t;
+    cin>>t;
+
+    while(t--){
+        solve();
+        cout<<endl;
+    }
+
+    return 0;
+}

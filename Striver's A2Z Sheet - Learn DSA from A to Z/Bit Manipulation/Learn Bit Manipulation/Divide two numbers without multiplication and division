@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int divide(int dividend, int divisor) {
+        if(dividend == INT_MIN && divisor == -1 ) return INT_MAX;
+        
+        long long a=(dividend) , b = (divisor) , ans=0;
+        bool negative = a<0 ^ b<0;
+        a=llabs(a);b=llabs(b);
+
+        while(a>=b){
+            long long temp = b, multiply = 1;
+
+            while(a>= temp<<1){
+                temp<<=1;
+                multiply<<=1;
+            }
+            a-=temp;
+            ans+=multiply;
+        }
+
+        return negative? -ans:ans;
+    }
+};

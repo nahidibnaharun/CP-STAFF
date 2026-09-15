@@ -1,0 +1,63 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9+5;
+const int MOD = 1000000007;
+const int MAX = 1e5+5;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+void solve() {
+    ll n,m;
+    cin >> n >> m;
+
+    vector<ll>a(n);
+    for(auto &x:a)cin>>x;
+
+    priority_queue<ll>pq;
+
+    ll cnt=LLONG_MIN,s=0;
+
+    for(int k=0;k<n;k++){
+        if(pq.size()==m-1){
+            cnt=max(cnt,m*a[k]-s);
+        }
+
+        s+=a[k];
+        pq.push(a[k]);
+
+        if(pq.size()==m){
+            s-=pq.top();
+            pq.pop();
+        }
+    }
+
+    cout<<cnt<<endl;
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll t;
+    cin >> t;
+
+    while(t--){
+        solve();
+    }
+
+    return 0;
+}

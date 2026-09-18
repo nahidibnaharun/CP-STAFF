@@ -1,0 +1,77 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+const int MOD = 1000000007;
+
+void solve() {
+    int n; cin >> n;
+
+    vector<int>ase(n + 1, 1), duka(n + 1, -1);
+
+    for(int i = 1; i <= n; i++){
+        int x; cin >> x;
+
+        for(int j = i * x; j <= min(i * x + i - 1, n - 1); j++){
+            ase[j] = 0;
+        }
+
+        for(int j = 0; j < x; j++){
+            int l = min(j * i, n - 1);
+            int r = min(j * i + i - 1, n - 1);
+
+            duka[r + 1] = max(l, duka[r + 1]);
+        }
+    }
+
+    for(int i = 1; i <= n; i++){
+        duka[i] = max(duka[i], duka[i - 1]);
+    }
+
+    vector<int>arr;
+    arr.emplace_back(-1);
+
+    for(int i = 0; i < n; i++){
+        if(ase[i]) arr.emplace_back(i);
+    }
+
+    int m = arr.size();
+
+    vector<ll>dp(m), pfdp(m);
+    dp[0] = pfdp[0] = 1;
+
+    for(int i = 1; i < m; i++){
+        int l = duka[arr[i]];
+        int j = lower_bound(arr.begin(), arr.end(), l) - arr.begin();
+
+        ll sum = pfdp[i - 1];
+        if(j > 0) sum -= pfdp[j - 1];
+
+        dp[i] = (sum + MOD) % MOD;
+        pfdp[i] = (pfdp[i - 1] + dp[i]) % MOD;
+    }
+
+    int id = lower_bound(arr.begin(), arr.end(), duka[n]) - arr.begin();
+
+    ll ans = 0;
+    for(int i = id; i < m; i++){
+        ans = (ans + dp[i]) % MOD;
+    }
+
+    cout << ans << '\n';
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll t;
+    cin >> t;
+
+    while(t--){
+        solve();
+    }
+
+    return 0;
+}

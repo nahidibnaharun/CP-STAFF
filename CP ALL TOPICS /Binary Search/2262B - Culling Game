@@ -1,0 +1,193 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9+5;
+const int MOD = 1000000007;
+const int MAX = 1e5+5;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//     /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//    / /|  / / ____  \ \  \  \ _\ \___\ \/  /
+//   /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+template<typename T>
+struct BIT{
+    int n; vector<T> t;
+
+    BIT(int n): n(n), t(n, T(0)) {}
+
+    void update(ll i, T delta){
+        while(i < n){
+            t[i]+=delta;
+            i|=(i+1);
+        }
+    }
+
+    T sum(int r) const{
+        if(r < 0) return 0;
+
+        T zogfol = 0;
+
+        while(r >= 0){
+            zogfol+=t[r];
+            r&=(r+1);
+            r--;
+        }
+
+        return zogfol;
+    }
+
+    int find_sum_K(T k) const{
+        int id = -1, pw = 1;
+
+        while((pw<<1) < n) pw<<=1;
+
+        for(;pw;pw>>=1){
+            int next = id+pw;
+
+            if(next < n && t[next] < k){
+                k-=t[next];
+                id+=pw;
+            }
+        }
+
+        return ++id;
+    }
+
+    T query(int l,int r) const{
+        return sum(r)-sum(l-1);
+    }
+};
+
+void solve(){
+    int n; cin>>n;
+
+    vector<ll>v(n+1),p(n+1),ans(n+1);
+
+    for(int i=1;i<=n;i++)cin>>v[i];
+    for(int i=1;i<=n;i++)cin>>p[i];
+
+    BIT<ll>bit(n+1);
+
+    set<tuple<int,int,ll>>s;
+    set<int>active;
+
+    s.insert({p[n],p[n],v[p[n]]});
+    active.insert(p[n]);
+    bit.update(p[n],v[p[n]]);
+
+    ans[n]=0;
+    ans[n-1]=0;
+
+    for(int i=n-1;i>=1;i--){
+        int id=p[i];
+        ll val=v[id];
+
+        active.insert(p[i]);
+
+        bool vitore=1;
+
+        auto it=s.lower_bound({id+1,-1,-1});
+
+        if(it==s.begin()){
+            vitore=0;
+            it=s.insert({id,id,val}).first;
+        }
+        else{
+            it--;
+
+            auto [l,r,sum]=(*it);
+
+            if(!((l<=id)&&(id<=r))){
+                vitore=0;
+                it=s.insert({id,id,val}).first;
+            }
+        }
+
+        if(vitore){
+            auto [l,r,sum]=(*it);
+            s.erase(it);
+
+            ll left=bit.query(l,id-1);
+
+            if(l<=id-1&&left>0)
+                s.insert({l,id-1,left});
+
+            ll right=bit.query(id+1,r);
+
+            if(id+1<=r&&right>0)
+                s.insert({id+1,r,right});
+
+            it=s.insert({id,id,val}).first;
+        }
+
+        if(it!=s.begin()){
+            auto prev=it;
+            prev--;
+
+            auto [l,r,sum]=(*it);
+            auto [pl,pr,psum]=(*prev);
+
+            ll acc=v[*active.lower_bound(l)];
+
+            if(acc<=psum){
+                s.erase(prev);
+                s.erase(it);
+
+                it=s.insert({pl,r,sum+psum}).first;
+            }
+        }
+
+        while(true){
+            if((int)s.size()==1) break;
+
+            auto nxt=it;
+            nxt++;
+
+            if(nxt==s.end()) break;
+
+            auto [l,r,sum]=(*it);
+            auto [nl,nr,nsum]=(*nxt);
+
+            ll acc=v[*active.lower_bound(nl)];
+
+            if(sum>=acc){
+                s.erase(it);
+                s.erase(nxt);
+
+                it=s.insert({l,nr,sum+nsum}).first;
+            }
+            else break;
+        }
+
+        bit.update(p[i],v[p[i]]);
+        ans[i-1]=(int)s.size()-1;
+    }
+
+    for(int i=0;i<=n-1;i++)cout<<ans[i]<<" ";
+    cout<<'\n';
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll t;
+    cin>>t;
+
+    while(t--){
+        solve();
+    }
+
+    return 0;
+}

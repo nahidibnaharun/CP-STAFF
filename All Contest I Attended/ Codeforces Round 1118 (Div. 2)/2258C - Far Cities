@@ -1,0 +1,62 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+
+const int INF = 1e9+5;
+const int MOD = 1000000007;
+const int MAX = 1e5+5;
+
+bool ask(int u, int v, int d) {
+    cout << "? " << u << ' ' << v << ' ' << d << endl;
+    bool x;
+    cin >> x;
+    return x;
+}
+
+void solve() {
+    int n;
+    cin >> n;
+
+    int d = 1, st = 1, ed = 2;
+
+    for(int i = 1; i <= n; i++) {
+        if(st == i) continue;
+
+        while(ask(st, i, d + 1)) {
+            ed = i;
+            d++;
+        }
+    }
+
+    st = ed;
+    ed = 1;
+
+    for(int i = 1; i <= n; i++) {
+        if(st == i) continue;
+
+        while(ask(st, i, d + 1)) {
+            ed = i;
+            d++;
+        }
+    }
+
+    cout << "! " << st << ' ' << ed << ' ' << d << endl;
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll t;
+    cin >> t;
+
+    while(t--) {
+        solve();
+    }
+
+    return 0;
+}

@@ -1,0 +1,103 @@
+#include <iostream>
+using namespace std;
+
+// Node class
+class Node {
+public:
+    int data;
+    Node* next;
+
+    Node(int value) {
+        data = value;
+        next = NULL;
+    }
+};
+
+// Queue class
+class Queue {
+private:
+    Node* front;
+    Node* rear;
+
+public:
+    // Constructor
+    Queue() {
+        front = NULL;
+        rear = NULL;
+    }
+
+    // Add element to queue
+    void enqueue(int value) {
+        Node* newNode = new Node(value);
+
+        // If queue is empty
+        if (front == NULL) {
+            front = newNode;
+            rear = newNode;
+        }
+        else {
+            rear->next = newNode;
+            rear = newNode;
+        }
+    }
+
+    // Remove element from queue
+    void dequeue() {
+        // If queue is empty
+        if (front == NULL) {
+            cout << "Queue is empty!" << endl;
+            return;
+        }
+
+        Node* temp = front;
+        front = front->next;
+
+        // If queue becomes empty
+        if (front == NULL) {
+            rear = NULL;
+        }
+
+        delete temp;
+    }
+
+    // Display queue
+    void display() {
+        if (front == NULL) {
+            cout << "Queue is empty!" << endl;
+            return;
+        }
+
+        Node* temp = front;
+
+        while (temp != NULL) {
+            cout << temp->data << " ";
+            temp = temp->next;
+        }
+
+        cout << endl;
+    }
+};
+
+int main() {
+    Queue q;
+
+    q.enqueue(10);
+    q.enqueue(20);
+    q.enqueue(30);
+    q.enqueue(40);
+
+    cout << "Queue: ";
+    q.display();
+
+    q.dequeue();
+
+    cout << "After dequeue: ";
+    q.display();
+
+    q.enqueue(50);
+
+    cout << "After enqueue(50): ";
+    q.display();
+
+    return 0;
+}

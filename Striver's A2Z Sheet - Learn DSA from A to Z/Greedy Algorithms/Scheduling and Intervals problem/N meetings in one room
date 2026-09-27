@@ -1,0 +1,23 @@
+class Solution{
+    public:
+    int maxMeetings(vector<int>& start, vector<int>& end){
+       vector<pair<int,int>> meet;
+
+       for(int i=0 ;i<start.size() ; i++){
+        meet.push_back({end[i],start[i]});
+       }
+
+       sort(meet.begin() , meet.end());
+
+       int cnt=0,mxend=-1;
+
+       for(auto &x:meet){
+
+        if(x.second>mxend){
+            cnt++;
+            mxend=x.first;
+        }
+       }
+       return cnt;
+    }
+};

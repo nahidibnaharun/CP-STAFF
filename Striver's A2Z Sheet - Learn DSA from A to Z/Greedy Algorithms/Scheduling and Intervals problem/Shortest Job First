@@ -1,0 +1,15 @@
+class Solution {
+  public:
+    long long solve(vector<int>& bt) {
+        sort(bt.begin() , bt.end());
+
+        long long sum=0,n=bt.size(),cur=0;
+
+        
+        for(int i=1;i<n;i++){
+            sum+=(bt[i-1]+cur);
+            cur+=bt[i-1];
+        }
+        return sum/n;
+    }
+};

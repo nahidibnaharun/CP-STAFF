@@ -1,0 +1,30 @@
+class Solution{  
+  public:  
+    vector<int> JobScheduling(vector<vector<int>>& job) { 
+        
+        sort(job.begin() , job.end() , [](const vector<int> &a , const vector<int> &b){
+            return a[2]>b[2];
+        });
+        int mxdead = 0;
+        for(auto &x: job){
+            mxdead=max(mxdead,x[1]);
+        }
+
+        vector<int>mark(mxdead+1,-1);
+        long long cnt=0,profit=0;
+        for(auto &a:job){
+            int jobid=a[0];
+            int jobdeadline=a[1], jobprofit = a[2];
+
+            for(int deadline = jobdeadline; deadline>=1; deadline--){
+                if(mark[deadline]==-1){
+                    mark[deadline]=1;
+                    cnt++;
+                    profit+=jobprofit;
+                    break;
+                }
+            }
+        }
+        return {cnt,profit};
+    } 
+};

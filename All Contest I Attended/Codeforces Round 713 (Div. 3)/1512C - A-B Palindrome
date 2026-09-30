@@ -1,0 +1,63 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void solve(){
+    int a,b; cin>>a>>b;
+    string s; cin>>s;
+
+    for(int x=0;x<2;x++){
+        for(int i=0;i<s.size();i++){
+            int j=s.size()-i-1;
+            if(s[i]!='?'){
+                if(s[j]=='?') s[j]=s[i];
+                else if(s[i]!=s[j]){
+                    cout<<-1<<endl;
+                    return;
+                }
+            }
+        }
+        reverse(s.begin(),s.end());
+    }
+
+    a-=count(s.begin(),s.end(),'0');
+    b-=count(s.begin(),s.end(),'1');
+    int q=count(s.begin(),s.end(),'?');
+
+    if(a<0 || b<0 || a+b!=q){
+        cout<<-1<<endl;
+        return;
+    }
+
+    if(s.size()%2 && s[s.size()/2]=='?'){
+        int m=s.size()/2;
+        if(a%2) s[m]='0',a--;
+        else if(b%2) s[m]='1',b--;
+        else{
+            cout<<-1<<endl;
+            return;
+        }
+    }
+
+    if(a%2 || b%2){
+        cout<<-1<<endl;
+        return;
+    }
+
+    for(int i=0;i<s.size();i++){
+        if(s[i]=='?'){
+            int j=s.size()-i-1;
+            if(a) s[i]=s[j]='0',a-=2;
+            else s[i]=s[j]='1',b-=2;
+        }
+    }
+
+    cout<<s<<endl;
+}
+
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t; cin>>t;
+    while(t--) solve();
+}

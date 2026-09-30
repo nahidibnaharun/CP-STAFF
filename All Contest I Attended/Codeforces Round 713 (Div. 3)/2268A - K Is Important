@@ -1,0 +1,71 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9+5;
+const int MOD = 1000000007;
+const int MAX = 1e5+5;
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \ \  \
+//   / /|  / / ____  \ \ \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+
+struct F{
+    int n; vector<int>b;
+    F(int n): n(n), b(n+1){}
+    void add(int i,int v){
+        for(;i<=n; i+=i & -i)b[i]+=v;
+    }
+    int kth(int k){
+        int p=0;
+        for(int x=1<<__lg(n); x; x>>=1){
+            int q=p+x;
+            if(q<=n && b[q]<k)p=q,k-=b[q];
+        }return p+1;
+    }
+};
+
+void solve() {
+  int n,k; cin >> n>>k; 
+  vector<ll>a(n+1);
+  F f(n);
+  for(int i=1;i<=n;i++)cin>>a[i],f.add(i,1);
+  ll ans=0;
+  while(n>=k){
+    int l=f.kth(k),r=f.kth(n-k+1);
+    if(a[l]>=a[r])ans+=a[l],f.add(l,-1);
+    else ans+=a[r],f.add(r,-1);
+
+    n--;
+  }cout<<ans;
+}
+
+
+
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    ll t;
+    cin >> t;
+
+    while (t--) {
+        solve();
+        cout<<endl;
+    }
+
+    return 0;
+}
+
+

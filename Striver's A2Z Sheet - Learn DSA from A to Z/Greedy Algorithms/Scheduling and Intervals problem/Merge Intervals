@@ -1,0 +1,23 @@
+class Solution {
+   public:
+    vector<vector<int>> mergeIntervals(vector<vector<int>>& x) {
+        sort(x.begin(), x.end());
+        vector<vector<int>> ans;
+        
+        int n=x.size();
+        
+        int start = x[0][0] , end = x[0][1]; 
+
+        for(int i=1;i<n;i++){
+            if(end >= x[i][0]){
+                end = max(x[i][1], end);
+            }
+            else{
+                ans.push_back({start,end});
+                start = x[i][0] , end = x[i][1];
+            }
+        }
+        ans.push_back({start, end});
+        return ans;
+    }
+};

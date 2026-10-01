@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int MaximumNonOverlappingIntervals(vector<vector<int>>& a) {
+       
+       sort(a.begin() , a.end() , [](const auto &a, const auto &b){
+        return a[1]<b[1];
+       });
+
+       int remove=0, end=-1;
+
+       for(int i=0 ;i<a.size() ;i++){
+        int start =a[i][0];
+
+        if(start>=end){
+            end=a[i][1];
+        }
+        else{
+            remove++;
+        }
+       }
+       return remove;
+
+       
+    }
+};

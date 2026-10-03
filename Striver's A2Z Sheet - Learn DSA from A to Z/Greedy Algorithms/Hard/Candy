@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int candy(vector<int>& v) {
+
+int n = v.size();
+
+        vector<int> cn(n, 1);
+
+
+        for (int i = 1; i < n; i++) {
+            if (v[i] > v[i - 1]) {
+                cn[i] = cn[i - 1] + 1;
+            }
+        }
+        
+        for (int i = n - 2; i >= 0; i--) {
+            if (v[i] > v[i + 1]) {
+                cn[i] = max(cn[i], cn[i + 1] + 1);
+            }
+        }
+
+        int sum = 0;
+        for (int x : cn) {
+            sum += x;
+        }
+
+        return sum;
+
+    }
+};

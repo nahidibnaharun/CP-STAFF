@@ -1,0 +1,28 @@
+class Solution {
+  public:
+    int longestKSubstr(string &s, int k) {
+        // code here
+        int fre[26]={0},n=s.length(),r=0,l=0,ans=-1,u=0;
+        
+        
+        
+        while(r<n){
+            
+            fre[s[r]-'a']++;
+            if(fre[s[r]-'a']==1)u++;
+            
+            
+            while(u>k&& l<n){
+                fre[s[l]-'a']--;
+                if(fre[s[l]-'a']==0)u--;
+                l++;
+            }
+            
+            if(u==k)ans=max(ans,r-l+1);
+            r++;
+            
+            
+        }
+        return ans;
+    }
+};

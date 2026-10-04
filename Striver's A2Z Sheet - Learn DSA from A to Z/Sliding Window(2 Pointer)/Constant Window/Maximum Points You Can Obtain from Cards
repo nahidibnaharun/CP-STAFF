@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int maxScore(vector<int>& x, int k) {
+        
+        int n=x.size();
+        k=n-k;
+        long long sum= accumulate(x.begin() , x.begin()+k,0),ans=sum;
+        int l=1,r=k;
+        while(r<n){
+
+            sum-=x[l-1] , sum+=x[r];
+            ans=min(ans,sum);
+            l++,r++;
+        }
+        return accumulate(x.begin(),x.end(),0)-ans;
+    }
+};

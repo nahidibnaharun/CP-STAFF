@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int totalFruit(vector<int>& f) {
+        
+        int n=f.size() ,l=0,r=0 , u=0;
+        vector<int> fre(n,0);
+        int sum=0,mx=0;
+        while(r<n){
+
+            fre[f[r]]++;
+            if(fre[f[r]]==1)u++;
+
+            while(u>2 ){
+                fre[f[l]]--;
+                if(fre[f[l]]==0)u--;
+                l++;
+            }
+            
+            
+            mx=max(r-l+1,mx);
+            r++;
+
+        }
+        return mx;
+    }
+};

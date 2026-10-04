@@ -1,0 +1,20 @@
+int ans=0,far =0 ,n = nums.size(), cend=0;
+        if(n==1)return 0;
+        for(;cend<n;){
+            if(nums[cend] >= n-cend-1){
+                ans++;break;
+            }
+
+            int a= cend+1, b=cend+nums[cend];
+            for(int j=a;j<=b && j<n;j++){
+                if(far < j+ nums[j]){
+                    cend= j;
+                    far=j+nums[j];
+                }
+            }
+            ans++;
+            
+            far=0;
+
+        }
+        return ans;

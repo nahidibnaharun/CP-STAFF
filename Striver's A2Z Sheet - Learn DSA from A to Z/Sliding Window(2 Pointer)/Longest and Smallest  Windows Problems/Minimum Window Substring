@@ -1,0 +1,36 @@
+class Solution {
+public:
+    string minWindow(string s, string t) {
+         
+
+        int need[128]={0},have[128]={0}, formed=0, total =0 , l=0 , len=INT_MAX,slen=0,n=s.length();
+
+        for(auto x:t){
+            
+            if(have[x]==0)total++;
+            have[x]++;
+        }
+
+         for(int r=0;r<n;r++){
+            need[s[r]]++;
+            if(need[s[r]]>0 && need[s[r]]==have[s[r]])formed++;
+
+
+            while(formed==total){
+                if(r-l+1 < len){
+                    len=r-l+1;
+                    slen=l;
+                }
+
+                if(need[s[l]]==have[s[l]]){
+                    formed--;
+                }
+                need[s[l]]--;
+                l++;
+            }
+         }
+
+         return len==INT_MAX?"":s.substr(slen,len);
+         
+    }
+};

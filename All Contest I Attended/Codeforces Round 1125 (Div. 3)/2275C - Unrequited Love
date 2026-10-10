@@ -1,0 +1,70 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9+5;
+const int MOD = 1000000007;
+const int MAX = 1e5+5;
+
+/*
+//      _   __  ___  __   __ _______ _______
+/*     / | / / / _ \ \ \__\ \\__  __\\  __  \
+/*    /  |/ / / /_\ \  \  ___ \  \ \   \ \  \  \
+/*   / /|  / / ____  \ \  \  \ \ _\ \___\ \/  /
+/*  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+/
+/* ID: mdnahidibnaharun
+/* LANG: C++
+/* TASK: practice
+*/
+
+void solve()
+{
+    ll n;
+    cin >> n;
+
+    vector<ll> a(n);
+    for(auto &x : a){
+        cin >> x;
+    }
+
+    vector<ll> arr;
+    map<ll, ll> mp;
+    ll ans = 0;
+
+    for(ll i = 0; i < n - 4; i++){
+        ll cur = a[i] + a[i + 2] - a[i + 4];
+
+        ans += mp[cur];
+
+        if(i >= 2 && arr[i - 2] == cur){
+            ans--;
+        }
+
+        if(i >= 4 && arr[i - 4] == cur){
+            ans--;
+        }
+
+        mp[cur]++;
+        arr.push_back(cur);
+    }
+
+    cout << ans << '\n';
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll t;
+    cin >> t;
+
+    while(t--){
+        solve();
+    }
+
+    return 0;
+}

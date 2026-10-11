@@ -1,0 +1,96 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9+5;
+const int MOD = 1000000007;
+const int MAX = 1e5+5;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \  \  \
+//   / /|  / / ____  \ \ \  \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+void solve()
+{
+    ll n, k;
+    cin >> n >> k;
+
+    vector<ll> S(n), E(n), dead(n);
+    vector<ll> A(n), B(n), C(n);
+
+    const ll BIG = numeric_limits<ll>::max() / 4;
+    ll lo = BIG, cap = BIG;
+
+    for(int i = 0; i < n; i++){
+        cin >> A[i] >> B[i] >> C[i];
+    }
+
+    for(int i = 0; i < n; i++){
+        ll a = A[i], b = B[i], c = C[i];
+
+        S[i] = a + b + c;
+        dead[i] = (a == b && b == c);
+        E[i] = (a <= b && b <= c) ? min(b - a, c - b) + 1 : 0LL;
+
+        lo = min(lo, S[i]);
+
+        if(dead[i]){
+            cap = min(cap, S[i]);
+        }
+    }
+
+    ll hi = min(cap, lo + k) + 1;
+
+    auto is_ok = [&](ll m){
+        ll total = 0;
+
+        for(int i = 0; i < n; i++){
+            if(S[i] >= m) continue;
+            if(dead[i]) return 0;
+
+            total += (m - S[i]) + 2 * E[i];
+
+            if(total > k) return 0;
+        }
+
+        return 1;
+    };
+
+    while(hi - lo > 1){
+        ll mid = (hi + lo) / 2;
+
+        if(is_ok(mid)){
+            lo = mid;
+        }
+        else{
+            hi = mid;
+        }
+    }
+
+    cout << lo << '\n';
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll t;
+    cin >> t;
+
+    while(t--){
+        solve();
+    }
+
+    return 0;
+}

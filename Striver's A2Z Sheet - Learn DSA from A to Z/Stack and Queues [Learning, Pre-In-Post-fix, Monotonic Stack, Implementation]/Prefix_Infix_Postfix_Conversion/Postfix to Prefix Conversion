@@ -1,0 +1,19 @@
+class Solution {
+public:
+    string postToPre(string s) {
+        stack<string>st;
+
+
+        for(char c:s){
+            if(isalnum(c))st.push(string(1,c));
+            else{
+                string tm="";
+                tm+=c;
+                string left=st.top();st.pop();string right=st.top();st.pop();
+                tm+=right; tm+=left;
+                st.push(tm);
+            }
+        }
+        return st.top();
+    }
+};

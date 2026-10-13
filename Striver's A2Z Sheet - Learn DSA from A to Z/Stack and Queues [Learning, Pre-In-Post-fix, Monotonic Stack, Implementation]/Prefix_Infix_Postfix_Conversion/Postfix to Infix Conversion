@@ -1,0 +1,27 @@
+class Solution {
+   public:
+    string postToInfix(string s) {
+        stack<string> st;
+
+        for (char c : s) {
+            if (isalnum(c))
+                st.push(string(1, c));
+            else {
+                string tm = "";
+                string right = st.top();
+                st.pop();
+                string left = st.top();
+                st.pop();
+                tm += '(';
+                tm += left;
+                tm += c;
+                tm += right;
+                tm += ')';
+                st.push(tm);
+            }
+        }
+        string ans = st.top();
+
+        return ans;
+    }
+};

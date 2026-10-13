@@ -1,0 +1,46 @@
+class Solution {
+public:
+    int prio(char c){
+        if(c=='*' || c=='&' || c=='/')return 2;
+        else if(c=='+' || c=='-')return 1;
+        return -1;
+    }
+    string infixToPrefix(const string& s) {
+        string rev=s;
+        reverse(rev.begin() , rev.end());
+
+        for(char &c:rev){
+            if(c=='(')c=')';
+            else if(c==')')c='(';
+        }
+        stack<char>st;
+        string ans;
+        for(char c: rev){
+            if(isalnum(c))ans.push_back(c);
+            else if(c=='(')st.push(c);
+            else if(c==')'){
+                while( !st.empty() && st.top()!='(' ){
+                    ans.push_back(st.top()); 
+                    st.pop();
+                }
+                if(!st.empty())st.pop();
+            }
+            else{
+                while( !st.empty() && st.top()!='(' &&  prio(st.top()) > prio(c)){
+                    ans.push_back(st.top()); 
+                    st.pop();
+                }
+                st.push(c);
+            }
+        }
+        while(!st.empty()){
+            ans.push_back(st.top());
+            st.pop();
+        }
+        reverse(ans.begin() , ans.end());
+        return ans;
+
+
+
+    }
+};

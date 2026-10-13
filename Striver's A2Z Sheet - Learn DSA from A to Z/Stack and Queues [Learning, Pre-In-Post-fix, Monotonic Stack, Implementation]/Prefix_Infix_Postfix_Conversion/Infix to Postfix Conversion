@@ -1,0 +1,38 @@
+class Solution {
+public:
+    int prio(char c){
+        if(c=='^')return 3;
+        if(c=='*' || c=='/' || c=='%')return 2;
+        else if(c=='+' || c=='-')return 1;
+        return -1;
+    }
+    string infixToPostfix(string s) {
+       stack<char>st;
+       string ans;
+
+
+        for(auto c:s){
+            if(isalnum(c))ans.push_back(c);
+            else if(c=='(')st.push(c);
+            else if(c==')'){
+                while(!st.empty() && st.top()!='('){
+                    ans.push_back(st.top());
+                    st.pop();
+                }
+                if(!st.empty())st.pop();
+            }
+            else{
+                while(!st.empty() && st.top() != '(' && (prio(st.top()) > prio(c) || (prio(st.top()) == prio(c) && c != '^'))){
+                    ans.push_back(st.top()); st.pop();
+                }
+                st.push(c);
+            }
+        }
+        while(!st.empty()){
+            if(st.top() !='(')ans.push_back(st.top());
+            st.pop();
+        }
+        return ans;
+
+    }
+};

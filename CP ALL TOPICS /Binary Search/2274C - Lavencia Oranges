@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void solve() {
+    int n;
+    cin >> n;
+
+    auto f = [&](int rt) {
+        int cnt = 0;
+        for (int i = rt; i >= 1; i--) {
+            int c = rt / i;
+            while (c--) {
+                if (cnt + i > n) break;
+                cnt += i;
+            }
+        }
+        return cnt >= n;
+    };
+
+    int lo = 1, hi = n;
+    while (lo <= hi) {
+        int mid = (lo + hi) / 2;
+        if (f(mid)) hi = mid - 1;
+        else lo = mid + 1;
+    }
+
+    vector<int> ans;
+    int x = 1;
+
+    for (int i = lo; i >= 1; i--) {
+        int c = lo / i;
+        while (c--) {
+            if ((int)ans.size() + i > n) break;
+            for (int j = 0; j < i; j++)
+                ans.push_back(x);
+            x++;
+        }
+    }
+
+    cout << lo << '\n';
+    for (int x : ans) cout << x << ' ';
+    cout << '\n';
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin >> t;
+    while (t--) solve();
+
+    return 0;
+}

@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+
+
+
+
+
+void solve(){
+int n; cin >>n;
+string s; cin >> s;
+
+vector<int>temp;
+
+for(int i=0;i<n;){
+    int j=i;
+    while(j<n && s[j]==s[i])j++;
+
+    temp.push_back(j-i);
+    i=j;
+}
+
+bool ok=false;
+if(temp.size()<=2) ok = true;
+
+else if(temp.size()==3)
+ok = (temp[1]>=temp[0]+temp[2]);
+
+if(ok)cout<<"YES";
+else cout<<"NO";
+cout<<endl;
+
+
+
+}
+
+int main()
+{
+   int t; cin >> t;
+   while(t--){
+    solve();
+    // cout<<endl;
+   }
+
+    return 0;
+
+}

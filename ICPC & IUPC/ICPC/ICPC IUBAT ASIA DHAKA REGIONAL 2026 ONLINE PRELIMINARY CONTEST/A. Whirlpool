@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+
+
+
+
+void solve(){
+    int n,a,b; cin >> n >> a >> b;
+    vector<ll>x(n),y(n),w(n);
+    for(auto &s:x)cin >> s; 
+    for(auto &s:y)cin>>s;
+    for(auto &s:w)cin>>s;
+
+    map<pair<ll,ll>,ll>mp;
+    ll p=1LL-a;
+    ll ans=0;
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            ll X=x[j]-1LL*a*x[i]+1LL*b*y[i];
+            ll Y=y[j]-1LL*b*x[i]-1LL*a*y[i];
+            ll cx=X*p-Y*b;
+            ll cy=Y*p+X*b;
+            mp[{cx,cy}]+=w[i];
+            ans=max(ans,mp[{cx,cy}]);
+        }
+    }
+    cout<<ans;
+
+}
+
+int main()
+{
+   int t; cin >> t;
+   while(t--){
+    solve();
+    cout<<endl;
+   }
+
+    return 0;
+}

@@ -1,0 +1,81 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+const int INF = 1e9+5;
+const int MOD = 1e9+7;
+const int MAX = 1e5+5;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \ \  ___ \  \ \   \ \  \  \
+//   / /|  / / ____  \ \  \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+void solve(){
+
+    int n, k; cin >> n >> k;
+
+    vector<int> a(n);
+
+    for(int i = 0; i < n; i++){
+        cin >> a[i];
+    }
+
+    sort(a.begin(), a.end());
+
+    int cnt = count(a.begin(), a.end(), a[n-1]);
+
+    if(cnt > k){
+        cout << "nO";
+        return;
+    }
+
+    vector<int> b, c;
+
+    for(int i = 0; i < n-k; i++){
+        b.push_back(a[i]);
+    }
+
+    for(int i = n-k; i < n; i++){
+        c.push_back(a[i]);
+    }
+
+    reverse(b.begin(), b.end());
+
+    cout << "yEs" << endl;
+
+    for(int x : c){
+        cout << x << " ";
+    }
+
+    for(int x : b){
+        cout << x << " ";
+    }
+
+}
+
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll t;
+    cin >> t;
+
+    while(t--){
+        solve();
+        cout << endl;
+    }
+
+    return 0;
+}

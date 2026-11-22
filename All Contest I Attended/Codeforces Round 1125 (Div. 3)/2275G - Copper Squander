@@ -1,0 +1,139 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+
+const int INF = 1e9+5;
+const int MOD = 1e9+7;
+const int MAX = 1e5+5;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \  \  ___ \  \ \   \ \  \  \
+//   / /|  / / ____  \ \  \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+struct DSU {
+    vector<int> p, rank_;
+
+    DSU(int n) {
+        p.resize(n);
+        rank_.assign(n, 0);
+        iota(p.begin(), p.end(), 0);
+    }
+
+    int find(int x) {
+        while(p[x] != x) {
+            x = p[x] = p[p[x]];
+        }
+        return x;
+    }
+
+    bool unite(int a, int b) {
+        a = find(a);
+        b = find(b);
+
+        if(a == b) return false;
+
+        if(rank_[a] < rank_[b]) swap(a, b);
+
+        p[b] = a;
+
+        if(rank_[a] == rank_[b]) {
+            rank_[a]++;
+        }
+
+        return true;
+    }
+};
+
+void solve() {
+
+    int n, m, q;
+    cin >> n >> m >> q;
+
+    vector<array<ll, 3>> edges(m);
+
+    ll total = 0;
+
+    for(int i = 0; i < m; i++) {
+        ll u, v, d;
+        cin >> u >> v >> d;
+
+        edges[i] = {d, u-1, v-1};
+        total += d;
+    }
+
+    sort(edges.begin(), edges.end());
+
+    DSU dsu(n);
+
+    vector<ll> w;
+
+    for(auto &e : edges) {
+        if(dsu.unite(e[1], e[2])) {
+            w.push_back(e[0]);
+        }
+    }
+
+    int top = w.size();
+
+    vector<ll> pref(top + 1, 0);
+
+    for(int i = 0; i < top; i++) {
+        pref[i+1] = pref[i] + w[i];
+    }
+
+    for(int i = 0; i < q; i++) {
+
+        ll x;
+        cin >> x;
+
+        int lo = 0, hi = top;
+
+        while(lo < hi) {
+
+            int mid = lo + (hi - lo) / 2;
+
+            if(w[mid] - x * (n - mid - 1) >= 0) {
+                hi = mid;
+            }
+            else {
+                lo = mid + 1;
+            }
+        }
+
+        ll k = n - lo - 1;
+
+        ll cost = pref[lo] + x * (k * (k + 1) / 2);
+
+        cout << total - cost << " ";
+    }
+
+    cout << "\n";
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll t;
+    cin >> t;
+
+    while(t--) {
+        solve();
+    }
+
+    return 0;
+}

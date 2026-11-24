@@ -1,0 +1,236 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+
+using ll = long long;
+using ull = unsigned long long;
+using ld = long double;
+using ui = unsigned int;
+
+const int INF = 1e9+5;
+const int MOD = 1e9+7;
+const int MAX = 1e5+5;
+
+/*
+//      _   __  ___  __   __ _______ _______
+//     / | / / / _ \ \ \__\ \\__  __\\  __  \
+//    /  |/ / / /_\ \  \  ___ \  \ \   \ \  \  \
+//   / /|  / / ____  \ \  \  \ \ _\ \___\ \/  /
+//  /_/ |_/ /_/    \__\ \_\  \_\\______\\___/
+//
+// ID: mdnahidibnaharun
+// LANG: C++
+// TASK: practice
+*/
+
+template <ui MOD>
+struct ModularInt {
+    int x = 0;
+
+    ModularInt() {}
+
+    ModularInt(int x) : x(x < 0 ? x + MOD : x % MOD) {}
+
+    ModularInt(const ModularInt &other) : x(other.x) {}
+
+    ModularInt operator+=(const ModularInt &other) {
+        x += other.x;
+        if(x >= MOD) x -= MOD;
+        return *this;
+    }
+
+    ModularInt operator-=(const ModularInt &other) {
+        x -= other.x;
+        if(x < 0) x += MOD;
+        return *this;
+    }
+
+    ModularInt operator*=(const ModularInt &other) {
+        x = (1LL * x * other.x) % MOD;
+        return *this;
+    }
+
+    ModularInt power(ll pw) const {
+        ModularInt a(*this);
+        ModularInt b = 1;
+
+        for(; pw; pw >>= 1, a *= a){
+            if(pw & 1) b *= a;
+        }
+
+        return b;
+    }
+
+    ModularInt inv() const {
+        return power(MOD - 2);
+    }
+
+    ModularInt operator/=(const ModularInt &other) {
+        x = (1LL * x * other.inv().x) % MOD;
+        return *this;
+    }
+
+    bool operator==(const ModularInt &other) {
+        return x == other.x;
+    }
+
+    bool operator!=(const ModularInt &other) {
+        return x != other.x;
+    }
+
+    friend ModularInt operator+(const ModularInt &a, const ModularInt &b) {
+        return ModularInt(a) += b;
+    }
+
+    friend ModularInt operator-(const ModularInt &a, const ModularInt &b) {
+        return ModularInt(a) -= b;
+    }
+
+    friend ModularInt operator*(const ModularInt &a, const ModularInt &b) {
+        return ModularInt(a) *= b;
+    }
+
+    friend ModularInt operator/(const ModularInt &a, const ModularInt &b) {
+        return ModularInt(a) /= b;
+    }
+
+    friend istream& operator>>(istream& in, ModularInt& other) {
+        int x;
+        in >> x;
+
+        if(x < 0) x += MOD;
+        x %= MOD;
+
+        other = x;
+        return in;
+    }
+
+    friend ostream& operator<<(ostream& out, const ModularInt& other) {
+        return out << other.x;
+    }
+};
+
+using mint = ModularInt<MOD>;
+
+mint calc_row(const vector<mint> &a) {
+    int n = a.size();
+
+    mint ans = 0;
+    mint sum = 0;
+
+    for(int i = 0; i < n; i++){
+        if((n-i) % 2 == 1){
+            ans += sum * a[i];
+        }
+
+        if(i % 2 == 0){
+            sum += a[i];
+        }
+    }
+
+    return ans;
+}
+
+void solve(){
+
+    int n,m;
+    cin >> n >> m;
+
+    vector<vector<mint>> a(n, vector<mint>(m));
+
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < m; j++){
+            cin >> a[i][j];
+        }
+    }
+
+    mint ans = 0;
+
+    int sgn = 1;
+
+    if(n % 2 == 1) sgn *= -1;
+    if(m % 2 == 1) sgn *= -1;
+
+    for(int i = 0; i < n; i++){
+        if(i % 2 == 0 && (n-i) % 2 == 1){
+            ans += calc_row(a[i]);
+        }
+    }
+
+    vector<mint> psum_min(m), psum_max(m), tmp(m);
+
+    for(int i = 0; i < n; i++){
+
+        if((n-i) % 2 == 1){
+
+            for(int j = 0; j < m-1; j++){
+                if(j % 2 == 0){
+                    ans += a[i][j] * psum_max[j+1];
+                }
+            }
+
+            for(int j = 0; j < m; j++){
+                if((m-j) % 2 == 1){
+                    ans += a[i][j] * psum_min[j];
+                }
+            }
+        }
+
+        if(i % 2 == 0){
+
+            for(int j = 0; j < m; j++){
+                tmp[j] = (j % 2 == 0 ? a[i][j] : 0);
+            }
+
+            for(int j = 1; j < m; j++){
+                tmp[j] += tmp[j-1];
+            }
+
+            for(int j = 0; j < m; j++){
+                psum_min[j] += tmp[j];
+            }
+
+            for(int j = 0; j < m; j++){
+                tmp[j] = ((m-j) % 2 == 1 ? a[i][j] : 0);
+            }
+
+            for(int j = m-2; j >= 0; j--){
+                tmp[j] += tmp[j+1];
+            }
+
+            for(int j = 0; j < m; j++){
+                psum_max[j] += tmp[j];
+            }
+        }
+    }
+
+    ans *= 2;
+
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < m; j++){
+            if(i % 2 == 0 && (n-i) % 2 == 1 &&
+               j % 2 == 0 && (m-j) % 2 == 1){
+                ans += a[i][j] * a[i][j];
+            }
+        }
+    }
+
+    ans *= sgn;
+
+    cout << ans << '\n';
+}
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    ll t;
+    cin >> t;
+
+    while(t--){
+        solve();
+    }
+
+    return 0;
+}

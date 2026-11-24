@@ -1,0 +1,36 @@
+class Solution {
+public:
+    long long subArrayRanges(vector<int> &nums) {
+      int n=nums.size();
+      vector<int>st;
+
+      long long min=0 , max=0;
+
+      for(int i=0 ;i<=n; i++){
+        while( !st.empty() && ( i==n || nums[st.back()] > nums[i])){
+            int j = st.back(); 
+            st.pop_back();
+            int left = st.empty()?j+1:j-st.back();
+
+            int right= i-j;
+
+            min = (min + nums[j]*1LL*right*left);
+        }
+        st.push_back(i);
+      }st.clear();
+
+      for(int i=0 ;i<=n; i++){
+        while( !st.empty() && ( i==n || nums[st.back()] < nums[i])){
+            int j = st.back(); 
+            st.pop_back();
+            int left = st.empty()?j+1:j-st.back();
+
+            int right= i-j;
+
+            max = (max + nums[j]*1LL*right*left);
+        }
+        st.push_back(i);
+      }
+    return max-min;
+    }
+};

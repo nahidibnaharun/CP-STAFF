@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int sumSubarrayMins(vector<int> &arr) {
+        const long long mod = 1e9 + 7;
+        int n=arr.size();
+        long long ans=0;
+        vector<int>st;
+
+        for(int i=0 ;i<=n;i++){
+            while(!st.empty() && (i==n || arr[st.back()]> arr[i])){
+                int j=st.back();
+                st.pop_back();
+                int left=st.empty()?j+1:j-st.back();
+                int right=i-j;
+                ans = (ans+ arr[j] * 1LL * left * right)%mod;
+                
+            }
+            st.push_back(i);
+        }
+        return ans;
+    }
+};
